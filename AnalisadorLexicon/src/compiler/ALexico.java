@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -12,13 +13,17 @@ import java.util.regex.Pattern;
  * @author Santana
  */
 public class ALexico {
-
-    public void init(File arquivo) {
+    public void iniciar(File arquivo) {
         BufferedReader bf;
         try {
             bf = new BufferedReader(new FileReader(arquivo));
             String linha = bf.readLine();
-
+            
+            Pattern pat = Pattern.compile(linha);
+//            Pattern p = Pattern.compile("a*b");
+//            Matcher m = p.matcher("aaaaab");
+//            boolean b = m.matches();
+            
             while (linha != null) {
                 String[] dividida = linha.split("");
 

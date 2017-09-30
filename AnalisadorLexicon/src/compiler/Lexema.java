@@ -6,4 +6,5 @@ package compiler;
  */
 public class Lexema {
     private String nome;
+    private String tipo;
 }

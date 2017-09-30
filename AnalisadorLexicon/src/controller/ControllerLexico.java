@@ -13,13 +13,13 @@ import java.io.File;
  * @author Santana
  */
 public class ControllerLexico {
-    private ALexico analisador_lexico;
+    private ALexico analisadorLexico;
     
     public ControllerLexico(){
-        this.analisador_lexico = new ALexico();
+        this.analisadorLexico = new ALexico();
     }
     
     public void iniciarLexico(File arquivo){
-        this.analisador_lexico.init(arquivo);
+        this.analisadorLexico.iniciar(arquivo);
     }
 }
