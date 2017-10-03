@@ -1,5 +1,21 @@
-int a f fssaint b	ghgshagsh	gshagsh			 afgsfga			gfgsfdg		kdjskjdks
+/* */
 
+/* Arquivo para testar compiladores */
 
-ahgshag
-dsad kjas ======= hagsf
+class test {
+
+int a, int b, int c;
+a = 3;	// teste 1
+b = 2;	// teste 2
+c = 1;	// teste 3
+
+float d;
+
+d = b + c;
+d = d + 1.2;
+
+string teste = "Acertou!";
+
+print(teste);
+
+}
