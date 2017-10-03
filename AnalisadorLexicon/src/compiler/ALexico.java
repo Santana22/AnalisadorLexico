@@ -17,42 +17,58 @@ public class ALexico {
         BufferedReader bf;
         try {
             bf = new BufferedReader(new FileReader(arquivo));
-            String linha = bf.readLine();
-            linha = (String) linha.subSequence(0, linha.indexOf("//")); //removendo comentario de linha
+            String linha = bf.readLine();            
             
             Pattern pat = Pattern.compile(linha);
 //            Pattern p = Pattern.compile("a*b");
 //            Matcher m = p.matcher("aaaaab");
 //            boolean b = m.matches();
+
+            int contadorLinha = 0;
             
             while (linha != null) {
-                String[] dividida = linha.split("");
-
-                for (String string : dividida) {
-                    if (!string.matches("")) {
-                        System.out.println(string);
+                
+                /*remove comentários de bolco*/
+                while(linha.contains("/*")){
+                    int primeiraOcorrencia = linha.indexOf("/*");
+                    String temp = linha.substring(0, primeiraOcorrencia);
+                    if(linha.contains("*/")){ //verifica se a mesma linha contem o fim do comentario
+                        temp+=linha.substring(linha.indexOf("*/", primeiraOcorrencia)+2, linha.length());
+                    }else{
+                        while(linha!=null && !linha.contains("*/")){ //enquanto não for encontrada a linha com o fim do comentário
+                            linha = bf.readLine();
+                            contadorLinha++;
+                        }
+                        if(linha!=null){ //se a linha for encontrada
+                            temp +=linha.substring(linha.indexOf("*/")+2);
+                        }
                     }
+                    linha = temp;
+                    System.out.println(linha);
                 }
-                linha = bf.readLine();
+                
+                                
+                if(linha!=null){ //verifica se o fim do comentário de bloco foi encontrado
+
+                    if(linha.contains("//")) 
+                        linha = (String) linha.subSequence(0, linha.indexOf("//")); //removendo comentario de linha
+                    
+                    String[] dividida = linha.split("");
+
+                    for (String string : dividida) {
+                        if (!string.matches("")) {
+                            System.out.println(string);
+                        }
+                    }
+                    linha = bf.readLine();
+                    contadorLinha++;
+                }else{
+                    //comentario mal formado
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    /**
-     * Remove todos os comentarios lidos do arquivo
-     * @param teste
-     * @return 
-     */
-    private String removerComentarios(String teste){
-        while(teste.contains("/*")){
-            int primeiraOcorrencia = teste.indexOf("/*");
-            String temp = (String) teste.subSequence(0, primeiraOcorrencia); //extrai a string antes do delimitador de comentario
-            if(teste.contains("*/")) //verifica se existe o fim do comentario
-                temp+=teste.subSequence(teste.indexOf("*/", primeiraOcorrencia)+2,teste.length()); //extrai a string depois do delimitador de comentario
-            teste = temp;
-        }
-        return teste;
-    }
 }
