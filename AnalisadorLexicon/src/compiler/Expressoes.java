@@ -15,22 +15,33 @@ import java.util.regex.Pattern;
  */
 public abstract class Expressoes {
     
-    List <Pattern> expressoes = new ArrayList<>();
+    private static List <Pattern> expressoes = new ArrayList<>();
     
-    private void addExpressoes(){
+    private static void addExpressoes(){
         Pattern palavraReservada = Pattern.compile("class|final|if|else|for|scan|print|int|float|bool|true|false|string");
         expressoes.add(palavraReservada);
         Pattern identificador = Pattern.compile("^[a-z|A-Z]\\w*");
         expressoes.add(identificador);
-        Pattern operadorRelacional = Pattern.compile("!=|=|<|<=>|>=");
-        expressoes.add(operadorRelacional);
+        String espacos = "(\\x09|\\x0A|\\x0B|\\x20)*";
+        Pattern numero = Pattern.compile("-*"+espacos+"\\d*(\\.\\d+)?");
+        expressoes.add(numero);
         Pattern operadorAritmetrico = Pattern.compile("\\+|\\-|\\*|/|%");
         expressoes.add(operadorAritmetrico);
-        Pattern delimitador = Pattern.compile(";|,|\\(|\\)|[|]|\\{|\\}");
+        Pattern operadorRelacional = Pattern.compile("!=|=|<|<=|>|>=");
+        expressoes.add(operadorRelacional);
+        Pattern operadorLogico = Pattern.compile("!|&&|\\|\\|");
+        expressoes.add(operadorLogico);
+        Pattern delimitador = Pattern.compile(";|,|\\(|\\)|\\[|\\]|\\{|\\}");
         expressoes.add(delimitador);
         Pattern espaco = Pattern.compile("\\x09|\\x0A|\\x0B|\\x20");
         expressoes.add(espaco);
-        
     }
+    
+    public List <Pattern> getExpressões(){
+        addExpressoes();
+        return expressoes;
+    }
+    
+    
     
 }
