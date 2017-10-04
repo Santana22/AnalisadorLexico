@@ -19,5 +19,8 @@ public class Exec {
         for (File file : arquivos) {
             facade.analisadorLexico(file);
         }
+        
+        
+        
     }
 }

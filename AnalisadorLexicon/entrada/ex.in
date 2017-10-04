@@ -16,6 +16,4 @@ d = d + 1.2;
 
 string teste = "Acertou!";
 
-print(teste);
-
 }

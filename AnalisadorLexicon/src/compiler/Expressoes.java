@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package compiler;
 
 import java.util.ArrayList;
@@ -11,7 +6,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author emerson
+ * @author Emerson e Vinicius
  */
 public abstract class Expressoes {
     
@@ -39,11 +34,8 @@ public abstract class Expressoes {
         expressoes.add(espaco);  
     }
     
-    public List <Pattern> getExpressões(){
+    public List<Pattern> getExpressões(){
         addExpressoes();
         return expressoes;
     }
-    
-    
-    
 }
