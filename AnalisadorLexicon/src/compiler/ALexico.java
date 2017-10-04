@@ -57,7 +57,7 @@ public class ALexico {
                                 lexemas.add(new Lexema(string, "Palavra Reservada", contadorLinha));
                             } else if (string.matches("^[a-z|A-Z]\\w*")) {
                                 lexemas.add(new Lexema(string, "Identificador", contadorLinha));
-                            } else if (string.matches("^[-*(\\x09|\\x0A|\\x0B|\\x20)?(\\d)*(\\.\\d+)?]")) {
+                            } else if (string.matches("-*(\\x09|\\x0A|\\x0B|\\x20)*(\\d)*(\\.\\d+)?")) {
                                 lexemas.add(new Lexema(string, "Número", contadorLinha));
                             } else if (string.matches("\\+|\\-|\\*|/|%")) {
                                 lexemas.add(new Lexema(string, "Operador Aritmético", contadorLinha));
