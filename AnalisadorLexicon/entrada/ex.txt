@@ -1,0 +1,7 @@
+class teste {
+
+int a, int b, int c;
+
+string test = "Acertou";
+
+}

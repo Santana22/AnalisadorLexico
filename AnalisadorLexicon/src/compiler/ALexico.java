@@ -53,16 +53,18 @@ public class ALexico {
                     linha = linha.replace(",", " , ").replace(";", " ; ").replace("!=", " != ").replace("<=", " <= ").replace(">=", " >= ").replace("||", " || ")
                             .replace("&&", " && ");
 
-                    String[] dividida = linha.split("\\x09|\\x0A|\\x0B|\\x20");
+                    
+                    
+                    String[] dividida = linha.split("\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v");
 
                     for (String lexema : dividida) {
-                        if (true) {
-                            System.out.println();
+                        if (!lexema.matches("\"\\\\x09|\\\\x0A|\\\\x0B|\\\\x20|\\\\h|\\\\s|\\\\v")) {
+                            System.out.println(lexema);
                             if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) {
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
                             } else if (lexema.matches("^[a-z|A-Z](\\w)*")) {
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
-                            } else if (lexema.matches("[\\-]?(\\x09|\\x0A|\\x0B|\\x20|\\n)\\d[\\d]*[\\[.]\\d[\\d]*]?")||lexema.matches("\\d\\d*")) {
+                            } else if (lexema.matches("[\\-]?(\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v)\\d[\\d]*[\\[.]\\d[\\d]*]?")||lexema.matches("(\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v)\\d\\d*[\\[.]\\d[\\d]*]?")) {
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Número >, ", contadorLinha));
                             } else if (lexema.matches("\\d")){
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Digito >, ", contadorLinha));
@@ -88,10 +90,21 @@ public class ALexico {
                 }
             }
 
+            FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_" + arquivo.getName()));
+		
+            BufferedWriter bw = new BufferedWriter(output);
+            
             for (Lexema lex : lexemas) {
 
+                
+                bw.write(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
+                bw.newLine();
+                
                 System.out.println(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
             }
+            
+            
+            bw.close();
 
         } catch (Exception ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);

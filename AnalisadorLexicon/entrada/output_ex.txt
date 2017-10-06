@@ -1,0 +1,23 @@
+< class > , < Palavra Reservada >, Linha: 1
+< teste > , < Identificador >, Linha: 1
+< { > , < Delimitador >, Linha: 1
+<  > , < Símbolo ou Expressão Mal Formada >, Linha: 2
+< int > , < Palavra Reservada >, Linha: 3
+< a > , < Identificador >, Linha: 3
+< , > , < Delimitador >, Linha: 3
+<  > , < Símbolo ou Expressão Mal Formada >, Linha: 3
+< int > , < Palavra Reservada >, Linha: 3
+< b > , < Identificador >, Linha: 3
+< , > , < Delimitador >, Linha: 3
+<  > , < Símbolo ou Expressão Mal Formada >, Linha: 3
+< int > , < Palavra Reservada >, Linha: 3
+< c > , < Identificador >, Linha: 3
+< ; > , < Delimitador >, Linha: 3
+<  > , < Símbolo ou Expressão Mal Formada >, Linha: 4
+< string > , < Palavra Reservada >, Linha: 5
+< test > , < Identificador >, Linha: 5
+< = > , < Operador Relacional >, Linha: 5
+< "Acertou" > , < Cadeia de Caracteres >, Linha: 5
+< ; > , < Delimitador >, Linha: 5
+<  > , < Símbolo ou Expressão Mal Formada >, Linha: 6
+< } > , < Delimitador >, Linha: 7
