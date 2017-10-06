@@ -55,27 +55,29 @@ public class ALexico {
 
                     String[] dividida = linha.split("\\x09|\\x0A|\\x0B|\\x20");
 
-                    for (String string : dividida) {
-                        if (!string.contains(" ")) {
-                            System.out.println(string);
-                            if (string.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Palavra Reservada >, ", contadorLinha));
-                            } else if (string.matches("^[a-z|A-Z](\\w)*")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Identificador >, ", contadorLinha));
-                            } else if (string.matches("[\\-]?[\\x09|\\x0A|\\x0B|\\x20]*\\d[\\d]*[\\[.]\\d[\\d]*]?")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Número >, ", contadorLinha));
-                            } else if (string.matches("\\+|\\-|\\*|/|%")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Operador Aritmético >, ", contadorLinha));
-                            } else if (string.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Operador Relacional >, ", contadorLinha));
-                            } else if (string.matches("\\!|\\&\\&|\\|\\|")){
-                                lexemas.add(new Lexema("< " + string + " >", " , < Operador Lógico >, ", contadorLinha));
-                            } else if (string.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Delimitador >, ", contadorLinha));
-                            } else if (string.matches("\"[\\x20-\\x21\\x23-\\x7E]*\"")) {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
+                    for (String lexema : dividida) {
+                        if (true) {
+                            System.out.println();
+                            if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
+                            } else if (lexema.matches("^[a-z|A-Z](\\w)*")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
+                            } else if (lexema.matches("[\\-]?(\\x09|\\x0A|\\x0B|\\x20|\\n)\\d[\\d]*[\\[.]\\d[\\d]*]?")||lexema.matches("\\d\\d*")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Número >, ", contadorLinha));
+                            } else if (lexema.matches("\\d")){
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Digito >, ", contadorLinha));
+                            } else if (lexema.matches("\\+|\\-|\\*|/|%")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Aritmético >, ", contadorLinha));
+                            } else if (lexema.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Relacional >, ", contadorLinha));
+                            } else if (lexema.matches("\\!|\\&\\&|\\|\\|")){
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
+                            } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
+                            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E]*\"")) {
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
                             } else {
-                                lexemas.add(new Lexema("< " + string + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
+                                lexemas.add(new Lexema("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
                             }
                         }
                     }
