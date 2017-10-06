@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.*;
 
 /**
  *
@@ -48,27 +49,33 @@ public class ALexico {
                     if (linha.contains("//")) {
                         linha = (String) linha.subSequence(0, linha.indexOf("//")); //removendo comentario de linha
                     }
-                    String[] dividida = linha.split("[ \\t\\n\\x0B\\f\\r]");
+
+                    linha = linha.replace(",", " , ").replace(";", " ; ").replace("!=", " != ").replace("<=", " <= ").replace(">=", " >= ").replace("||", " || ")
+                            .replace("&&", " && ");
+
+                    String[] dividida = linha.split("\\x09|\\x0A|\\x0B|\\x20");
 
                     for (String string : dividida) {
-                        if (!string.matches("[ \\t\\n\\x0B\\f\\r]")) {
+                        if (!string.contains(" ")) {
                             System.out.println(string);
                             if (string.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) {
-                                lexemas.add(new Lexema(string, "Palavra Reservada", contadorLinha));
-                            } else if (string.matches("^[a-z|A-Z]\\w*")) {
-                                lexemas.add(new Lexema(string, "Identificador", contadorLinha));
-                            } else if (string.matches("-*(\\x09|\\x0A|\\x0B|\\x20)*(\\d)*(\\.\\d+)?")) {
-                                lexemas.add(new Lexema(string, "Número", contadorLinha));
+                                lexemas.add(new Lexema("< " + string + " >", " , < Palavra Reservada >, ", contadorLinha));
+                            } else if (string.matches("^[a-z|A-Z](\\w)*")) {
+                                lexemas.add(new Lexema("< " + string + " >", " , < Identificador >, ", contadorLinha));
+                            } else if (string.matches("[\\-]?[\\x09|\\x0A|\\x0B|\\x20]*\\d[\\d]*[\\[.]\\d[\\d]*]?")) {
+                                lexemas.add(new Lexema("< " + string + " >", " , < Número >, ", contadorLinha));
                             } else if (string.matches("\\+|\\-|\\*|/|%")) {
-                                lexemas.add(new Lexema(string, "Operador Aritmético", contadorLinha));
-                            } else if (string.matches("!=|=|<|<=|>|>=")) {
-                                lexemas.add(new Lexema("< " + string + " >", "Operador Relacional", contadorLinha));
+                                lexemas.add(new Lexema("< " + string + " >", " , < Operador Aritmético >, ", contadorLinha));
+                            } else if (string.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) {
+                                lexemas.add(new Lexema("< " + string + " >", " , < Operador Relacional >, ", contadorLinha));
+                            } else if (string.matches("\\!|\\&\\&|\\|\\|")){
+                                lexemas.add(new Lexema("< " + string + " >", " , < Operador Lógico >, ", contadorLinha));
                             } else if (string.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) {
-                                lexemas.add(new Lexema("< " + string + " >", "Delimitador", contadorLinha));
+                                lexemas.add(new Lexema("< " + string + " >", " , < Delimitador >, ", contadorLinha));
                             } else if (string.matches("\"[\\x20-\\x21\\x23-\\x7E]*\"")) {
-                                lexemas.add(new Lexema("< " + string + " >", "Cadeia de Caracteres", contadorLinha));
+                                lexemas.add(new Lexema("< " + string + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
                             } else {
-                                lexemas.add(new Lexema("< " + string + " >", "Símbolo ou Exepressão Errada", contadorLinha));
+                                lexemas.add(new Lexema("< " + string + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
                             }
                         }
                     }
@@ -78,9 +85,10 @@ public class ALexico {
                     //comentario mal formado
                 }
             }
-          
+
             for (Lexema lex : lexemas) {
-                System.out.println(lex.getNome() + " " + lex.getTipo() + " " + lex.getLinha());
+
+                System.out.println(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
             }
 
         } catch (Exception ex) {

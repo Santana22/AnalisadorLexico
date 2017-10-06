@@ -17,7 +17,8 @@ public class Exec {
         File[] arquivos = listaArquivos.listFiles();
 
         for (File file : arquivos) {
-            facade.analisadorLexico(file);
+            if(!file.isDirectory())
+                facade.analisadorLexico(file);
         }
         
         
