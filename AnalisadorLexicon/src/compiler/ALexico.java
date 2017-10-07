@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Essa classe implementa as responsablidades do Analisador Léxico. 
@@ -53,32 +55,44 @@ public class ALexico {
                     if (linha.contains("//")) {
                         linha = (String) linha.subSequence(0, linha.indexOf("//")); //removendo comentario de linha
                     }
-
+                    
+                    /*separado operadores aritmetricos*/
+                    linha = linha.replace("+", " + ").replace("-", " - ").replace("/", " / ").replace("*", " * ");
+                    
+                    /*Removendo espaços em branco do numero negativo*/
+                    
+                    Matcher m = Pattern.compile("(-)(\\x09|\\x0A|\\x0B|\\x20)*+(\\d)+(\\.\\d+)?").matcher(linha);
+                    
+                    while(m.find()){ 
+                        String s = (m.group()).substring(1); //desconsidera o sinal - 
+                        linha = linha.replace(s, s.trim()); //remove os espaços
+                    }
+                    
+                    /*Separando operadores relacionais*/
                     linha = linha.replace(",", " , ").replace(";", " ; ").replace("!=", " != ").replace("<=", " <= ").replace(">=", " >= ").replace("||", " || ")
                             .replace("&&", " && ");
 
-                    String[] dividida = linha.split("\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v");
+                    String[] dividida = linha.split("(\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v)+");
 
+                    /*Classificando os lexemas*/
                     for (String lexema : dividida) {
-                        if (!lexema.matches("\"\\\\x09|\\\\x0A|\\\\x0B|\\\\x20|\\\\h|\\\\s|\\\\v")) {
+                        if (!lexema.matches("")) {
                             System.out.println(lexema);
-                            if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) {
+                            if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) { //palavra reservada
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
-                            } else if (lexema.matches("^[a-z|A-Z](\\w)*")) {
+                            } else if (lexema.matches("^[a-z|A-Z](\\w)*")) { //cadeia de caracteres
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
-                            } else if (lexema.matches("[\\-]?(\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v)\\d[\\d]*[\\[.]\\d[\\d]*]?")||lexema.matches("(\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v)\\d\\d*[\\[.]\\d[\\d]*]?")) {
+                            } else if (lexema.matches("[\\-]?(\\d)+(\\.\\d+)?")) { //numero
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Número >, ", contadorLinha));
-                            } else if (lexema.matches("\\d")){
-                                lexemas.add(new Lexema("< " + lexema + " >", " , < Digito >, ", contadorLinha));
-                            } else if (lexema.matches("\\+|\\-|\\*|/|%")) {
+                            } else if (lexema.matches("\\+|\\-|\\*|/|%")) { //operador aritmético
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Aritmético >, ", contadorLinha));
-                            } else if (lexema.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) {
+                            } else if (lexema.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) { //operador relacional
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Relacional >, ", contadorLinha));
-                            } else if (lexema.matches("\\!|\\&\\&|\\|\\|")){
+                            } else if (lexema.matches("\\!|\\&\\&|\\|\\|")){ //operador logico
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
-                            } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) {
+                            } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
-                            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E]*\"")) {
+                            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E]*\"")) { //cadeia de caracteres
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
                             } else {
                                 lexemas.add(new Lexema("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
