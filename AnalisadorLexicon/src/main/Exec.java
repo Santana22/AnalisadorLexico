@@ -10,8 +10,13 @@ import java.io.*;
  */
 
 public class Exec {
-    private static Facade facade = new Facade();
+    private static Facade facade = Facade.getInstance();
 
+    /**
+     * Método que obtem do diretório "entrada" os arquivos fontes. 
+     * A saída está na mesma pasta com o prefixo "output_"
+     */
+    
     public static void main(String[] args) {
         File listaArquivos = new File("entrada");
         File[] arquivos = listaArquivos.listFiles();
@@ -19,9 +24,6 @@ public class Exec {
         for (File file : arquivos) {
             if(!file.isDirectory() && !file.getName().contains("output_"))
                 facade.analisadorLexico(file);
-        }
-        
-        
-        
+        }   
     }
 }

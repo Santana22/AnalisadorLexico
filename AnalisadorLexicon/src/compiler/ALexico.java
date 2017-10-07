@@ -6,21 +6,25 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.io.*;
 
 /**
- *
- * @author Santana
+ * Essa classe implementa as responsablidades do Analisador Léxico. 
+ * São identificados os lexemas e separados por classes (tokens). 
+ * A saída contém os lexema e os erros léxicos.
+ * 
+ * @author Emerson e Santana
  */
 public class ALexico {
-
+    
+    /**
+     * Método que inicializa a análise léxica. 
+     * @param arquivo - código-fonte
+     */
+    
     public void iniciar(File arquivo) {
         BufferedReader bf;
-        try {
-            String arquivotemp = null;
-            String espacos = "(\\x09|\\x0A|\\x0B|\\x20)*";
+        try {            
             ArrayList<Lexema> lexemas = new ArrayList();
             bf = new BufferedReader(new FileReader(arquivo));
             String linha = bf.readLine();
@@ -53,8 +57,6 @@ public class ALexico {
                     linha = linha.replace(",", " , ").replace(";", " ; ").replace("!=", " != ").replace("<=", " <= ").replace(">=", " >= ").replace("||", " || ")
                             .replace("&&", " && ");
 
-                    
-                    
                     String[] dividida = linha.split("\\x09|\\x0A|\\x0B|\\x20|\\h|\\s|\\v");
 
                     for (String lexema : dividida) {
@@ -91,19 +93,14 @@ public class ALexico {
             }
 
             FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_" + arquivo.getName()));
-		
             BufferedWriter bw = new BufferedWriter(output);
             
             for (Lexema lex : lexemas) {
 
-                
                 bw.write(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
                 bw.newLine();
-                
                 System.out.println(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
-            }
-            
-            
+            }      
             bw.close();
 
         } catch (Exception ex) {

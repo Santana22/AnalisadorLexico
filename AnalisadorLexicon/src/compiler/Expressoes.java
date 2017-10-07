@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Classe Abstrata que reune as expressões regular.
+ * @deprecated 
  * @author Emerson e Vinicius
  */
 public abstract class Expressoes {
@@ -33,6 +34,12 @@ public abstract class Expressoes {
         Pattern espaco = Pattern.compile("\\x09|\\x0A|\\x0B|\\x20");
         expressoes.add(espaco);  
     }
+    
+    /**
+     * Método que retoras as expressões regulares.
+     * @deprecated 
+     * @return 
+     */
     
     public List<Pattern> getExpressões(){
         addExpressoes();
