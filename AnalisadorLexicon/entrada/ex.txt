@@ -1,12 +1,12 @@
-class teste {
+/*
+ARQUIVO DE TESTE	
+*/
 
--
-5.2
-/*int a,      		int b, int c;
+class teste{
 
--         7.2+8.2-4*/
-5/2
+int a, int b, int c;
 
-string test = "Acertou\"";
+a = b + c;
+a = a * 1.2;
 
-}
+string amor = "Cadei erraada";

@@ -1,14 +1,30 @@
-< class > , < Palavra Reservada >, Linha: 1
-< teste > , < Identificador >, Linha: 1
-< { > , < Delimitador >, Linha: 1
-< -5.2 > , < Número >, Linha: 4
-< /*int a,      		int b, int c;-         7.2+8.2-4*/ > , < Comentário de bloco >, Linha: 7
-< 5 > , < Número >, Linha: 8
-< / > , < Operador Aritmético >, Linha: 8
-< string > , < Palavra Reservada >, Linha: 10
-< test > , < Identificador >, Linha: 10
+< /*ARQUIVO DE TESTE	*/ > , < Comentário de bloco >, Linha: 3
+< class > , < Palavra Reservada >, Linha: 5
+< teste > , < Identificador >, Linha: 5
+< { > , < Delimitador >, Linha: 5
+< int > , < Palavra Reservada >, Linha: 7
+< a > , < Identificador >, Linha: 7
+< , > , < Delimitador >, Linha: 7
+< int > , < Palavra Reservada >, Linha: 7
+< b > , < Identificador >, Linha: 7
+< , > , < Delimitador >, Linha: 7
+< int > , < Palavra Reservada >, Linha: 7
+< c > , < Identificador >, Linha: 7
+< ; > , < Delimitador >, Linha: 7
+< a > , < Identificador >, Linha: 9
+< = > , < Operador Relacional >, Linha: 9
+< b > , < Identificador >, Linha: 9
+< + > , < Operador Aritmético >, Linha: 9
+< c > , < Identificador >, Linha: 9
+< ; > , < Delimitador >, Linha: 9
+< a > , < Identificador >, Linha: 10
 < = > , < Operador Relacional >, Linha: 10
-< "Acertou\" > , < Cadeia de Caracteres >, Linha: 10
-< "; > , < Símbolo ou Expressão Mal Formada >, Linha: 10
+< a > , < Identificador >, Linha: 10
+< * > , < Operador Aritmético >, Linha: 10
+< 1.2 > , < Número >, Linha: 10
 < ; > , < Delimitador >, Linha: 10
-< } > , < Delimitador >, Linha: 12
+< string > , < Palavra Reservada >, Linha: 12
+< amor > , < Identificador >, Linha: 12
+< = > , < Operador Relacional >, Linha: 12
+< "Cadei erraada" > , < Cadeia de Caracteres >, Linha: 12
+< ; > , < Delimitador >, Linha: 12
