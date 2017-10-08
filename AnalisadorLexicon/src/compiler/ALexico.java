@@ -205,6 +205,10 @@ public class ALexico {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\.\\d+)?")) { //numero
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Número >, ", contadorLinha));
+            } else if (lexema.matches("^//.*")) { //comentário de linha
+                lexemas.add(new Lexema("< " + lexema + " >", " , < Comentário de linha >, ", contadorLinha));
+            } else if (lexema.matches("^(/\\*).*(\\*/)$")) { //comentário de bloco
+                lexemas.add(new Lexema("< " + lexema + " >", " , < Comentário de bloco >, ", contadorLinha));
             } else if (lexema.matches("\\+|\\-|\\*|/|%")) { //operador aritmético
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Aritmético >, ", contadorLinha));
             } else if (lexema.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) { //operador relacional
