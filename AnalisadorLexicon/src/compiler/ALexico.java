@@ -135,6 +135,10 @@ public class ALexico {
                         buffer.append(bufferTemp);
                         analise(buffer, contadorLinha, lexemas);
                         buffer = new StringBuilder();
+                    }else if(v[i]==9||v[i]==10||v[i]==13||v[i]==32||v[i]=='+'||v[i]=='%'||v[i]=='*'||v[i]==';'||v[i]==','||v[i]=='('||v[i]==')'||v[i]=='['||v[i]==']'||v[i]=='{'||v[i]=='}'||v[i]==':'||v[i]=='='||v[i]=='!'){
+                        analise(buffer, contadorLinha, lexemas);
+                        analise(new StringBuilder().append(v[i]), contadorLinha, lexemas);
+                        buffer = new StringBuilder();
                     }else{
                         buffer.append(v[i]);
                     }
@@ -169,7 +173,7 @@ public class ALexico {
     
     private void analise(StringBuilder buffer, int contadorLinha,ArrayList<Lexema> lexemas) {
         String lexema = buffer.toString();
-        if (!lexema.matches("")) {
+        if (!lexema.matches("")&&!lexema.matches("\\x09|\\x0A|\\x0B|\\x20")) {
             System.out.println(lexema);
             if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) { //palavra reservada
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
