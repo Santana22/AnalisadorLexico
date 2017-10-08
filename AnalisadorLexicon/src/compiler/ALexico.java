@@ -139,6 +139,30 @@ public class ALexico {
                         analise(buffer, contadorLinha, lexemas);
                         analise(new StringBuilder().append(v[i]), contadorLinha, lexemas);
                         buffer = new StringBuilder();
+                    }else if(v[i]=='<'||v[i]=='>'||v[i]=='!'){
+                        analise(buffer, contadorLinha, lexemas);
+                        buffer = new StringBuilder().append(v[i]);
+                        if(i+1<v.length && v[i+1]=='='){
+                            buffer.append(v[i+1]);
+                        }
+                        analise(buffer, contadorLinha, lexemas);
+                        buffer = new StringBuilder();
+                    }else if(v[i]=='&'){
+                        analise(buffer, contadorLinha, lexemas);
+                        buffer = new StringBuilder().append(v[i]);
+                        if(i+1<v.length && v[i+1]=='&'){
+                            buffer.append(v[i+1]);
+                        }
+                        analise(buffer, contadorLinha, lexemas);
+                        buffer = new StringBuilder();
+                    }else if(v[i]=='|'){
+                        analise(buffer, contadorLinha, lexemas);
+                        buffer = new StringBuilder().append(v[i]);
+                        if(i+1<v.length && v[i+1]=='|'){
+                            buffer.append(v[i+1]);
+                        }
+                        analise(buffer, contadorLinha, lexemas);
+                        buffer = new StringBuilder();
                     }else{
                         buffer.append(v[i]);
                     }
