@@ -4,9 +4,10 @@ ARQUIVO DE TESTE
 
 class teste{
 
+if(a=b|b=a)
 int a, int b, int c;
 
-a = b + c;
-a = a * 1.2;
+a=b+c;
+a=a*1.2;
 
 string amor = "Cadei erraada\"";

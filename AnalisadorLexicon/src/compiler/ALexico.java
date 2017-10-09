@@ -152,6 +152,7 @@ public class ALexico {
                         buffer = new StringBuilder().append(v[i]);
                         if (i + 1 < v.length && v[i + 1] == '&') {
                             buffer.append(v[i + 1]);
+                            i++;
                         }
                         analise(buffer, contadorLinha, lexemas);
                         buffer = new StringBuilder();
@@ -160,6 +161,7 @@ public class ALexico {
                         buffer = new StringBuilder().append(v[i]);
                         if (i + 1 < v.length && v[i + 1] == '|') {
                             buffer.append(v[i + 1]);
+                            i++;
                         }
                         analise(buffer, contadorLinha, lexemas);
                         buffer = new StringBuilder();
@@ -200,7 +202,7 @@ public class ALexico {
             System.out.println(lexema);
             if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) { //palavra reservada
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
-            } else if (lexema.matches("^[a-z|A-Z](\\w)*")) { //identificador
+            } else if (lexema.matches("^[a-zA-Z](\\w)*")) { //identificador
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\.\\d+)?")) { //numero
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Número >, ", contadorLinha));
@@ -216,7 +218,7 @@ public class ALexico {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
             } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
-            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E|\\x5C\\x22]*\"")) { //cadeia de caracteres
+            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E\\x5C\\x22]*\"")) { //cadeia de caracteres
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
             } else {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
