@@ -58,6 +58,7 @@ public class ALexico {
                     } else if (v[i] == '/') {
                         analise(buffer, contadorLinha, lexemas);
                         buffer = new StringBuilder().append("/");
+                        int cL = contadorLinha;
                         if (i + 1 < v.length && v[i + 1] == '*') { //caso seja comentario de bloco
                             boolean encontrou;
                             do {
@@ -88,7 +89,7 @@ public class ALexico {
                                 buffer.append(v[k]);
                             }
                         }
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, cL, lexemas);
                         buffer = new StringBuilder();
                     } else if (v[i] == '-') {
                         analise(buffer, contadorLinha, lexemas);

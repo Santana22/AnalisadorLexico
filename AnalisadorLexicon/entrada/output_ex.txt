@@ -1,4 +1,4 @@
-< /*ARQUIVO DE TESTE	*/ > , < Comentário de bloco >, Linha: 3
+< /*ARQUIVO DE TESTE	*/ > , < Comentário de Bloco >, Linha: 1
 < class > , < Palavra Reservada >, Linha: 5
 < teste > , < Identificador >, Linha: 5
 < { > , < Delimitador >, Linha: 5
@@ -26,5 +26,5 @@
 < string > , < Palavra Reservada >, Linha: 12
 < amor > , < Identificador >, Linha: 12
 < = > , < Operador Relacional >, Linha: 12
-< "Cadei erraada" > , < Cadeia de Caracteres >, Linha: 12
+< "Cadei erraada\"" > , < Cadeia de Caracteres >, Linha: 12
 < ; > , < Delimitador >, Linha: 12
