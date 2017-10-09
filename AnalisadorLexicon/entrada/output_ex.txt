@@ -7,7 +7,7 @@
 < a > , < Identificador >, Linha: 7
 < = > , < Operador Relacional >, Linha: 7
 < b > , < Identificador >, Linha: 7
-< | > , < Símbolo ou Expressão Mal Formada >, Linha: 7
+< || > , < Operador Lógico >, Linha: 7
 < b > , < Identificador >, Linha: 7
 < = > , < Operador Relacional >, Linha: 7
 < a > , < Identificador >, Linha: 7

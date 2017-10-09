@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Essa classe implementa as responsablidades do Analisador Léxico. São
@@ -20,7 +18,9 @@ import java.util.regex.Pattern;
 public class ALexico {
 
     /**
-     * Método que inicializa a análise léxica.
+     * Método que inicializa a análise léxica. Analisa caractere a caractere
+     * armazenando em um buffer e divide o texto quando encontrados
+     * delimitadores
      *
      * @param arquivo - código-fonte
      */
@@ -43,7 +43,7 @@ public class ALexico {
                         buffer = new StringBuilder().append("\"");
                         for (int k = i + 1; k < v.length; k++) {
                             buffer.append(v[k]);
-                            if (v[k-1]!='\\' && v[k] == '\"') { //verifica se é o fim da cadeia de caracteres
+                            if (v[k - 1] != '\\' && v[k] == '\"') { //verifica se é o fim da cadeia de caracteres
                                 i = k;
                                 encontrou = true;
                                 break;
@@ -195,7 +195,14 @@ public class ALexico {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Classifica os lexemas de acordo com a sintaxe
+     * @param buffer
+     * @param contadorLinha
+     * @param lexemas
+     * @return
+     */
     private void analise(StringBuilder buffer, int contadorLinha, ArrayList<Lexema> lexemas) {
         String lexema = buffer.toString();
         if (!lexema.matches("") && !lexema.matches("\\x09|\\x0A|\\x0B|\\x20")) {
@@ -227,6 +234,12 @@ public class ALexico {
 
     }
 
+    /**
+     * Retorna verdadeiro caso o caractere seja um delimitador
+     *
+     * @param a
+     * @return
+     */
     private static boolean isDelimitador(char a) {
         return a == 9 || a == 10 || a == 13 || a == 32 || a == '\"' || a == '+' || a == '-' || a == '/' || a == '*' || a == '&' || a == '<' || a == '>' || a == '=' || a == '!' || a == '%' || a == '|' || a == ';' || a == ',' || a == '(' || a == ')' || a == '[' || a == ']' || a == '{' || a == '}' || a == ':';
     }

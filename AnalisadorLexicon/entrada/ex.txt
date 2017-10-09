@@ -4,7 +4,7 @@ ARQUIVO DE TESTE
 
 class teste{
 
-if(a=b|b=a)
+if(a=b||b=a)
 int a, int b, int c;
 
 a=b+c;
