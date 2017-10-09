@@ -43,7 +43,7 @@ public class ALexico {
                         buffer = new StringBuilder().append("\"");
                         for (int k = i + 1; k < v.length; k++) {
                             buffer.append(v[k]);
-                            if (v[k] == '\"') { //verifica se é o fim da cadeia de caracteres
+                            if (v[k-1]!='\\' && v[k] == '\"') { //verifica se é o fim da cadeia de caracteres
                                 i = k;
                                 encontrou = true;
                                 break;
@@ -215,7 +215,7 @@ public class ALexico {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
             } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
-            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E]*\"")) { //cadeia de caracteres
+            } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E|\\x5C\\x22]*\"")) { //cadeia de caracteres
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
             } else {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
