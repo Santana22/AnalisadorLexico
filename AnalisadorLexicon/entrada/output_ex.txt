@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 < /*ARQUIVO DE TESTE	*/ > , < Comentário de Bloco >, Linha: 1
+=======
+< /*ARQUIVO DE TESTE	*/ > , < Comentário de Bloco >, Linha: 3
+>>>>>>> Stashed changes
 < class > , < Palavra Reservada >, Linha: 5
 < teste > , < Identificador >, Linha: 5
 < { > , < Delimitador >, Linha: 5
@@ -7,6 +11,7 @@
 < a > , < Identificador >, Linha: 7
 < = > , < Operador Relacional >, Linha: 7
 < b > , < Identificador >, Linha: 7
+<<<<<<< Updated upstream
 < || > , < Operador Lógico >, Linha: 7
 < b > , < Identificador >, Linha: 7
 < = > , < Operador Relacional >, Linha: 7
@@ -21,6 +26,19 @@
 < int > , < Palavra Reservada >, Linha: 8
 < c > , < Identificador >, Linha: 8
 < ; > , < Delimitador >, Linha: 8
+=======
+< , > , < Delimitador >, Linha: 7
+< int > , < Palavra Reservada >, Linha: 7
+< c > , < Identificador >, Linha: 7
+< ; > , < Delimitador >, Linha: 7
+< a > , < Identificador >, Linha: 9
+< && > , < Operador Lógico >, Linha: 9
+< && > , < Operador Lógico >, Linha: 9
+< && > , < Operador Lógico >, Linha: 9
+< & > , < Símbolo ou Expressão Mal Formada >, Linha: 9
+< b > , < Identificador >, Linha: 9
+< ; > , < Delimitador >, Linha: 9
+>>>>>>> Stashed changes
 < a > , < Identificador >, Linha: 10
 < = > , < Operador Relacional >, Linha: 10
 < b > , < Identificador >, Linha: 10
@@ -31,10 +49,20 @@
 < = > , < Operador Relacional >, Linha: 11
 < a > , < Identificador >, Linha: 11
 < * > , < Operador Aritmético >, Linha: 11
+<<<<<<< Updated upstream
 < 1.2 > , < Número >, Linha: 11
+=======
+< 1.f > , < Símbolo ou Expressão Mal Formada >, Linha: 11
+>>>>>>> Stashed changes
 < ; > , < Delimitador >, Linha: 11
 < string > , < Palavra Reservada >, Linha: 13
 < amor > , < Identificador >, Linha: 13
 < = > , < Operador Relacional >, Linha: 13
+<<<<<<< Updated upstream
 < "Cadei erraada\"" > , < Cadeia de Caracteres >, Linha: 13
 < ; > , < Delimitador >, Linha: 13
+=======
+< "Cadei erraada" > , < Cadeia de Caracteres >, Linha: 13
+< ; > , < Delimitador >, Linha: 13
+< } > , < Delimitador >, Linha: 15
+>>>>>>> Stashed changes
