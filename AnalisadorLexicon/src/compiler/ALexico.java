@@ -75,7 +75,6 @@ public class ALexico {
                                         v = linha.toCharArray();
                                         contadorLinha++;
                                     } else {
-                                        System.out.println("comentario mal formado");
                                         encontrou = true;
                                     }
                                 }
@@ -185,13 +184,12 @@ public class ALexico {
 
             for (Lexema lex : lexemas) {
                 String tipo = lex.getTipo();
-                if (tipo.equals(" , < Cadeia de Caracteres Mal Formada >, ") || tipo.equals(" , < Número Mal Formado>, ") || tipo.equals(" , < Símbolo ou Expressão Mal Formada >, ")) {
+                if (tipo.equals(" , < Cadeia de Caracteres Mal Formada >, ") || tipo.equals(" , < Número Mal Formado>, ") || tipo.equals(" , < Símbolo ou Expressão Mal Formada >, ") || tipo.equals(" , < Comentário de Bloco Mal Formado >, ")) {
                     sucesso = false;
                 }
 
                 bw.write(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
                 bw.newLine();
-                System.out.println(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
             }
             if (sucesso) {
                 bw.write("\nAnalise concluida com sucesso!");
@@ -215,7 +213,6 @@ public class ALexico {
     private void analise(StringBuilder buffer, int contadorLinha, ArrayList<Lexema> lexemas) {
         String lexema = buffer.toString();
         if (!lexema.matches("") && !lexema.matches("\\x09|\\x0A|\\x0B|\\x20")) {
-            System.out.println(lexema);
             if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) { //palavra reservada
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
             } else if (lexema.matches("^[a-zA-Z](\\w)*")) { //identificador
@@ -240,6 +237,8 @@ public class ALexico {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres Mal Formada >, ", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\..*)?") || lexema.matches("[\\-]?(\\.\\d+)?")) { //número mal formado
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Número Mal Formado>, ", contadorLinha));
+            } else if (lexema.matches("^(/\\*).*")) { //comentário de bloco
+                lexemas.add(new Lexema("< " + lexema + " >", " , < Comentário de Bloco Mal Formado >, ", contadorLinha));
             } else {
                 lexemas.add(new Lexema("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
             }

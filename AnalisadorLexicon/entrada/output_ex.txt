@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 < /*ARQUIVO DE TESTE	*/ > , < Comentário de Bloco >, Linha: 1
-=======
-< /*ARQUIVO DE TESTE	*/ > , < Comentário de Bloco >, Linha: 3
->>>>>>> Stashed changes
 < class > , < Palavra Reservada >, Linha: 5
 < teste > , < Identificador >, Linha: 5
 < { > , < Delimitador >, Linha: 5
@@ -11,7 +7,6 @@
 < a > , < Identificador >, Linha: 7
 < = > , < Operador Relacional >, Linha: 7
 < b > , < Identificador >, Linha: 7
-<<<<<<< Updated upstream
 < || > , < Operador Lógico >, Linha: 7
 < b > , < Identificador >, Linha: 7
 < = > , < Operador Relacional >, Linha: 7
@@ -26,43 +21,68 @@
 < int > , < Palavra Reservada >, Linha: 8
 < c > , < Identificador >, Linha: 8
 < ; > , < Delimitador >, Linha: 8
-=======
-< , > , < Delimitador >, Linha: 7
-< int > , < Palavra Reservada >, Linha: 7
-< c > , < Identificador >, Linha: 7
-< ; > , < Delimitador >, Linha: 7
-< a > , < Identificador >, Linha: 9
-< && > , < Operador Lógico >, Linha: 9
-< && > , < Operador Lógico >, Linha: 9
-< && > , < Operador Lógico >, Linha: 9
-< & > , < Símbolo ou Expressão Mal Formada >, Linha: 9
-< b > , < Identificador >, Linha: 9
-< ; > , < Delimitador >, Linha: 9
->>>>>>> Stashed changes
-< a > , < Identificador >, Linha: 10
-< = > , < Operador Relacional >, Linha: 10
-< b > , < Identificador >, Linha: 10
-< + > , < Operador Aritmético >, Linha: 10
-< c > , < Identificador >, Linha: 10
-< ; > , < Delimitador >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< < > , < Operador Relacional >, Linha: 10
+< Updated > , < Identificador >, Linha: 10
+< upstream > , < Identificador >, Linha: 10
 < a > , < Identificador >, Linha: 11
 < = > , < Operador Relacional >, Linha: 11
-< a > , < Identificador >, Linha: 11
-< * > , < Operador Aritmético >, Linha: 11
-<<<<<<< Updated upstream
-< 1.2 > , < Número >, Linha: 11
-=======
-< 1.f > , < Símbolo ou Expressão Mal Formada >, Linha: 11
->>>>>>> Stashed changes
+< b > , < Identificador >, Linha: 11
+< + > , < Operador Aritmético >, Linha: 11
+< c > , < Identificador >, Linha: 11
 < ; > , < Delimitador >, Linha: 11
-< string > , < Palavra Reservada >, Linha: 13
-< amor > , < Identificador >, Linha: 13
-< = > , < Operador Relacional >, Linha: 13
-<<<<<<< Updated upstream
-< "Cadei erraada\"" > , < Cadeia de Caracteres >, Linha: 13
-< ; > , < Delimitador >, Linha: 13
-=======
-< "Cadei erraada" > , < Cadeia de Caracteres >, Linha: 13
-< ; > , < Delimitador >, Linha: 13
-< } > , < Delimitador >, Linha: 15
->>>>>>> Stashed changes
+< a > , < Identificador >, Linha: 12
+< = > , < Operador Relacional >, Linha: 12
+< a > , < Identificador >, Linha: 12
+< * > , < Operador Aritmético >, Linha: 12
+< 1.2 > , < Número >, Linha: 12
+< ; > , < Delimitador >, Linha: 12
+< string > , < Palavra Reservada >, Linha: 14
+< amor > , < Identificador >, Linha: 14
+< = > , < Operador Relacional >, Linha: 14
+< "Cadei erraada\"" > , < Cadeia de Caracteres >, Linha: 14
+< ; > , < Delimitador >, Linha: 14
+< = > , < Operador Relacional >, Linha: 15
+< = > , < Operador Relacional >, Linha: 15
+< = > , < Operador Relacional >, Linha: 15
+< = > , < Operador Relacional >, Linha: 15
+< = > , < Operador Relacional >, Linha: 15
+< = > , < Operador Relacional >, Linha: 15
+< = > , < Operador Relacional >, Linha: 15
+< a > , < Identificador >, Linha: 16
+< && > , < Operador Lógico >, Linha: 16
+< && > , < Operador Lógico >, Linha: 16
+< b > , < Identificador >, Linha: 16
+< ; > , < Delimitador >, Linha: 16
+< a > , < Identificador >, Linha: 17
+< = > , < Operador Relacional >, Linha: 17
+< b > , < Identificador >, Linha: 17
+< + > , < Operador Aritmético >, Linha: 17
+< c > , < Identificador >, Linha: 17
+< ; > , < Delimitador >, Linha: 17
+< a > , < Identificador >, Linha: 18
+< = > , < Operador Relacional >, Linha: 18
+< a > , < Identificador >, Linha: 18
+< * > , < Operador Aritmético >, Linha: 18
+< 1.f > , < Número Mal Formado>, Linha: 18
+< ; > , < Delimitador >, Linha: 18
+< string > , < Palavra Reservada >, Linha: 20
+< amor > , < Identificador >, Linha: 20
+< = > , < Operador Relacional >, Linha: 20
+< "Cadei erraada" > , < Cadeia de Caracteres >, Linha: 20
+< ; > , < Delimitador >, Linha: 20
+< } > , < Delimitador >, Linha: 22
+< > > , < Operador Relacional >, Linha: 23
+< > > , < Operador Relacional >, Linha: 23
+< > > , < Operador Relacional >, Linha: 23
+< > > , < Operador Relacional >, Linha: 23
+< > > , < Operador Relacional >, Linha: 23
+< > > , < Operador Relacional >, Linha: 23
+< > > , < Operador Relacional >, Linha: 23
+< Stashed > , < Identificador >, Linha: 23
+< changes > , < Identificador >, Linha: 23
