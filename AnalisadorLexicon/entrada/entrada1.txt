@@ -1,0 +1,39 @@
+"fdfsfdfsa\"sfsf"
+
+/*  dssjakdjsdjnknsandkasn
+
+"/*knakndnckmfl*/"
+
+@@@@@@@@@@@@@aaaaaaa
+
+aaaaaaaa@@@@@@@@
+
+@@@a@@@a@@a
+
+"a"b"
+
+123.123456789
+
+2.a
+
+.50
+
+
+class test {
+
+	int a, int b, int c;
+	
+	a = -3;	// teste 1
+	b = 2;	// teste 2
+	c = 1;	// teste 3
+	
+	float d;
+	
+	d = b + c;
+	d = d + 1.2;
+	
+	string teste = "Acertou!";
+	
+	print(teste);
+	
+}

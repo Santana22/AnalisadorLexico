@@ -1,0 +1,34 @@
+/*
+Arquivo p.ara testar compiladores  "
+
+
+
+
+*/
+
+class test {
+
+	int a, int b, int c;
+	
+	a = -3#;			"// teste 1"
+	b = 2;				// teste 2
+	c = 1;	// teste 3
+	
+	atyui12" = 56789_
+	
+	float dlson;
+	
+	d = b + c;
+	d = d + 1.2;
+
+	string teste = "Acertou!";
+	bool az inthj
+	
+	scan(class)false 	
+	print(teste);
+	"ssssssssssssss
+	
+	/*asjjjjjjjjjjjjjjjjjjjjjjh
+
+	"ajjjjjjjjjjjjh*/
+}

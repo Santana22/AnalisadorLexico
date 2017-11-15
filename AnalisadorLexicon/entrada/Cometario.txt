@@ -1,0 +1,13 @@
+print("oi mundo");
+/* 
+comentario certo
+ps
+*/
+teste pos comentario;
+/*
+comentarios nao passarao
+teste1
+teste2
+aloha;
+pode ter o que quiser 
+

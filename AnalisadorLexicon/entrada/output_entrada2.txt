@@ -1,0 +1,173 @@
+< int > , < Palavra Reservada >, Linha: 2
+< N > , < Identificador >, Linha: 2
+< ; > , < Delimitador >, Linha: 2
+< string > , < Palavra Reservada >, Linha: 4
+< carne > , < Identificador >, Linha: 4
+< ; > , < Delimitador >, Linha: 4
+< int > , < Palavra Reservada >, Linha: 5
+< validade > , < Identificador >, Linha: 5
+< ; > , < Delimitador >, Linha: 5
+< int > , < Palavra Reservada >, Linha: 6
+< cont > , < Identificador >, Linha: 6
+< = > , < Operador Relacional >, Linha: 6
+< 0 > , < Número >, Linha: 6
+< ; > , < Delimitador >, Linha: 6
+< for > , < Palavra Reservada >, Linha: 9
+< ( > , < Delimitador >, Linha: 9
+< int > , < Palavra Reservada >, Linha: 9
+< i > , < Identificador >, Linha: 9
+< = > , < Operador Relacional >, Linha: 9
+< 0 > , < Número >, Linha: 9
+< ; > , < Delimitador >, Linha: 9
+< i > , < Identificador >, Linha: 9
+< < > , < Operador Relacional >, Linha: 9
+< 70 > , < Número >, Linha: 9
+< ; > , < Delimitador >, Linha: 9
+< i > , < Identificador >, Linha: 9
+< + > , < Operador Aritmético >, Linha: 9
+< + > , < Operador Aritmético >, Linha: 9
+< ) > , < Delimitador >, Linha: 9
+< { > , < Delimitador >, Linha: 9
+< carnes > , < Identificador >, Linha: 10
+< [ > , < Delimitador >, Linha: 10
+< i > , < Identificador >, Linha: 10
+< ] > , < Delimitador >, Linha: 10
+< = > , < Operador Relacional >, Linha: 10
+< "carne" > , < Cadeia de Caracteres >, Linha: 10
+< ; > , < Delimitador >, Linha: 10
+< } > , < Delimitador >, Linha: 11
+< while > , < Identificador >, Linha: 13
+< ( > , < Delimitador >, Linha: 13
+< scan > , < Palavra Reservada >, Linha: 13
+< ( > , < Delimitador >, Linha: 13
+< "%d" > , < Cadeia de Caracteres >, Linha: 13
+< , > , < Delimitador >, Linha: 13
+< & > , < Símbolo ou Expressão Mal Formada >, Linha: 13
+< N > , < Identificador >, Linha: 13
+< ) > , < Delimitador >, Linha: 13
+< ! > , < Operador Lógico >, Linha: 13
+< = > , < Operador Relacional >, Linha: 13
+< EOF > , < Identificador >, Linha: 13
+< ) > , < Delimitador >, Linha: 13
+< { > , < Delimitador >, Linha: 13
+< for > , < Palavra Reservada >, Linha: 14
+< ( > , < Delimitador >, Linha: 14
+< int > , < Palavra Reservada >, Linha: 14
+< j > , < Identificador >, Linha: 14
+< = > , < Operador Relacional >, Linha: 14
+< 0 > , < Número >, Linha: 14
+< ; > , < Delimitador >, Linha: 14
+< j > , < Identificador >, Linha: 14
+< < > , < Operador Relacional >, Linha: 14
+< N > , < Identificador >, Linha: 14
+< ; > , < Delimitador >, Linha: 14
+< j > , < Identificador >, Linha: 14
+< + > , < Operador Aritmético >, Linha: 14
+< + > , < Operador Aritmético >, Linha: 14
+< ) > , < Delimitador >, Linha: 14
+< { > , < Delimitador >, Linha: 14
+< cin > , < Identificador >, Linha: 15
+< > > , < Operador Relacional >, Linha: 15
+< > > , < Operador Relacional >, Linha: 15
+< carne > , < Identificador >, Linha: 15
+< > > , < Operador Relacional >, Linha: 15
+< > > , < Operador Relacional >, Linha: 15
+< validade > , < Identificador >, Linha: 15
+< ; > , < Delimitador >, Linha: 15
+< carnes > , < Identificador >, Linha: 16
+< [ > , < Delimitador >, Linha: 16
+< validade > , < Identificador >, Linha: 16
+< ] > , < Delimitador >, Linha: 16
+< = > , < Operador Relacional >, Linha: 16
+< carne > , < Identificador >, Linha: 16
+< ; > , < Delimitador >, Linha: 16
+< } > , < Delimitador >, Linha: 17
+< for > , < Palavra Reservada >, Linha: 19
+< ( > , < Delimitador >, Linha: 19
+< int > , < Palavra Reservada >, Linha: 19
+< k > , < Identificador >, Linha: 19
+< = > , < Operador Relacional >, Linha: 19
+< 0 > , < Número >, Linha: 19
+< ; > , < Delimitador >, Linha: 19
+< k > , < Identificador >, Linha: 19
+< < > , < Operador Relacional >, Linha: 19
+< 70 > , < Número >, Linha: 19
+< ; > , < Delimitador >, Linha: 19
+< k > , < Identificador >, Linha: 19
+< + > , < Operador Aritmético >, Linha: 19
+< + > , < Operador Aritmético >, Linha: 19
+< ) > , < Delimitador >, Linha: 19
+< { > , < Delimitador >, Linha: 19
+< if > , < Palavra Reservada >, Linha: 20
+< ( > , < Delimitador >, Linha: 20
+< carnes > , < Identificador >, Linha: 20
+< [ > , < Delimitador >, Linha: 20
+< k > , < Identificador >, Linha: 20
+< ] > , < Delimitador >, Linha: 20
+< ! > , < Operador Lógico >, Linha: 20
+< = > , < Operador Relacional >, Linha: 20
+< "carne" > , < Cadeia de Caracteres >, Linha: 20
+< ) > , < Delimitador >, Linha: 20
+< { > , < Delimitador >, Linha: 20
+< cout > , < Identificador >, Linha: 21
+< < > , < Operador Relacional >, Linha: 21
+< < > , < Operador Relacional >, Linha: 21
+< carnes > , < Identificador >, Linha: 21
+< [ > , < Delimitador >, Linha: 21
+< k > , < Identificador >, Linha: 21
+< ] > , < Delimitador >, Linha: 21
+< ; > , < Delimitador >, Linha: 21
+< cont > , < Identificador >, Linha: 22
+< = > , < Operador Relacional >, Linha: 22
+< cont > , < Identificador >, Linha: 22
+< + > , < Operador Aritmético >, Linha: 22
+< 1 > , < Número >, Linha: 22
+< ; > , < Delimitador >, Linha: 22
+< if > , < Palavra Reservada >, Linha: 23
+< ( > , < Delimitador >, Linha: 23
+< cont > , < Identificador >, Linha: 23
+< < > , < Operador Relacional >, Linha: 23
+< N > , < Identificador >, Linha: 23
+< ) > , < Delimitador >, Linha: 23
+< { > , < Delimitador >, Linha: 23
+< } > , < Delimitador >, Linha: 24
+< } > , < Delimitador >, Linha: 25
+< } > , < Delimitador >, Linha: 26
+< cout > , < Identificador >, Linha: 27
+< < > , < Operador Relacional >, Linha: 27
+< < > , < Operador Relacional >, Linha: 27
+< endl > , < Identificador >, Linha: 27
+< ; > , < Delimitador >, Linha: 27
+< for > , < Palavra Reservada >, Linha: 28
+< ( > , < Delimitador >, Linha: 28
+< int > , < Palavra Reservada >, Linha: 28
+< i > , < Identificador >, Linha: 28
+< = > , < Operador Relacional >, Linha: 28
+< 0 > , < Número >, Linha: 28
+< ; > , < Delimitador >, Linha: 28
+< i > , < Identificador >, Linha: 28
+< < > , < Operador Relacional >, Linha: 28
+< 70 > , < Número >, Linha: 28
+< ; > , < Delimitador >, Linha: 28
+< i > , < Identificador >, Linha: 28
+< + > , < Operador Aritmético >, Linha: 28
+< + > , < Operador Aritmético >, Linha: 28
+< ) > , < Delimitador >, Linha: 28
+< { > , < Delimitador >, Linha: 28
+< carnes > , < Identificador >, Linha: 29
+< [ > , < Delimitador >, Linha: 29
+< i > , < Identificador >, Linha: 29
+< ] > , < Delimitador >, Linha: 29
+< = > , < Operador Relacional >, Linha: 29
+< "carne" > , < Cadeia de Caracteres >, Linha: 29
+< ; > , < Delimitador >, Linha: 29
+< } > , < Delimitador >, Linha: 30
+< cont > , < Identificador >, Linha: 31
+< = > , < Operador Relacional >, Linha: 31
+< 0 > , < Número >, Linha: 31
+< ; > , < Delimitador >, Linha: 31
+< } > , < Delimitador >, Linha: 32
+< return > , < Identificador >, Linha: 34
+< 0 > , < Número >, Linha: 34
+< ; > , < Delimitador >, Linha: 34
+< } > , < Delimitador >, Linha: 35

@@ -1,0 +1,31 @@
+< exemplo > , < Identificador >, Linha: 1
+< teste > , < Identificador >, Linha: 1
+< ; > , < Delimitador >, Linha: 1
+< float > , < Palavra Reservada >, Linha: 2
+< f > , < Identificador >, Linha: 2
+< = > , < Operador Relacional >, Linha: 2
+< 3 > , < Número >, Linha: 2
+< ; > , < Delimitador >, Linha: 2
+< string > , < Palavra Reservada >, Linha: 3
+< flag > , < Identificador >, Linha: 3
+< = > , < Operador Relacional >, Linha: 3
+< "t" > , < Cadeia de Caracteres >, Linha: 3
+< ; > , < Delimitador >, Linha: 3
+< if > , < Palavra Reservada >, Linha: 4
+< ( > , < Delimitador >, Linha: 4
+< f > , < Identificador >, Linha: 4
+< >= > , < Operador Relacional >, Linha: 4
+< 10 > , < Número >, Linha: 4
+< ) > , < Delimitador >, Linha: 4
+< && > , < Operador Lógico >, Linha: 4
+< ( > , < Delimitador >, Linha: 4
+< f > , < Identificador >, Linha: 4
+< < > , < Operador Relacional >, Linha: 4
+< ) > , < Delimitador >, Linha: 4
+< scan > , < Palavra Reservada >, Linha: 5
+< ( > , < Delimitador >, Linha: 5
+< "mensagem" > , < Cadeia de Caracteres >, Linha: 5
+< ) > , < Delimitador >, Linha: 5
+< ; > , < Delimitador >, Linha: 5
+
+Analise concluida com sucesso!

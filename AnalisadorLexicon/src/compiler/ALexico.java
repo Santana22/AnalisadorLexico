@@ -39,14 +39,12 @@ public class ALexico {
                 for (int i = 0; i < v.length; i++) { //percorre toda a linha
                     if (v[i] == '\"') { //verifica se é uma cadeia de caracteres
                         analise(buffer, contadorLinha, lexemas);
-                        boolean encontrou = false;
                         buffer = new StringBuilder().append("\"");
 
                         for (int k = i + 1; k < v.length; k++) {
                             buffer.append(v[k]);
                             if (v[k - 1] != '\\' && v[k] == '\"') { //verifica se é o fim da cadeia de caracteres
                                 i = k;
-                                encontrou = true;
                                 break;
                             }
                             i = k;

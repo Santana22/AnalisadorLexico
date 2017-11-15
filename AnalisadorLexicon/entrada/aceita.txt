@@ -1,0 +1,5 @@
+exemplo teste;
+float f = 3;
+string flag = "t";
+if ( f >= 10) && (f < )
+scan ("mensagem");

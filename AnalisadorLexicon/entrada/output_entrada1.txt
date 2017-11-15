@@ -1,0 +1,65 @@
+< "fdfsfdfsa\"sfsf" > , < Cadeia de Caracteres >, Linha: 1
+< /*  dssjakdjsdjnknsandkasn"/*knakndnckmfl*/ > , < Comentário de Bloco >, Linha: 3
+< " > , < Cadeia de Caracteres Mal Formada >, Linha: 5
+< @@@@@@@@@@@@@aaaaaaa > , < Símbolo ou Expressão Mal Formada >, Linha: 7
+< aaaaaaaa@@@@@@@@ > , < Símbolo ou Expressão Mal Formada >, Linha: 9
+< @@@a@@@a@@a > , < Símbolo ou Expressão Mal Formada >, Linha: 11
+< "a" > , < Cadeia de Caracteres >, Linha: 13
+< b > , < Identificador >, Linha: 13
+< " > , < Cadeia de Caracteres Mal Formada >, Linha: 13
+< 123.123456789 > , < Número >, Linha: 15
+< 2.a > , < Número Mal Formado>, Linha: 17
+< .50 > , < Número Mal Formado>, Linha: 19
+< class > , < Palavra Reservada >, Linha: 22
+< test > , < Identificador >, Linha: 22
+< { > , < Delimitador >, Linha: 22
+< int > , < Palavra Reservada >, Linha: 24
+< a > , < Identificador >, Linha: 24
+< , > , < Delimitador >, Linha: 24
+< int > , < Palavra Reservada >, Linha: 24
+< b > , < Identificador >, Linha: 24
+< , > , < Delimitador >, Linha: 24
+< int > , < Palavra Reservada >, Linha: 24
+< c > , < Identificador >, Linha: 24
+< ; > , < Delimitador >, Linha: 24
+< a > , < Identificador >, Linha: 26
+< = > , < Operador Relacional >, Linha: 26
+< -3 > , < Número >, Linha: 26
+< ; > , < Delimitador >, Linha: 26
+< // teste 1 > , < Comentário de Linha >, Linha: 26
+< b > , < Identificador >, Linha: 27
+< = > , < Operador Relacional >, Linha: 27
+< 2 > , < Número >, Linha: 27
+< ; > , < Delimitador >, Linha: 27
+< // teste 2 > , < Comentário de Linha >, Linha: 27
+< c > , < Identificador >, Linha: 28
+< = > , < Operador Relacional >, Linha: 28
+< 1 > , < Número >, Linha: 28
+< ; > , < Delimitador >, Linha: 28
+< // teste 3 > , < Comentário de Linha >, Linha: 28
+< float > , < Palavra Reservada >, Linha: 30
+< d > , < Identificador >, Linha: 30
+< ; > , < Delimitador >, Linha: 30
+< d > , < Identificador >, Linha: 32
+< = > , < Operador Relacional >, Linha: 32
+< b > , < Identificador >, Linha: 32
+< + > , < Operador Aritmético >, Linha: 32
+< c > , < Identificador >, Linha: 32
+< ; > , < Delimitador >, Linha: 32
+< d > , < Identificador >, Linha: 33
+< = > , < Operador Relacional >, Linha: 33
+< d > , < Identificador >, Linha: 33
+< + > , < Operador Aritmético >, Linha: 33
+< 1.2 > , < Número >, Linha: 33
+< ; > , < Delimitador >, Linha: 33
+< string > , < Palavra Reservada >, Linha: 35
+< teste > , < Identificador >, Linha: 35
+< = > , < Operador Relacional >, Linha: 35
+< "Acertou!" > , < Cadeia de Caracteres >, Linha: 35
+< ; > , < Delimitador >, Linha: 35
+< print > , < Palavra Reservada >, Linha: 37
+< ( > , < Delimitador >, Linha: 37
+< teste > , < Identificador >, Linha: 37
+< ) > , < Delimitador >, Linha: 37
+< ; > , < Delimitador >, Linha: 37
+< } > , < Delimitador >, Linha: 39
