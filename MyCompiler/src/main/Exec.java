@@ -2,6 +2,7 @@ package main;
 
 import controller.Facade;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Classe responsável por executar o compilador.
@@ -20,10 +21,12 @@ public class Exec {
     public static void main(String[] args) {
         File listaArquivos = new File("entrada");
         File[] arquivos = listaArquivos.listFiles();
+        ArrayList tokens = new ArrayList();
 
         for (File file : arquivos) {
             if(!file.isDirectory() && !file.getName().contains("output_"))
-                facade.analisadorLexico(file);
+                tokens = facade.analisadorLexico(file);
+                facade.analisadorSintatico(tokens);
         }   
     }
 }

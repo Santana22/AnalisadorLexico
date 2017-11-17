@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Classe responsávl por gerenciar os controllers disponíveis no projeto.
@@ -10,6 +11,7 @@ public class Facade {
     private static Facade INSTANCE = null;
     
     private ControllerLexico controllerLexico;
+    private ControllerSintatico controllerSintatico;
     
     /**
      * Construtor da Facade.
@@ -17,6 +19,7 @@ public class Facade {
     
     private Facade() {
         this.controllerLexico = new ControllerLexico();
+        this.controllerSintatico = new ControllerSintatico();
     }
     
     /**
@@ -36,7 +39,11 @@ public class Facade {
       * @param arquivo - código a ser analisado
       */
      
-     public void analisadorLexico(File arquivo){
-         this.controllerLexico.iniciarLexico(arquivo);
+     public ArrayList analisadorLexico(File arquivo){
+        return this.controllerLexico.iniciarLexico(arquivo);
+     }
+     
+     public void analisadorSintatico(ArrayList tokens){
+         this.controllerSintatico.iniciarSintatico(tokens);
      }
 }

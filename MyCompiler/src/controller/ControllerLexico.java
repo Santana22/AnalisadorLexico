@@ -2,6 +2,7 @@ package controller;
 
 import compiler.ALexico;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Controller para o Analisador Léxico
@@ -24,7 +25,7 @@ public class ControllerLexico {
      * @param arquivo 
      */
     
-    public void iniciarLexico(File arquivo){
-        this.analisadorLexico.iniciar(arquivo);
+    public ArrayList iniciarLexico(File arquivo){
+        return this.analisadorLexico.iniciar(arquivo);
     }
 }

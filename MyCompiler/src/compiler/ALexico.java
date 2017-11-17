@@ -24,8 +24,8 @@ public class ALexico {
      *
      * @param arquivo - código-fonte
      */
-    public void iniciar(File arquivo) {
-        ArrayList<Lexema> lexemas = new ArrayList();
+    public ArrayList<Tokens> iniciar(File arquivo) {
+        ArrayList<Tokens> tokens = new ArrayList();
         try {
             BufferedReader bf = new BufferedReader(new FileReader(arquivo));
             String linha = bf.readLine();
@@ -38,7 +38,7 @@ public class ALexico {
 
                 for (int i = 0; i < v.length; i++) { //percorre toda a linha
                     if (v[i] == '\"') { //verifica se é uma cadeia de caracteres
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder().append("\"");
 
                         for (int k = i + 1; k < v.length; k++) {
@@ -49,10 +49,10 @@ public class ALexico {
                             }
                             i = k;
                         }
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder();
                     } else if (v[i] == '/') {
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder().append("/");
                         int cL = contadorLinha;
                         if (i + 1 < v.length && v[i + 1] == '*') { //caso seja comentario de bloco
@@ -85,10 +85,10 @@ public class ALexico {
                             }
                             i = v.length;
                         }
-                        analise(buffer, cL, lexemas);
+                        analise(buffer, cL, tokens);
                         buffer = new StringBuilder();
                     } else if (v[i] == '-') {
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder().append('-');
 
                         for (int k = i + 1; k < v.length; k++) { //ignorando espaços
@@ -129,77 +129,82 @@ public class ALexico {
                             i += bufferTemp.length() - 1;
                         }
                         buffer.append(bufferTemp);
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder();
                     } else if (v[i] == 9 || v[i] == 10 || v[i] == 13 || v[i] == 32 || v[i] == '+' || v[i] == '%' || v[i] == '*' || v[i] == ';' || v[i] == ',' || v[i] == '(' || v[i] == ')' || v[i] == '[' || v[i] == ']' || v[i] == '{' || v[i] == '}' || v[i] == ':' || v[i] == '=' || v[i] == '!') {
-                        analise(buffer, contadorLinha, lexemas);
-                        analise(new StringBuilder().append(v[i]), contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
+                        analise(new StringBuilder().append(v[i]), contadorLinha, tokens);
                         buffer = new StringBuilder();
                     } else if (v[i] == '<' || v[i] == '>' || v[i] == '!') {
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder().append(v[i]);
                         if (i + 1 < v.length && v[i + 1] == '=') {
                             buffer.append(v[++i]);
                         }
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder();
                     } else if (v[i] == '&') {
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder().append(v[i]);
                         if (i + 1 < v.length && v[i + 1] == '&') {
                             buffer.append(v[i + 1]);
                             i++;
                         }
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder();
                     } else if (v[i] == '|') {
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder().append(v[i]);
                         if (i + 1 < v.length && v[i + 1] == '|') {
                             buffer.append(v[i + 1]);
                             i++;
                         }
-                        analise(buffer, contadorLinha, lexemas);
+                        analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder();
                     } else {
                         buffer.append(v[i]);
                     }
                 }
-                analise(buffer, contadorLinha, lexemas);
+                analise(buffer, contadorLinha, tokens);
                 linha = bf.readLine();
                 contadorLinha++;
             }
+            
+           
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
-        try {
-            FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_" + arquivo.getName()));
-            BufferedWriter bw = new BufferedWriter(output);
+//        try {
+//            FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_" + arquivo.getName()));
+//            BufferedWriter bw = new BufferedWriter(output);
+//
+//            boolean sucesso = true;
+//
+//            for (Lexema lex : lexemas) {
+//                String tipo = lex.getTipo();
+//                if (tipo.equals(" , < Cadeia de Caracteres Mal Formada >, ") || tipo.equals(" , < Número Mal Formado>, ") || tipo.equals(" , < Símbolo ou Expressão Mal Formada >, ") || tipo.equals(" , < Comentário de Bloco Mal Formado >, ")) {
+//                    sucesso = false;
+//                }
+//
+//                bw.write(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
+//                bw.newLine();
+//            }
+//            if (sucesso) {
+//                bw.write("\nAnalise concluida com sucesso!");
+//            }
+//
+//            bw.close();
+//
+//        } catch (Exception ex) {
+//            Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    return tokens;
 
-            boolean sucesso = true;
-
-            for (Lexema lex : lexemas) {
-                String tipo = lex.getTipo();
-                if (tipo.equals(" , < Cadeia de Caracteres Mal Formada >, ") || tipo.equals(" , < Número Mal Formado>, ") || tipo.equals(" , < Símbolo ou Expressão Mal Formada >, ") || tipo.equals(" , < Comentário de Bloco Mal Formado >, ")) {
-                    sucesso = false;
-                }
-
-                bw.write(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
-                bw.newLine();
-            }
-            if (sucesso) {
-                bw.write("\nAnalise concluida com sucesso!");
-            }
-
-            bw.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -210,37 +215,37 @@ public class ALexico {
      * @param lexemas
      * @return
      */
-    private void analise(StringBuilder buffer, int contadorLinha, ArrayList<Lexema> lexemas) {
+    private void analise(StringBuilder buffer, int contadorLinha, ArrayList<Tokens> lexemas) {
         String lexema = buffer.toString();
         if (!lexema.matches("") && !lexema.matches("\\x09|\\x0A|\\x0B|\\x20")) {
             if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) { //palavra reservada
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
             } else if (lexema.matches("^[a-zA-Z](\\w)*")) { //identificador
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\.\\d+)?")) { //numero
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Número >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Número >, ", contadorLinha));
             } else if (lexema.matches("^//.*")) { //comentário de linha
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Comentário de Linha >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Comentário de Linha >, ", contadorLinha));
             } else if (lexema.matches("^(/\\*).*(\\*/)$")) { //comentário de bloco
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Comentário de Bloco >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Comentário de Bloco >, ", contadorLinha));
             } else if (lexema.matches("\\+|\\-|\\*|/|%")) { //operador aritmético
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Aritmético >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Operador Aritmético >, ", contadorLinha));
             } else if (lexema.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) { //operador relacional
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Relacional >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Operador Relacional >, ", contadorLinha));
             } else if (lexema.matches("\\!|\\&\\&|\\|\\|")) { //operador logico
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
             } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
             } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E\\x5C\\x22]*\"")) { //cadeia de caracteres
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
             } else if (lexema.matches("^\".*")) { //cadeia de caracteres mal formada
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Cadeia de Caracteres Mal Formada >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Cadeia de Caracteres Mal Formada >, ", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\..*)?") || lexema.matches("[\\-]?(\\.\\d+)?")) { //número mal formado
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Número Mal Formado>, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Número Mal Formado>, ", contadorLinha));
             } else if (lexema.matches("^(/\\*).*")) { //comentário de bloco
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Comentário de Bloco Mal Formado >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Comentário de Bloco Mal Formado >, ", contadorLinha));
             } else {
-                lexemas.add(new Lexema("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
+                lexemas.add(new Tokens("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
             }
         }
 

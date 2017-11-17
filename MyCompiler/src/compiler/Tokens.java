@@ -6,7 +6,7 @@ package compiler;
  * @author Emerson e Santana
  */
 
-public class Lexema {
+public class Tokens {
     private String nome;
     private String tipo;
     private int linha;
@@ -18,7 +18,7 @@ public class Lexema {
      * @param linha - Linha que está
      */
 
-    public Lexema(String nome, String tipo, int linha) {
+    public Tokens(String nome, String tipo, int linha) {
         this.nome = nome;
         this.tipo = tipo;
         this.linha = linha;
