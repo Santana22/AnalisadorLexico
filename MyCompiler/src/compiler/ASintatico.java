@@ -5,13 +5,15 @@
  */
 package compiler;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author vinicius
  */
 public class ASintatico {
  
-    public void iniciar(){
+    public void iniciar(ArrayList tokens){
         
     }
     
