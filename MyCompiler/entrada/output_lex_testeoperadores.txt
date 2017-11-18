@@ -1,0 +1,40 @@
+< //esta é uma mensagem de comentario @#$% >, < Comentário de Linha >, Linha: 1
+< 1 >, < Número >, Linha: 2
+< + >, < Operador Aritmético >, Linha: 2
+< 3 >, < Número >, Linha: 2
+< ; >, < Delimitador >, Linha: 2
+< 2 >, < Número >, Linha: 3
+< -5 >, < Número >, Linha: 3
+< ; >, < Delimitador >, Linha: 3
+< 9 >, < Número >, Linha: 4
+< * >, < Operador Aritmético >, Linha: 4
+< 7 >, < Número >, Linha: 4
+< ; >, < Delimitador >, Linha: 4
+< 4 >, < Número >, Linha: 5
+< / >, < Operador Aritmético >, Linha: 5
+< 7 >, < Número >, Linha: 5
+< ; >, < Delimitador >, Linha: 5
+< 2 >, < Número >, Linha: 6
+< % >, < Operador Aritmético >, Linha: 6
+< 7 >, < Número >, Linha: 6
+< ; >, < Delimitador >, Linha: 6
+< ! >, < Operador Lógico >, Linha: 7
+< test >, < Identificador >, Linha: 7
+< a >, < Identificador >, Linha: 8
+< - >, < Operador Aritmético >, Linha: 8
+< b >, < Identificador >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
+< & >, < Símbolo ou Expressão Mal Formada >, Linha: 9
+< | >, < Símbolo ou Expressão Mal Formada >, Linha: 10
+< || >, < Operador Lógico >, Linha: 11
+< a >, < Identificador >, Linha: 12
+< && >, < Operador Lógico >, Linha: 12
+< b >, < Identificador >, Linha: 12
+< ; >, < Delimitador >, Linha: 12
+< c >, < Identificador >, Linha: 13
+< || >, < Operador Lógico >, Linha: 13
+< d >, < Identificador >, Linha: 13
+< ; >, < Delimitador >, Linha: 13
+< ! >, < Operador Lógico >, Linha: 15
+< A >, < Identificador >, Linha: 15
+< ; >, < Delimitador >, Linha: 15

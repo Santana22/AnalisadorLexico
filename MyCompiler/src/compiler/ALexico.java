@@ -169,41 +169,36 @@ public class ALexico {
                 linha = bf.readLine();
                 contadorLinha++;
             }
-            
-           
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
-//        try {
-//            FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_" + arquivo.getName()));
-//            BufferedWriter bw = new BufferedWriter(output);
-//
-//            boolean sucesso = true;
-//
-//            for (Lexema lex : lexemas) {
-//                String tipo = lex.getTipo();
-//                if (tipo.equals(" , < Cadeia de Caracteres Mal Formada >, ") || tipo.equals(" , < Número Mal Formado>, ") || tipo.equals(" , < Símbolo ou Expressão Mal Formada >, ") || tipo.equals(" , < Comentário de Bloco Mal Formado >, ")) {
-//                    sucesso = false;
-//                }
-//
-//                bw.write(lex.getNome() + lex.getTipo() + "Linha: " + lex.getLinha());
-//                bw.newLine();
-//            }
-//            if (sucesso) {
-//                bw.write("\nAnalise concluida com sucesso!");
-//            }
-//
-//            bw.close();
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    return tokens;
+        try {
+            FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_lex_" + arquivo.getName()));
+            BufferedWriter bw = new BufferedWriter(output);
+
+            boolean sucesso = true;
+
+            for (Tokens lex : tokens) {
+                String tipo = lex.getTipo();
+                if (tipo.equals("Cadeia de Caracteres Mal Formada") || tipo.equals("Número Mal Formado") || tipo.equals("Símbolo ou Expressão Mal Formada") || tipo.equals("Comentário de Bloco Mal Formado")) {
+                    sucesso = false;
+                }
+                bw.write(lex.toString());
+                bw.newLine();
+            }
+            if (sucesso) {
+                bw.write("\nAnalise concluida com sucesso!");
+            }
+
+            bw.close();
+        } catch (Exception ex) {
+            Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tokens;
 
     }
 
@@ -219,33 +214,33 @@ public class ALexico {
         String lexema = buffer.toString();
         if (!lexema.matches("") && !lexema.matches("\\x09|\\x0A|\\x0B|\\x20")) {
             if (lexema.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) { //palavra reservada
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Palavra Reservada >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Palavra Reservada", contadorLinha));
             } else if (lexema.matches("^[a-zA-Z](\\w)*")) { //identificador
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Identificador >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Identificador", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\.\\d+)?")) { //numero
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Número >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Número", contadorLinha));
             } else if (lexema.matches("^//.*")) { //comentário de linha
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Comentário de Linha >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Comentário de Linha", contadorLinha));
             } else if (lexema.matches("^(/\\*).*(\\*/)$")) { //comentário de bloco
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Comentário de Bloco >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Comentário de Bloco", contadorLinha));
             } else if (lexema.matches("\\+|\\-|\\*|/|%")) { //operador aritmético
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Operador Aritmético >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Operador Aritmético", contadorLinha));
             } else if (lexema.matches("\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=")) { //operador relacional
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Operador Relacional >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Operador Relacional", contadorLinha));
             } else if (lexema.matches("\\!|\\&\\&|\\|\\|")) { //operador logico
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Operador Lógico >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Operador Lógico", contadorLinha));
             } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Delimitador >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Delimitador", contadorLinha));
             } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E\\x5C\\x22]*\"")) { //cadeia de caracteres
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Cadeia de Caracteres >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Cadeia de Caracteres", contadorLinha));
             } else if (lexema.matches("^\".*")) { //cadeia de caracteres mal formada
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Cadeia de Caracteres Mal Formada >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Cadeia de Caracteres Mal Formada", contadorLinha));
             } else if (lexema.matches("[\\-]?(\\d)+(\\..*)?") || lexema.matches("[\\-]?(\\.\\d+)?")) { //número mal formado
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Número Mal Formado>, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Número Mal Formado>, ", contadorLinha));
             } else if (lexema.matches("^(/\\*).*")) { //comentário de bloco
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Comentário de Bloco Mal Formado >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Comentário de Bloco Mal Formado", contadorLinha));
             } else {
-                lexemas.add(new Tokens("< " + lexema + " >", " , < Símbolo ou Expressão Mal Formada >, ", contadorLinha));
+                lexemas.add(new Tokens(lexema, "Símbolo ou Expressão Mal Formada", contadorLinha));
             }
         }
 

@@ -1,0 +1,11 @@
+< print >, < Palavra Reservada >, Linha: 1
+< ( >, < Delimitador >, Linha: 1
+< "oi mundo" >, < Cadeia de Caracteres >, Linha: 1
+< ) >, < Delimitador >, Linha: 1
+< ; >, < Delimitador >, Linha: 1
+< /* comentario certops*/ >, < Comentário de Bloco >, Linha: 2
+< teste >, < Identificador >, Linha: 6
+< pos >, < Identificador >, Linha: 6
+< comentario >, < Identificador >, Linha: 6
+< ; >, < Delimitador >, Linha: 6
+< /*comentarios nao passaraoteste1teste2aloha;pode ter o que quiser  >, < Comentário de Bloco Mal Formado >, Linha: 7
