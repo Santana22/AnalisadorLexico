@@ -1,5 +1,6 @@
 package main;
 
+import compiler.ALexico;
 import controller.Facade;
 import java.io.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class Exec {
 
     private static Facade facade = Facade.getInstance();
+    private static boolean prosseguir = true;
 
     /**
      * Método que obtem do diretório "entrada" os arquivos fontes. A saída está
@@ -25,7 +27,8 @@ public class Exec {
         for (File file : arquivos) {
             if (!file.isDirectory() && !file.getName().contains("output_")) {
                 tokens = facade.analisadorLexico(file);
-                facade.analisadorSintatico(tokens);
+                if(ALexico.continuar)
+                    facade.analisadorSintatico(tokens);
             }
         }
     }

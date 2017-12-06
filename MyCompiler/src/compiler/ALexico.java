@@ -16,6 +16,8 @@ import java.io.*;
  * @author Emerson e Santana
  */
 public class ALexico {
+    
+    public static boolean continuar = true;
 
     /**
      * Método que inicializa a análise léxica. Analisa caractere a caractere
@@ -25,13 +27,13 @@ public class ALexico {
      * @param arquivo - código-fonte
      */
     public ArrayList<Tokens> iniciar(File arquivo) {
+        System.out.println("Iniciando Análise Léxica...");
         ArrayList<Tokens> tokens = new ArrayList();
         try {
             BufferedReader bf = new BufferedReader(new FileReader(arquivo));
             String linha = bf.readLine();
             int contadorLinha = 1;
             char v[];
-
             while (linha != null) {
                 v = linha.toCharArray();
                 StringBuilder buffer = new StringBuilder();
@@ -180,18 +182,20 @@ public class ALexico {
             FileWriter output = new FileWriter(new File(arquivo.getParent(), "output_lex_" + arquivo.getName()));
             BufferedWriter bw = new BufferedWriter(output);
 
-            boolean sucesso = true;
+            bw.write("\nIniciando Análise Léxica...");
 
             for (Tokens lex : tokens) {
                 String tipo = lex.getTipo();
                 if (tipo.equals("Cadeia de Caracteres Mal Formada") || tipo.equals("Número Mal Formado") || tipo.equals("Símbolo ou Expressão Mal Formada") || tipo.equals("Comentário de Bloco Mal Formado")) {
-                    sucesso = false;
+                    continuar = false;
                 }
                 bw.write(lex.toString());
                 bw.newLine();
             }
-            if (sucesso) {
-                bw.write("\nAnalise concluida com sucesso!");
+            if (continuar) {
+                bw.write("\nAnalise Léxica concluida com sucesso!");
+            } else {
+                bw.write("\nAnalise Léxica concluida com erro!");
             }
 
             bw.close();

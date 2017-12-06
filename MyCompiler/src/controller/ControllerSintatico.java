@@ -22,6 +22,6 @@ public class ControllerSintatico {
     }
     
     public void iniciarSintatico(ArrayList tokens){
-        
+        this.analisadorSintatico.iniciar(tokens);
     }  
 }
