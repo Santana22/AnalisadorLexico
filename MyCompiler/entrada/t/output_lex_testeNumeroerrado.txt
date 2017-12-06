@@ -1,0 +1,6 @@
+
+Iniciando Análise Léxica...< .12 >, < Número Mal Formado>,  >, Linha: 1
+< -.12 >, < Número Mal Formado>,  >, Linha: 2
+< 13. >, < Número Mal Formado>,  >, Linha: 3
+
+Analise Léxica concluida com sucesso!

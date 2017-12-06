@@ -1,4 +1,5 @@
-< "fdfsfdfsa\"sfsf" >, < Cadeia de Caracteres >, Linha: 1
+
+Iniciando Análise Léxica...< "fdfsfdfsa\"sfsf" >, < Cadeia de Caracteres >, Linha: 1
 < /*  dssjakdjsdjnknsandkasn"/*knakndnckmfl*/ >, < Comentário de Bloco >, Linha: 3
 < " >, < Cadeia de Caracteres Mal Formada >, Linha: 5
 < @@@@@@@@@@@@@aaaaaaa >, < Símbolo ou Expressão Mal Formada >, Linha: 7
@@ -63,3 +64,5 @@
 < ) >, < Delimitador >, Linha: 37
 < ; >, < Delimitador >, Linha: 37
 < } >, < Delimitador >, Linha: 39
+
+Analise Léxica concluida com erro!

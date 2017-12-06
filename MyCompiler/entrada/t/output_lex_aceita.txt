@@ -1,4 +1,5 @@
-< exemplo >, < Identificador >, Linha: 1
+
+Iniciando Análise Léxica...< exemplo >, < Identificador >, Linha: 1
 < teste >, < Identificador >, Linha: 1
 < ; >, < Delimitador >, Linha: 1
 < float >, < Palavra Reservada >, Linha: 2
@@ -28,4 +29,4 @@
 < ) >, < Delimitador >, Linha: 5
 < ; >, < Delimitador >, Linha: 5
 
-Analise concluida com sucesso!
+Analise Léxica concluida com erro!

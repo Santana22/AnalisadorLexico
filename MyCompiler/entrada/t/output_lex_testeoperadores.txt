@@ -1,4 +1,5 @@
-< //esta é uma mensagem de comentario @#$% >, < Comentário de Linha >, Linha: 1
+
+Iniciando Análise Léxica...< //esta é uma mensagem de comentario @#$% >, < Comentário de Linha >, Linha: 1
 < 1 >, < Número >, Linha: 2
 < + >, < Operador Aritmético >, Linha: 2
 < 3 >, < Número >, Linha: 2
@@ -38,3 +39,5 @@
 < ! >, < Operador Lógico >, Linha: 15
 < A >, < Identificador >, Linha: 15
 < ; >, < Delimitador >, Linha: 15
+
+Analise Léxica concluida com erro!

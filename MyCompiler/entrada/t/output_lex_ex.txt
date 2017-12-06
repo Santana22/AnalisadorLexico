@@ -1,0 +1,10 @@
+
+Iniciando Análise Léxica...< /*ARQUIVO DE TESTE	*/ >, < Comentário de Bloco >, Linha: 1
+< final >, < Palavra Reservada >, Linha: 5
+< float >, < Palavra Reservada >, Linha: 5
+< ab >, < Identificador >, Linha: 5
+< = >, < Operador Relacional >, Linha: 5
+< 12 >, < Número >, Linha: 5
+< ; >, < Delimitador >, Linha: 5
+
+Analise Léxica concluida com erro!

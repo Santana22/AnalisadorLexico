@@ -1,4 +1,5 @@
-< int >, < Palavra Reservada >, Linha: 2
+
+Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 2
 < N >, < Identificador >, Linha: 2
 < ; >, < Delimitador >, Linha: 2
 < string >, < Palavra Reservada >, Linha: 4
@@ -171,3 +172,5 @@
 < 0 >, < Número >, Linha: 34
 < ; >, < Delimitador >, Linha: 34
 < } >, < Delimitador >, Linha: 35
+
+Analise Léxica concluida com erro!

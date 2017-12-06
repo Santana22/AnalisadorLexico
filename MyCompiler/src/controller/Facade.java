@@ -43,7 +43,7 @@ public class Facade {
         return this.controllerLexico.iniciarLexico(arquivo);
      }
      
-     public void analisadorSintatico(ArrayList tokens){
-         this.controllerSintatico.iniciarSintatico(tokens);
+     public void analisadorSintatico(ArrayList tokens, File file){
+         this.controllerSintatico.iniciarSintatico(tokens, file);
      }
 }

@@ -27,7 +27,7 @@ public class ALexico {
      * @param arquivo - código-fonte
      */
     public ArrayList<Token> iniciar(File arquivo) {
-        System.out.println("Iniciando Análise Léxica...");
+        System.out.println("Análise Léxica iniciada para o arquivo " + arquivo.getName());
         ArrayList<Token> tokens = new ArrayList();
         try {
             BufferedReader bf = new BufferedReader(new FileReader(arquivo));
@@ -184,6 +184,8 @@ public class ALexico {
 
             bw.write("\nIniciando Análise Léxica...");
 
+            boolean continuar = true;
+            
             for (Token lex : tokens) {
                 String tipo = lex.getTipo();
                 if (tipo.equals("Cadeia de Caracteres Mal Formada") || tipo.equals("Número Mal Formado") || tipo.equals("Símbolo ou Expressão Mal Formada") || tipo.equals("Comentário de Bloco Mal Formado")) {
@@ -194,10 +196,14 @@ public class ALexico {
             }
             if (continuar) {
                 bw.write("\nAnalise Léxica concluida com sucesso!");
+                System.out.println("Análise Léxica do arquivo " + arquivo.getName() + " concluida com sucesso!");
             } else {
-                bw.write("\nAnalise Léxica concluida com erro!");
+                bw.write("\nAnalise Léxica concluida com erro(s)!");
+                System.out.println("Análise Léxica do arquivo " + arquivo.getName() + " concluida com erro(s)!");
             }
 
+           this.continuar = continuar;
+            
             bw.close();
         } catch (Exception ex) {
             Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);

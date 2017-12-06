@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Exec {
 
     private static Facade facade = Facade.getInstance();
-    private static boolean prosseguir = true;
 
     /**
      * Método que obtem do diretório "entrada" os arquivos fontes. A saída está
@@ -28,7 +27,7 @@ public class Exec {
             if (!file.isDirectory() && !file.getName().contains("output_")) {
                 tokens = facade.analisadorLexico(file);
                 if(ALexico.continuar)
-                    facade.analisadorSintatico(tokens);
+                    facade.analisadorSintatico(tokens, file);    
             }
         }
     }

@@ -1,4 +1,5 @@
-< /*Arquivo p.ara testar compiladores  "*/ >, < Comentário de Bloco >, Linha: 1
+
+Iniciando Análise Léxica...< /*Arquivo p.ara testar compiladores  "*/ >, < Comentário de Bloco >, Linha: 1
 < class >, < Palavra Reservada >, Linha: 9
 < test >, < Identificador >, Linha: 9
 < { >, < Delimitador >, Linha: 9
@@ -65,3 +66,5 @@
 < "ssssssssssssss >, < Cadeia de Caracteres Mal Formada >, Linha: 29
 < /*asjjjjjjjjjjjjjjjjjjjjjjh	"ajjjjjjjjjjjjh*/ >, < Comentário de Bloco >, Linha: 31
 < } >, < Delimitador >, Linha: 34
+
+Analise Léxica concluida com erro!
