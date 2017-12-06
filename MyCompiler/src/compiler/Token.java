@@ -6,7 +6,7 @@ package compiler;
  *
  * @author Emerson e Santana
  */
-public class Tokens {
+public class Token {
 
     private String nome;
     private String tipo;
@@ -19,7 +19,7 @@ public class Tokens {
      * @param tipo - Token ao qual pertence
      * @param linha - Linha que está
      */
-    public Tokens(String nome, String tipo, int linha) {
+    public Token(String nome, String tipo, int linha) {
         this.nome = nome;
         this.tipo = tipo;
         this.linha = linha;
