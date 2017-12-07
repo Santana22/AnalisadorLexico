@@ -96,7 +96,9 @@ public class ASintatico {
                 if (aceitarToken("{")) {
                     variavelConstanteObjeto();
                     metodo();
-                    variasClasses();
+                    if (aceitarToken("}")) {
+                        variasClasses();
+                    }
                 }
             }
         }
@@ -227,7 +229,22 @@ public class ASintatico {
 
         } else if (aceitarToken("print")) {
             printConsumido();
+        } else if (aceitarToken("<")) {
+            if (aceitarToken("<")) {
+                returnConsumido();
+            }
         }
+    }
+
+    private void returnConsumido() {
+        tiposReturn();
+        if(aceitarToken(";")){
+            program();
+        }
+    }
+    
+    private void tiposReturn(){
+        operation();
     }
 
     private void metodo() {
@@ -331,7 +348,7 @@ public class ASintatico {
         if (aceitarToken("(")) {
             operationFor();
             if (aceitarToken(";")) {
-                expressionLogicalRelacional();
+                expressionLogicaRelacional();
                 if (aceitarToken(";")) {
                     operationFor();
                     if (aceitarToken(")")) {
@@ -352,11 +369,49 @@ public class ASintatico {
     }
 
     private void scanConsumido() {
+        if (aceitarToken("(")) {
+            if (aceitarToken("Identificador")) {
+                multiplasLeituras();
+                if (aceitarToken(")")) {
+                    if (aceitarToken(";")) {
+                        program();
+                    }
+                }
+            }
+        }
+    }
 
+    private void multiplasLeituras() {
+        if (aceitarToken(",")) {
+            if (aceitarToken("Identificador")) {
+                multiplasLeituras();
+            }
+        } else {
+
+        }
     }
 
     private void printConsumido() {
+        if (aceitarToken("(")) {
+            impressao();
+            multiplasImpressoes();
+            if (aceitarToken(")")) {
+                if (aceitarToken(";")) {
+                    program();
+                }
+            }
+        }
+    }
 
+    private void impressao() {
+        operation();
+    }
+
+    private void multiplasImpressoes() {
+        if (aceitarToken(",")) {
+            impressao();
+            multiplasImpressoes();
+        }
     }
 
     private void operationFor() {
@@ -364,21 +419,134 @@ public class ASintatico {
             if (aceitarToken("=")) {
                 operation();
             }
-        }
-        acessoVetorMatriz();
-        if(aceitarToken("=")) {
-            operation();
+        } else {
+            acessoVetorMatriz();
+            if (aceitarToken("=")) {
+                operation();
+            }
         }
     }
 
-    private void expressionLogicalRelacional() {
-
+    private void expressionLogicaRelacional() {
+        relacional();
+        variasExpression();
     }
 
     private void operation() {
+        if (aceitarToken("-")) {
+            expressionAritmeticasConsumida();
+        } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia") || aceitarToken("true") || aceitarToken("false")) {
+            valueVazio();
+        } else {
+
+        }
     }
 
     private void acessoVetorMatriz() {
+        if (aceitarToken("Identificador")) {
+            if (aceitarToken("[")) {
+                if (aceitarToken("Número")) {
+                    if (aceitarToken("]")) {
+                        fatoracaoAcessoVetorMatriz();
+                    }
+                }
+            }
+        }
+    }
 
+    private void expressionAritmeticasConsumida() {
+        relacionalAritmetica();
+    }
+
+    private void relacionalAritmetica() {
+        addValor();
+    }
+
+    private void addValor() {
+        value();
+    }
+
+    private void value() {
+        if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia") || aceitarToken("true") || aceitarToken("false")) {
+
+        }
+    }
+
+    private void valueVazio() {
+
+    }
+
+    private void fatoracaoAcessoVetorMatriz() {
+        if (aceitarToken("[")) {
+            if (aceitarToken("Número")) {
+                if (aceitarToken("]")) {
+
+                }
+            }
+        }
+    }
+
+    private void relacional() {
+        if (aceitarToken("(")) {
+            expressionLogicaRelacional();
+            if (aceitarToken(")")) {
+
+            }
+        } else if (aceitarToken("!")) {
+            if (aceitarToken("(")) {
+                expressionLogicaRelacional();
+                if (aceitarToken(")")) {
+
+                }
+            }
+
+        } else {
+            addValor();
+            operadorRelacional();
+        }
+    }
+
+    private void operadorRelacional() {
+        if (aceitarToken("!")) {
+            if (aceitarToken("=")) {
+                addValor();
+            }
+        } else if (aceitarToken("=")) {
+            if (aceitarToken("=")) {
+                addValor();
+            }
+        } else if (aceitarToken(">")) {
+            if (aceitarToken("=")) {
+                addValor();
+            }
+            addValor();
+        } else if (aceitarToken("<")) {
+            if (aceitarToken("=")) {
+                addValor();
+            }
+            addValor();
+        }
+    }
+
+    private void variasExpression() {
+        if (aceitarToken("&")) {
+            if (aceitarToken("&")) {
+                operadorLogicoVazio();
+            }
+            variasExp();
+        } else if (aceitarToken("|")) {
+            if (aceitarToken("|")) {
+                operadorLogicoVazio();
+                variasExp();
+            }
+        }
+    }
+
+    private void operadorLogicoVazio() {
+
+    }
+
+    private void variasExp() {
+        expressionLogicaRelacional();
     }
 }

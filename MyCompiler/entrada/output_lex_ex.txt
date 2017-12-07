@@ -31,10 +31,43 @@ Iniciando Análise Léxica...< /*ARQUIVO DE TESTE	*/ >, < Comentário de Bloco >
 < ( >, < Delimitador >, Linha: 8
 < ) >, < Delimitador >, Linha: 8
 < { >, < Delimitador >, Linha: 8
+< scan >, < Palavra Reservada >, Linha: 8
+< ( >, < Delimitador >, Linha: 8
+< a >, < Identificador >, Linha: 8
+< , >, < Delimitador >, Linha: 8
+< b >, < Identificador >, Linha: 8
+< , >, < Delimitador >, Linha: 8
+< b >, < Identificador >, Linha: 8
+< , >, < Delimitador >, Linha: 8
+< c >, < Identificador >, Linha: 8
+< ) >, < Delimitador >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
+< for >, < Palavra Reservada >, Linha: 8
+< ( >, < Delimitador >, Linha: 8
+< a >, < Identificador >, Linha: 8
+< = >, < Operador Relacional >, Linha: 8
+< b >, < Identificador >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
+< a >, < Identificador >, Linha: 8
+< < >, < Operador Relacional >, Linha: 8
+< 3 >, < Número >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
+< a >, < Identificador >, Linha: 8
+< = >, < Operador Relacional >, Linha: 8
+< 1 >, < Número >, Linha: 8
+< ) >, < Delimitador >, Linha: 8
+< { >, < Delimitador >, Linha: 8
+< } >, < Delimitador >, Linha: 8
+< print >, < Palavra Reservada >, Linha: 8
+< ( >, < Delimitador >, Linha: 8
+< -3 >, < Número >, Linha: 8
+< ) >, < Delimitador >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
 < } >, < Delimitador >, Linha: 8
 < // :: floar poder(){} >, < Comentário de Linha >, Linha: 9
 < : >, < Símbolo ou Expressão Mal Formada >, Linha: 10
 < : >, < Símbolo ou Expressão Mal Formada >, Linha: 10
+< float >, < Palavra Reservada >, Linha: 10
 < poder >, < Identificador >, Linha: 10
 < ( >, < Delimitador >, Linha: 10
 < float >, < Palavra Reservada >, Linha: 10
