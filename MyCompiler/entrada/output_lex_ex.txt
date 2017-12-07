@@ -2,15 +2,35 @@
 Iniciando Análise Léxica...< /*ARQUIVO DE TESTE	*/ >, < Comentário de Bloco >, Linha: 1
 < float >, < Palavra Reservada >, Linha: 5
 < gt >, < Identificador >, Linha: 5
-< , >, < Delimitador >, Linha: 5
-< ab >, < Identificador >, Linha: 5
-< , >, < Delimitador >, Linha: 5
-< cd >, < Identificador >, Linha: 5
-< , >, < Delimitador >, Linha: 5
-< ef >, < Identificador >, Linha: 5
 < [ >, < Delimitador >, Linha: 5
-< 3 >, < Número >, Linha: 5
+< 1 >, < Número >, Linha: 5
 < ] >, < Delimitador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< a >, < Identificador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< b >, < Identificador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< htuhd >, < Identificador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< akoidso >, < Identificador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< ajksj >, < Identificador >, Linha: 5
 < ; >, < Delimitador >, Linha: 5
+< class >, < Palavra Reservada >, Linha: 6
+< test >, < Identificador >, Linha: 6
+< < >, < Operador Relacional >, Linha: 6
+< - >, < Operador Aritmético >, Linha: 6
+< > >, < Operador Relacional >, Linha: 6
+< lm >, < Identificador >, Linha: 6
+< { >, < Delimitador >, Linha: 6
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 7
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 7
+< bool >, < Palavra Reservada >, Linha: 7
+< main >, < Identificador >, Linha: 7
+< ( >, < Delimitador >, Linha: 7
+< ) >, < Delimitador >, Linha: 7
+< { >, < Delimitador >, Linha: 7
+< } >, < Delimitador >, Linha: 8
+< } >, < Delimitador >, Linha: 9
 
-Analise Léxica concluida com sucesso!
+Analise Léxica concluida com erro(s)!

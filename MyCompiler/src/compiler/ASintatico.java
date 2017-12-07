@@ -47,7 +47,7 @@ public class ASintatico {
     private void modoPanico(String sync[]) {
         for (String string : sync) {
             while (!tokenAtual.getTipo().contains(string) && !tokenAtual.getNome().contains(string)) {
-                System.out.println("\tPulou Token: " + tokenAtual.toString());
+                //System.out.println("\tPulou Token: " + tokenAtual.toString());
                 if (!proximoToken()) {
                     return;
                 }
@@ -78,23 +78,38 @@ public class ASintatico {
             tipo();
             tratamentoConstante();
             aceitarToken(";");
-        }
-         else if (aceitarToken("Identificador")) {
+        } else if (aceitarToken("Identificador")) {
             criarObjetosLinha();
             variavelConstanteObjeto();
-        } else{
-             tipo();
-             tratamentoVariavel(); 
-         }  
+        } else if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
+            tipoVazio();
+            tratamentoVariavel();
+        } else {
+
+        }
     }
 
     private void classe() {
+        if (aceitarToken("class")) {
+            if (aceitarToken("Identificador")) {
+                herancaNao();
+                if (aceitarToken("{")) {
+                    variavelConstanteObjeto();
+                    metodo();
+                    variasClasses();
+                }
+            }
+        }
 
     }
 
     private void tipo() {
         if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
         }
+
+    }
+
+    private void tipoVazio() {
 
     }
 
@@ -135,7 +150,15 @@ public class ASintatico {
     }
 
     private void herancaNao() {
+        if (aceitarToken("<")) {
+            if (aceitarToken("-")) {
+                if (aceitarToken(">")) {
+                    if (aceitarToken("Identificador")) {
 
+                    }
+                }
+            }
+        }
     }
 
     private void criarObjetosLinha() {
@@ -164,7 +187,7 @@ public class ASintatico {
             } else {
                 modoPanico(sync);
             }
-        } 
+        }
         acrescentar();
     }
 
@@ -172,18 +195,93 @@ public class ASintatico {
         String sync[] = new String[10];
         if (aceitarToken(",")) {
             variaveis();
-        } else if (aceitarToken(";")){
-            program();
-        } else{
-            modoPanico(sync);
-        }
+        } 
+        
     }
 
     private void fatoracaoFatoracaoVariaveis() {
 
     }
-    
-    private void program(){
-        
+
+    private void program() {
+
     }
+
+    private void metodo() {
+        if (aceitarToken(":")) {
+            if (aceitarToken(":")) {
+                comSemRetorno();
+            }
+        }
+    }
+
+    private void variasClasses() {
+        if (aceitarToken("class")) {
+            classe();
+        } else if (tokenAtual.equals("}") && posicao == tokens.size() - 1) {
+
+        }
+    }
+
+    private void comSemRetorno() {
+        if (aceitarToken("Identificador")) {
+             if (aceitarToken("(")) {
+                    parametros();
+                    if(aceitarToken(")")){
+                        if(aceitarToken("{")){
+                            program();
+                            if(aceitarToken("}")){
+                                metodo();
+                            }
+                        }
+                    }
+                }
+        } else if (aceitarToken("bool")) {
+            if (aceitarToken("main")) {
+                main();
+            }
+
+            if (aceitarToken("Identificador")) {
+                if (aceitarToken("(")) {
+                    parametros();
+                    if(aceitarToken(")")){
+                        if(aceitarToken("{")){
+                            program();
+                            if(aceitarToken("}")){
+                                metodo();
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            tipo();
+            if (aceitarToken("Identificador")) {
+                if (aceitarToken("(")) {
+                    parametros();
+                    if(aceitarToken(")")){
+                        if(aceitarToken("{")){
+                            program();
+                            if(aceitarToken("}")){
+                                metodo();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void main() {
+        if(aceitarToken("(")){
+            if(aceitarToken(")")){
+                
+            }
+        }
+    }
+
+    private void parametros() {
+
+    }
+
 }

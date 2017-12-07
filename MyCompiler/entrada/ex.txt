@@ -2,4 +2,8 @@
 ARQUIVO DE TESTE	
 */
 
-float gt, ab, cd, ef [3];
+float gt[1],a,b, htuhd,akoidso,ajksj;
+class test <-> lm {
+:: bool main (){
+}
+}
