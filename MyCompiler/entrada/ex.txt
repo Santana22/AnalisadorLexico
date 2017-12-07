@@ -3,7 +3,9 @@ ARQUIVO DE TESTE
 */
 
 float gt[1],a,b, htuhd,akoidso,ajksj;
-class test <-> lm {
-:: bool main (){
-}
+class test{
+float jjj,jjka;
+:: bool main (){}
+// :: floar poder(){}
+:: poder(float d, float e){}
 }

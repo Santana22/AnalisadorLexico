@@ -18,19 +18,33 @@ Iniciando Análise Léxica...< /*ARQUIVO DE TESTE	*/ >, < Comentário de Bloco >
 < ; >, < Delimitador >, Linha: 5
 < class >, < Palavra Reservada >, Linha: 6
 < test >, < Identificador >, Linha: 6
-< < >, < Operador Relacional >, Linha: 6
-< - >, < Operador Aritmético >, Linha: 6
-< > >, < Operador Relacional >, Linha: 6
-< lm >, < Identificador >, Linha: 6
 < { >, < Delimitador >, Linha: 6
-< : >, < Símbolo ou Expressão Mal Formada >, Linha: 7
-< : >, < Símbolo ou Expressão Mal Formada >, Linha: 7
-< bool >, < Palavra Reservada >, Linha: 7
-< main >, < Identificador >, Linha: 7
-< ( >, < Delimitador >, Linha: 7
-< ) >, < Delimitador >, Linha: 7
-< { >, < Delimitador >, Linha: 7
+< float >, < Palavra Reservada >, Linha: 7
+< jjj >, < Identificador >, Linha: 7
+< , >, < Delimitador >, Linha: 7
+< jjka >, < Identificador >, Linha: 7
+< ; >, < Delimitador >, Linha: 7
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 8
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 8
+< bool >, < Palavra Reservada >, Linha: 8
+< main >, < Identificador >, Linha: 8
+< ( >, < Delimitador >, Linha: 8
+< ) >, < Delimitador >, Linha: 8
+< { >, < Delimitador >, Linha: 8
 < } >, < Delimitador >, Linha: 8
-< } >, < Delimitador >, Linha: 9
+< // :: floar poder(){} >, < Comentário de Linha >, Linha: 9
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 10
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 10
+< poder >, < Identificador >, Linha: 10
+< ( >, < Delimitador >, Linha: 10
+< float >, < Palavra Reservada >, Linha: 10
+< d >, < Identificador >, Linha: 10
+< , >, < Delimitador >, Linha: 10
+< float >, < Palavra Reservada >, Linha: 10
+< e >, < Identificador >, Linha: 10
+< ) >, < Delimitador >, Linha: 10
+< { >, < Delimitador >, Linha: 10
+< } >, < Delimitador >, Linha: 10
+< } >, < Delimitador >, Linha: 11
 
 Analise Léxica concluida com erro(s)!

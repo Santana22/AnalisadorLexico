@@ -195,16 +195,39 @@ public class ASintatico {
         String sync[] = new String[10];
         if (aceitarToken(",")) {
             variaveis();
-        } 
-        
+        }
+
     }
 
     private void fatoracaoFatoracaoVariaveis() {
-
+        String sync[] = new String[10];
+        if (aceitarToken("[")) {
+            if (aceitarToken("Número")) {
+                if (aceitarToken("]")) {
+                    fatoracaoFatoracaoVariaveis();
+                } else {
+                    modoPanico(sync);
+                }
+            } else {
+                modoPanico(sync);
+            }
+        }
+        acrescentar();
     }
 
     private void program() {
+        if (aceitarToken("for")) {
+            forConsumido();
 
+        } else if (aceitarToken("if")) {
+            ifConsumido();
+
+        } else if (aceitarToken("scan")) {
+            scanConsumido();
+
+        } else if (aceitarToken("print")) {
+            printConsumido();
+        }
     }
 
     private void metodo() {
@@ -224,18 +247,22 @@ public class ASintatico {
     }
 
     private void comSemRetorno() {
+        String sync[] = new String[10];
+        sync[0] = "{";
         if (aceitarToken("Identificador")) {
-             if (aceitarToken("(")) {
-                    parametros();
-                    if(aceitarToken(")")){
-                        if(aceitarToken("{")){
-                            program();
-                            if(aceitarToken("}")){
-                                metodo();
-                            }
+            if (aceitarToken("(")) {
+                parametros();
+                if (aceitarToken(")")) {
+                    if (aceitarToken("{")) {
+                        program();
+                        if (aceitarToken("}")) {
+                            metodo();
                         }
                     }
+                } else {
+                    modoPanico(sync);
                 }
+            }
         } else if (aceitarToken("bool")) {
             if (aceitarToken("main")) {
                 main();
@@ -244,10 +271,10 @@ public class ASintatico {
             if (aceitarToken("Identificador")) {
                 if (aceitarToken("(")) {
                     parametros();
-                    if(aceitarToken(")")){
-                        if(aceitarToken("{")){
+                    if (aceitarToken(")")) {
+                        if (aceitarToken("{")) {
                             program();
-                            if(aceitarToken("}")){
+                            if (aceitarToken("}")) {
                                 metodo();
                             }
                         }
@@ -259,10 +286,10 @@ public class ASintatico {
             if (aceitarToken("Identificador")) {
                 if (aceitarToken("(")) {
                     parametros();
-                    if(aceitarToken(")")){
-                        if(aceitarToken("{")){
+                    if (aceitarToken(")")) {
+                        if (aceitarToken("{")) {
                             program();
-                            if(aceitarToken("}")){
+                            if (aceitarToken("}")) {
                                 metodo();
                             }
                         }
@@ -273,15 +300,85 @@ public class ASintatico {
     }
 
     private void main() {
-        if(aceitarToken("(")){
-            if(aceitarToken(")")){
-                
+        if (aceitarToken("(")) {
+            if (aceitarToken(")")) {
+                if (aceitarToken("{")) {
+                    program();
+                    if (aceitarToken("}")) {
+                        metodo();
+                    }
+                }
             }
         }
     }
 
     private void parametros() {
+        if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
+            tipoVazio();
+            if (aceitarToken("Identificador")) {
+                acrescentarParametros();
+            }
+        }
+    }
+
+    private void acrescentarParametros() {
+        if (aceitarToken(",")) {
+            parametros();
+        }
+    }
+
+    private void forConsumido() {
+        if (aceitarToken("(")) {
+            operationFor();
+            if (aceitarToken(";")) {
+                expressionLogicalRelacional();
+                if (aceitarToken(";")) {
+                    operationFor();
+                    if (aceitarToken(")")) {
+                        if (aceitarToken("{")) {
+                            program();
+                            if (aceitarToken("}")) {
+                                program();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void ifConsumido() {
 
     }
 
+    private void scanConsumido() {
+
+    }
+
+    private void printConsumido() {
+
+    }
+
+    private void operationFor() {
+        if (aceitarToken("Identificador")) {
+            if (aceitarToken("=")) {
+                operation();
+            }
+        }
+        acessoVetorMatriz();
+        if(aceitarToken("=")) {
+            operation();
+        }
+    }
+
+    private void expressionLogicalRelacional() {
+
+    }
+
+    private void operation() {
+    }
+
+    private void acessoVetorMatriz() {
+
+    }
 }
