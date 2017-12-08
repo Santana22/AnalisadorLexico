@@ -105,10 +105,11 @@ public class ASintatico {
 
     }
 
-    private void tipo() {
+    private boolean tipo() {
         if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
+            return true;
         }
-
+        return false;
     }
 
     private void tipoVazio() {
@@ -232,6 +233,18 @@ public class ASintatico {
         } else if (aceitarToken("<")) {
             if (aceitarToken("<")) {
                 returnConsumido();
+            }
+        }else if(tipo()){
+            criarVariavel();
+        }else if(aceitarToken("-")){
+            classificarVariavel();
+        }else if(aceitarToken("identificador")){
+            if(aceitarToken("=")){
+                instancia();
+            }else if(aceitarToken("identificador")){
+                criarObjetos();
+            }else{
+                chamadaMetodo();
             }
         }
     }
@@ -435,6 +448,16 @@ public class ASintatico {
             multiplasImpressoes();
         }
     }
+    
+    private void classificarVariavel(){
+        if(aceitarToken("-")){
+            if(aceitarToken(">")){
+                operationLine();
+            }
+        }else if(aceitarToken(">")){
+            operationLine();
+        }
+    }
 
     private void operationFor() {
         if (aceitarToken("Identificador")) {
@@ -461,6 +484,13 @@ public class ASintatico {
             valueVazio();
         } else {
 
+        }
+    }
+    
+    private void operationLine(){
+        operationFor();
+        if(aceitarToken(";")){
+            program();
         }
     }
 
@@ -549,6 +579,13 @@ public class ASintatico {
             addValor();
         }
     }
+    
+    private void criarVariavel(){
+        variaveis();
+        if(aceitarToken(";")){
+            program();
+        }
+    }
 
     private void variasExpression() {
         if (aceitarToken("&")) {
@@ -571,4 +608,62 @@ public class ASintatico {
     private void variasExp() {
         expressionLogicaRelacional();
     }
+
+    private void instancia() {
+        if(aceitarToken(">")){
+            if(aceitarToken("identificador")){
+                if(aceitarToken("(")){
+                    passagemParametros();
+                    if(aceitarToken(")")){
+                        if(aceitarToken(";")){
+                            program();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void passagemParametros() {
+        operation();
+        if(aceitarToken(",")){
+            passagemParametros();
+        }
+    }
+
+    private void criarObjetos() {
+        if(aceitarToken(",")){
+            if(aceitarToken("identificador")){
+                criarObjetos();
+            }
+        }else if(aceitarToken(";")){
+            program();
+        }
+    }
+
+    private void chamadaMetodo() {
+        if(aceitarToken(":")){
+            if(aceitarToken(":")){
+                if(aceitarToken("identificador")){
+                    if(aceitarToken("(")){
+                        fatoracaoChamadaMetodo();
+                    }else if(aceitarToken(";")){
+                        program();    
+                    }
+                }
+            }
+        }else if(aceitarToken("(")){
+            fatoracaoChamadaMetodo();
+        }
+    }
+    
+    private void fatoracaoChamadaMetodo(){
+        passagemParametros();
+        if(aceitarToken(")")){
+            if(aceitarToken(";")){
+                program();
+            }
+        }
+    }
+    
 }
