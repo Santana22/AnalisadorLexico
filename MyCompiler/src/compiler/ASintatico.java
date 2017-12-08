@@ -365,7 +365,29 @@ public class ASintatico {
     }
 
     private void ifConsumido() {
+        if(aceitarToken("(")){
+            expressionLogicaRelacional();
+            if(aceitarToken(")")){
+                if(aceitarToken("{")){
+                    program();
+                    if(aceitarToken("}")){
+                        if(aceitarToken("else")){
+                            elseConsumido();
+                        }
+                        program();
+                    }
+                }
+            }
+        }
 
+    }
+    
+    private void elseConsumido(){
+        if(aceitarToken("{")){
+            program();
+            if(aceitarToken("}")){
+            }
+        } 
     }
 
     private void scanConsumido() {
