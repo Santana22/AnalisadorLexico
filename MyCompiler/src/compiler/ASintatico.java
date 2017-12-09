@@ -91,7 +91,13 @@ public class ASintatico {
                 variavelConstanteObjeto();
             }
         } else if (aceitarToken("Identificador")) {
-            criarObjetosLinhaConsumido();
+            if(aceitarToken("Identificador")){
+                criarObjetos();
+            }else if(aceitarToken("=")){
+                instancia();
+            }else{
+                chamadaMetodo();
+            }
             variavelConstanteObjeto();
         } else if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
             tipoVazio();
@@ -176,7 +182,7 @@ public class ASintatico {
         }
     }
 
-    private void criarObjetosLinhaConsumido() {
+    /*private void criarObjetosLinhaConsumido() {
         String sync[] = new String[2];
 
         if (aceitarToken("Identificador")) {
@@ -212,7 +218,7 @@ public class ASintatico {
                 aceitarToken("Identificador");
             }
         }
-    }
+    }*/
 
     private void variaveis() {
         String sync[] = new String[10];
@@ -292,9 +298,10 @@ public class ASintatico {
             } else {
                 chamadaMetodo();
             }
+            program();
         }
     }
-
+    
     private void returnConsumido() {
         tiposReturn();
         if (aceitarToken(";")) {
@@ -662,7 +669,6 @@ public class ASintatico {
                     passagemParametros();
                     if (aceitarToken(")")) {
                         if (aceitarToken(";")) {
-                            program();
                         }
                     }
                 }
@@ -683,7 +689,6 @@ public class ASintatico {
                 criarObjetos();
             }
         } else if (aceitarToken(";")) {
-            program();
         }
     }
 
@@ -694,7 +699,6 @@ public class ASintatico {
                     if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
                     } else if (aceitarToken(";")) {
-                        program();
                     }
                 }
             }
@@ -707,7 +711,6 @@ public class ASintatico {
         passagemParametros();
         if (aceitarToken(")")) {
             if (aceitarToken(";")) {
-                program();
             }
         }
     }
