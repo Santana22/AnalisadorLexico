@@ -2,10 +2,16 @@
 ARQUIVO DE TESTE	
 */
 
-float gt[1],a,b, htuhd,akoidso,ajksj;
-class test{
-float jjj,jjka;
-:: bool main (){scan(a,b,b,c); for(a=b;a<3;a=1){} print(-3);}
+final float ab = 3
+ssdddsa;
+a as;
+b bs, ;
+class test{}
+//class test{
+//float jjj,jjka;
+//:: bool main (){scan(a,b,b,c); for(a=b;a<3;a=1){} print(-3);}
 // :: floar poder(){}
-:: float poder(float d, float e){}
-}
+//:: float poder(float d, float e){}
+//}
+
+class test2{}

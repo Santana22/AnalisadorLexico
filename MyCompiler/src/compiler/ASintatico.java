@@ -13,12 +13,12 @@ public class ASintatico {
     private Token tokenAtual, tokenAnterior;
     private ArrayList<Token> tokens;
     private int posicao = -1;
-    private BufferedWriter saidaSintatico;
+    private BufferedWriter saidaSintatico; 
 
     public void iniciar(ArrayList tokens, File file) {
 
         System.out.println("Análise Sintática iniciada para o arquivo " + file.getName());
-
+        
         this.tokens = tokens;
         inicio();
 
@@ -30,7 +30,6 @@ public class ASintatico {
             tokenAnterior = tokenAtual;
             tokenAtual = tokens.get(posicao);
             aceitarToken("Comentário"); // Pulando comentarios
-            System.out.println("Token Atual: " + tokenAtual.toString());
             return true;
         }
         return false;
@@ -38,6 +37,7 @@ public class ASintatico {
 
     private boolean aceitarToken(String tipo) {
         if (tokenAtual.getTipo().contains(tipo) || tokenAtual.getNome().contains(tipo)) {
+            System.out.println("Token Atual: " + tokenAtual.toString());
             proximoToken();
             return true;
         }
@@ -45,12 +45,18 @@ public class ASintatico {
     }
 
     private void modoPanico(String sync[]) {
+        ArrayList<String> cSync = new ArrayList();
         for (String string : sync) {
-            while (!tokenAtual.getTipo().contains(string) && !tokenAtual.getNome().contains(string)) {
-                //System.out.println("\tPulou Token: " + tokenAtual.toString());
-                if (!proximoToken()) {
-                    return;
-                }
+            
+            if (!cSync.contains(string)) {
+                cSync.add(string);
+            }
+        }
+
+        while (!cSync.contains(tokenAtual.getNome()) || cSync.contains(tokenAtual.getTipo())) {
+            System.out.println("\tToken consumido: " + tokenAtual.getNome());
+            if (!proximoToken()) {
+                return;
             }
         }
     }
@@ -74,12 +80,18 @@ public class ASintatico {
     }
 
     private void variavelConstanteObjeto() {
+        String sync[] = new String[1];
+        sync[0] = ";";
         if (aceitarToken("final")) {
             tipo();
             tratamentoConstante();
-            aceitarToken(";");
+            if (!aceitarToken(";")) {
+                modoPanico(sync);
+                aceitarToken(";");
+                variavelConstanteObjeto();
+            }
         } else if (aceitarToken("Identificador")) {
-            criarObjetosLinha();
+            criarObjetosLinhaConsumido();
             variavelConstanteObjeto();
         } else if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
             tipoVazio();
@@ -164,8 +176,42 @@ public class ASintatico {
         }
     }
 
-    private void criarObjetosLinha() {
+    private void criarObjetosLinhaConsumido() {
+        String sync[] = new String[2];
 
+        if (aceitarToken("Identificador")) {
+            variosObjetos();
+            if (!aceitarToken(";")) {
+                sync[0] = ";";
+                modoPanico(sync);
+                aceitarToken(";");
+            }
+
+        } else {
+            sync[0] = "Identificador";
+            modoPanico(sync);
+            aceitarToken("Identificador");
+            variosObjetos();
+            if (!aceitarToken(";")) {
+                sync[0] = ";";
+                modoPanico(sync);
+                aceitarToken(";");
+            }
+        }
+    }
+
+    private void variosObjetos() {
+        String sync[] = new String[10];
+        sync[0] = ",";
+        if (aceitarToken(",")) {
+            if (aceitarToken("Identificador")) {
+                variosObjetos();
+            } else {
+                sync[0] = "Identificador";
+                modoPanico(sync);
+                aceitarToken("Identificador");
+            }
+        }
     }
 
     private void variaveis() {
@@ -234,16 +280,16 @@ public class ASintatico {
             if (aceitarToken("<")) {
                 returnConsumido();
             }
-        }else if(tipo()){
+        } else if (tipo()) {
             criarVariavel();
-        }else if(aceitarToken("-")){
+        } else if (aceitarToken("-")) {
             classificarVariavel();
-        }else if(aceitarToken("identificador")){
-            if(aceitarToken("=")){
+        } else if (aceitarToken("identificador")) {
+            if (aceitarToken("=")) {
                 instancia();
-            }else if(aceitarToken("identificador")){
+            } else if (aceitarToken("identificador")) {
                 criarObjetos();
-            }else{
+            } else {
                 chamadaMetodo();
             }
         }
@@ -251,12 +297,12 @@ public class ASintatico {
 
     private void returnConsumido() {
         tiposReturn();
-        if(aceitarToken(";")){
+        if (aceitarToken(";")) {
             program();
         }
     }
-    
-    private void tiposReturn(){
+
+    private void tiposReturn() {
         operation();
     }
 
@@ -271,7 +317,7 @@ public class ASintatico {
     private void variasClasses() {
         if (aceitarToken("class")) {
             classe();
-        } else if (tokenAtual.equals("}") && posicao == tokens.size() - 1) {
+        } else if (tokenAtual.equals("}") && proximoToken()) {
 
         }
     }
@@ -378,13 +424,13 @@ public class ASintatico {
     }
 
     private void ifConsumido() {
-        if(aceitarToken("(")){
+        if (aceitarToken("(")) {
             expressionLogicaRelacional();
-            if(aceitarToken(")")){
-                if(aceitarToken("{")){
+            if (aceitarToken(")")) {
+                if (aceitarToken("{")) {
                     program();
-                    if(aceitarToken("}")){
-                        if(aceitarToken("else")){
+                    if (aceitarToken("}")) {
+                        if (aceitarToken("else")) {
                             elseConsumido();
                         }
                         program();
@@ -394,13 +440,13 @@ public class ASintatico {
         }
 
     }
-    
-    private void elseConsumido(){
-        if(aceitarToken("{")){
+
+    private void elseConsumido() {
+        if (aceitarToken("{")) {
             program();
-            if(aceitarToken("}")){
+            if (aceitarToken("}")) {
             }
-        } 
+        }
     }
 
     private void scanConsumido() {
@@ -448,13 +494,13 @@ public class ASintatico {
             multiplasImpressoes();
         }
     }
-    
-    private void classificarVariavel(){
-        if(aceitarToken("-")){
-            if(aceitarToken(">")){
+
+    private void classificarVariavel() {
+        if (aceitarToken("-")) {
+            if (aceitarToken(">")) {
                 operationLine();
             }
-        }else if(aceitarToken(">")){
+        } else if (aceitarToken(">")) {
             operationLine();
         }
     }
@@ -486,10 +532,10 @@ public class ASintatico {
 
         }
     }
-    
-    private void operationLine(){
+
+    private void operationLine() {
         operationFor();
-        if(aceitarToken(";")){
+        if (aceitarToken(";")) {
             program();
         }
     }
@@ -579,10 +625,10 @@ public class ASintatico {
             addValor();
         }
     }
-    
-    private void criarVariavel(){
+
+    private void criarVariavel() {
         variaveis();
-        if(aceitarToken(";")){
+        if (aceitarToken(";")) {
             program();
         }
     }
@@ -610,12 +656,12 @@ public class ASintatico {
     }
 
     private void instancia() {
-        if(aceitarToken(">")){
-            if(aceitarToken("identificador")){
-                if(aceitarToken("(")){
+        if (aceitarToken(">")) {
+            if (aceitarToken("identificador")) {
+                if (aceitarToken("(")) {
                     passagemParametros();
-                    if(aceitarToken(")")){
-                        if(aceitarToken(";")){
+                    if (aceitarToken(")")) {
+                        if (aceitarToken(";")) {
                             program();
                         }
                     }
@@ -626,44 +672,44 @@ public class ASintatico {
 
     private void passagemParametros() {
         operation();
-        if(aceitarToken(",")){
+        if (aceitarToken(",")) {
             passagemParametros();
         }
     }
 
     private void criarObjetos() {
-        if(aceitarToken(",")){
-            if(aceitarToken("identificador")){
+        if (aceitarToken(",")) {
+            if (aceitarToken("identificador")) {
                 criarObjetos();
             }
-        }else if(aceitarToken(";")){
+        } else if (aceitarToken(";")) {
             program();
         }
     }
 
     private void chamadaMetodo() {
-        if(aceitarToken(":")){
-            if(aceitarToken(":")){
-                if(aceitarToken("identificador")){
-                    if(aceitarToken("(")){
+        if (aceitarToken(":")) {
+            if (aceitarToken(":")) {
+                if (aceitarToken("identificador")) {
+                    if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
-                    }else if(aceitarToken(";")){
-                        program();    
+                    } else if (aceitarToken(";")) {
+                        program();
                     }
                 }
             }
-        }else if(aceitarToken("(")){
+        } else if (aceitarToken("(")) {
             fatoracaoChamadaMetodo();
         }
     }
-    
-    private void fatoracaoChamadaMetodo(){
+
+    private void fatoracaoChamadaMetodo() {
         passagemParametros();
-        if(aceitarToken(")")){
-            if(aceitarToken(";")){
+        if (aceitarToken(")")) {
+            if (aceitarToken(";")) {
                 program();
             }
         }
     }
-    
+
 }
