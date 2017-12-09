@@ -2,20 +2,51 @@
 Iniciando Análise Léxica...< class >, < Palavra Reservada >, Linha: 1
 < test2 >, < Identificador >, Linha: 1
 < { >, < Delimitador >, Linha: 1
-< : >, < Delimitador >, Linha: 2
-< : >, < Delimitador >, Linha: 2
-< metodo >, < Identificador >, Linha: 2
-< ( >, < Delimitador >, Linha: 2
-< ) >, < Delimitador >, Linha: 2
-< { >, < Delimitador >, Linha: 2
-< float >, < Palavra Reservada >, Linha: 3
-< v >, < Identificador >, Linha: 3
+< float >, < Palavra Reservada >, Linha: 2
+< a >, < Identificador >, Linha: 2
+< , >, < Delimitador >, Linha: 2
+< b >, < Identificador >, Linha: 2
+< , >, < Delimitador >, Linha: 2
+< c >, < Identificador >, Linha: 2
+< ; >, < Delimitador >, Linha: 2
+< int >, < Palavra Reservada >, Linha: 3
+< a >, < Identificador >, Linha: 3
+< , >, < Delimitador >, Linha: 3
+< b >, < Identificador >, Linha: 3
+< , >, < Delimitador >, Linha: 3
+< c >, < Identificador >, Linha: 3
 < ; >, < Delimitador >, Linha: 3
-< chamada >, < Identificador >, Linha: 4
+< : >, < Delimitador >, Linha: 4
+< : >, < Delimitador >, Linha: 4
+< metodo >, < Identificador >, Linha: 4
 < ( >, < Delimitador >, Linha: 4
+< int >, < Palavra Reservada >, Linha: 4
+< a >, < Identificador >, Linha: 4
+< , >, < Delimitador >, Linha: 4
+< objeto >, < Identificador >, Linha: 4
+< a1 >, < Identificador >, Linha: 4
 < ) >, < Delimitador >, Linha: 4
-< ; >, < Delimitador >, Linha: 4
-< } >, < Delimitador >, Linha: 5
+< { >, < Delimitador >, Linha: 4
+< float >, < Palavra Reservada >, Linha: 5
+< v >, < Identificador >, Linha: 5
+< ; >, < Delimitador >, Linha: 5
+< chamada >, < Identificador >, Linha: 6
+< ( >, < Delimitador >, Linha: 6
+< a >, < Identificador >, Linha: 6
+< , >, < Delimitador >, Linha: 6
+< ) >, < Delimitador >, Linha: 6
+< ; >, < Delimitador >, Linha: 6
 < } >, < Delimitador >, Linha: 7
+< float >, < Palavra Reservada >, Linha: 8
+< a >, < Identificador >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
+< : >, < Delimitador >, Linha: 9
+< : >, < Delimitador >, Linha: 9
+< metodo2 >, < Identificador >, Linha: 9
+< ( >, < Delimitador >, Linha: 9
+< ) >, < Delimitador >, Linha: 9
+< { >, < Delimitador >, Linha: 9
+< } >, < Delimitador >, Linha: 10
+< } >, < Delimitador >, Linha: 12
 
 Analise Léxica concluida com sucesso!

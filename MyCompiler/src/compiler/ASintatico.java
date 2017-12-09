@@ -339,6 +339,7 @@ public class ASintatico {
                     if (aceitarToken("{")) {
                         program();
                         if (aceitarToken("}")) {
+                            variavelConstanteObjeto();
                             metodo();
                         }
                     }
@@ -396,7 +397,7 @@ public class ASintatico {
     }
 
     private void parametros() {
-        if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
+        if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")||aceitarToken("Identificador")) {
             tipoVazio();
             if (aceitarToken("Identificador")) {
                 acrescentarParametros();
