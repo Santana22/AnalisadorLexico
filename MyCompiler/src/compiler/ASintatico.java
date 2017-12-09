@@ -13,12 +13,12 @@ public class ASintatico {
     private Token tokenAtual, tokenAnterior;
     private ArrayList<Token> tokens;
     private int posicao = -1;
-    private BufferedWriter saidaSintatico; 
+    private BufferedWriter saidaSintatico;
 
     public void iniciar(ArrayList tokens, File file) {
 
         System.out.println("Análise Sintática iniciada para o arquivo " + file.getName());
-        
+
         this.tokens = tokens;
         inicio();
 
@@ -47,7 +47,7 @@ public class ASintatico {
     private void modoPanico(String sync[]) {
         ArrayList<String> cSync = new ArrayList();
         for (String string : sync) {
-            
+
             if (!cSync.contains(string)) {
                 cSync.add(string);
             }
@@ -265,9 +265,9 @@ public class ASintatico {
     }
 
     private void program() {
+
         if (aceitarToken("for")) {
             forConsumido();
-
         } else if (aceitarToken("if")) {
             ifConsumido();
 
@@ -284,10 +284,10 @@ public class ASintatico {
             criarVariavel();
         } else if (aceitarToken("-")) {
             classificarVariavel();
-        } else if (aceitarToken("identificador")) {
+        } else if (aceitarToken("Identificador")) {
             if (aceitarToken("=")) {
                 instancia();
-            } else if (aceitarToken("identificador")) {
+            } else if (aceitarToken("Identificador")) {
                 criarObjetos();
             } else {
                 chamadaMetodo();
@@ -657,7 +657,7 @@ public class ASintatico {
 
     private void instancia() {
         if (aceitarToken(">")) {
-            if (aceitarToken("identificador")) {
+            if (aceitarToken("Identificador")) {
                 if (aceitarToken("(")) {
                     passagemParametros();
                     if (aceitarToken(")")) {
@@ -679,7 +679,7 @@ public class ASintatico {
 
     private void criarObjetos() {
         if (aceitarToken(",")) {
-            if (aceitarToken("identificador")) {
+            if (aceitarToken("Identificador")) {
                 criarObjetos();
             }
         } else if (aceitarToken(";")) {
@@ -690,7 +690,7 @@ public class ASintatico {
     private void chamadaMetodo() {
         if (aceitarToken(":")) {
             if (aceitarToken(":")) {
-                if (aceitarToken("identificador")) {
+                if (aceitarToken("Identificador")) {
                     if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
                     } else if (aceitarToken(";")) {
