@@ -27,6 +27,47 @@ Iniciando Análise Léxica...< /*ARQUIVO DE TESTE	*/ >, < Comentário de Bloco >
 < class >, < Palavra Reservada >, Linha: 17
 < test2 >, < Identificador >, Linha: 17
 < { >, < Delimitador >, Linha: 17
-< } >, < Delimitador >, Linha: 17
+< float >, < Palavra Reservada >, Linha: 17
+< a >, < Identificador >, Linha: 17
+< ; >, < Delimitador >, Linha: 17
+< int >, < Palavra Reservada >, Linha: 18
+< b >, < Identificador >, Linha: 18
+< ; >, < Delimitador >, Linha: 18
+< metodo >, < Identificador >, Linha: 19
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 19
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 19
+< metodo >, < Identificador >, Linha: 19
+< ( >, < Delimitador >, Linha: 19
+< a >, < Identificador >, Linha: 19
+< , >, < Delimitador >, Linha: 19
+< b >, < Identificador >, Linha: 19
+< , >, < Delimitador >, Linha: 19
+< c >, < Identificador >, Linha: 19
+< ) >, < Delimitador >, Linha: 19
+< ; >, < Delimitador >, Linha: 19
+< metodo >, < Identificador >, Linha: 20
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 20
+< : >, < Símbolo ou Expressão Mal Formada >, Linha: 20
+< metodo >, < Identificador >, Linha: 20
+< ; >, < Delimitador >, Linha: 20
+< criarObjeto >, < Identificador >, Linha: 21
+< ( >, < Delimitador >, Linha: 21
+< obj1 >, < Identificador >, Linha: 21
+< , >, < Delimitador >, Linha: 21
+< ) >, < Delimitador >, Linha: 21
+< ; >, < Delimitador >, Linha: 21
+< instancia >, < Identificador >, Linha: 22
+< = >, < Operador Relacional >, Linha: 22
+< > >, < Operador Relacional >, Linha: 22
+< instancia >, < Identificador >, Linha: 22
+< ( >, < Delimitador >, Linha: 22
+< e >, < Identificador >, Linha: 22
+< , >, < Delimitador >, Linha: 22
+< f >, < Identificador >, Linha: 22
+< , >, < Delimitador >, Linha: 22
+< g >, < Identificador >, Linha: 22
+< ) >, < Delimitador >, Linha: 22
+< ; >, < Delimitador >, Linha: 22
+< } >, < Delimitador >, Linha: 22
 
-Analise Léxica concluida com sucesso!
+Analise Léxica concluida com erro(s)!

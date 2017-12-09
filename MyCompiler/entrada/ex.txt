@@ -14,4 +14,9 @@ class test{}
 //:: float poder(float d, float e){}
 //}
 
-class test2{}
+class test2{float a;
+int b;
+metodo :: metodo(a,b,c);
+metodo::metodo;
+criarObjeto (obj1, );
+instancia=>instancia(e,f,g);}

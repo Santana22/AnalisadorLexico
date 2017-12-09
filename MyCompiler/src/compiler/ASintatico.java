@@ -288,7 +288,9 @@ public class ASintatico {
             if (aceitarToken("=")) {
                 instancia();
             } else if (aceitarToken("identificador")) {
-                criarObjetos();
+                if(aceitarToken("(")){
+                    criarObjetos();
+                }
             } else {
                 chamadaMetodo();
             }
@@ -681,9 +683,13 @@ public class ASintatico {
         if (aceitarToken(",")) {
             if (aceitarToken("identificador")) {
                 criarObjetos();
+            }else{
+                System.err.println("erro");
             }
-        } else if (aceitarToken(";")) {
-            program();
+        } else if (aceitarToken(")")) {
+            if(aceitarToken(";")){
+                program();
+            }
         }
     }
 
