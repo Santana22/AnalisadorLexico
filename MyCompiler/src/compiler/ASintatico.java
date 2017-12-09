@@ -115,7 +115,7 @@ public class ASintatico {
                     variavelConstanteObjeto();
                     metodo();
                     if (aceitarToken("}")) {
-                        variasClasses();
+                        classe();
                     }
                 }
             }

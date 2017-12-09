@@ -48,5 +48,12 @@ Iniciando Análise Léxica...< class >, < Palavra Reservada >, Linha: 1
 < { >, < Delimitador >, Linha: 9
 < } >, < Delimitador >, Linha: 10
 < } >, < Delimitador >, Linha: 12
+< class >, < Palavra Reservada >, Linha: 13
+< test >, < Identificador >, Linha: 13
+< { >, < Delimitador >, Linha: 13
+< objeto2 >, < Identificador >, Linha: 14
+< a >, < Identificador >, Linha: 14
+< ; >, < Delimitador >, Linha: 14
+< } >, < Delimitador >, Linha: 15
 
 Analise Léxica concluida com sucesso!

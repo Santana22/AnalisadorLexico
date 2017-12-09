@@ -10,3 +10,6 @@ class test2{
 	}
 
 }
+class test{
+	objeto2 a;
+}
