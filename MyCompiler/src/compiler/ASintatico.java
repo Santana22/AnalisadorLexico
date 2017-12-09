@@ -29,7 +29,8 @@ public class ASintatico {
             posicao++;
             tokenAnterior = tokenAtual;
             tokenAtual = tokens.get(posicao);
-            aceitarToken("Comentário"); // Pulando comentarios
+            aceitarToken("Comentário de Linha"); // Pulando comentarios
+            aceitarToken("Comentário de Bloco");
             return true;
         }
         return false;

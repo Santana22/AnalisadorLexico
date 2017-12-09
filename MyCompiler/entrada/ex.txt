@@ -1,3 +1,6 @@
+//comenflknmalfkna
+//comentario1
+/*comentario*/
 class test2{
 	float a,b,c;
 	int a,b,c;
@@ -7,7 +10,12 @@ class test2{
 	}
 	float a;
 	::metodo2(){
+		if(a==b){
+			chamada();
+			
+		}
 	}
+	
 
 }
 class test{

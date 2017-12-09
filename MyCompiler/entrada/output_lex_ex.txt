@@ -1,59 +1,75 @@
 
-Iniciando Análise Léxica...< class >, < Palavra Reservada >, Linha: 1
-< test2 >, < Identificador >, Linha: 1
-< { >, < Delimitador >, Linha: 1
-< float >, < Palavra Reservada >, Linha: 2
-< a >, < Identificador >, Linha: 2
-< , >, < Delimitador >, Linha: 2
-< b >, < Identificador >, Linha: 2
-< , >, < Delimitador >, Linha: 2
-< c >, < Identificador >, Linha: 2
-< ; >, < Delimitador >, Linha: 2
-< int >, < Palavra Reservada >, Linha: 3
-< a >, < Identificador >, Linha: 3
-< , >, < Delimitador >, Linha: 3
-< b >, < Identificador >, Linha: 3
-< , >, < Delimitador >, Linha: 3
-< c >, < Identificador >, Linha: 3
-< ; >, < Delimitador >, Linha: 3
-< : >, < Delimitador >, Linha: 4
-< : >, < Delimitador >, Linha: 4
-< metodo >, < Identificador >, Linha: 4
-< ( >, < Delimitador >, Linha: 4
-< int >, < Palavra Reservada >, Linha: 4
-< a >, < Identificador >, Linha: 4
-< , >, < Delimitador >, Linha: 4
-< objeto >, < Identificador >, Linha: 4
-< a1 >, < Identificador >, Linha: 4
-< ) >, < Delimitador >, Linha: 4
+Iniciando Análise Léxica...< //comenflknmalfkna >, < Comentário de Linha >, Linha: 1
+< //comentario1 >, < Comentário de Linha >, Linha: 2
+< /*comentario*/ >, < Comentário de Bloco >, Linha: 3
+< class >, < Palavra Reservada >, Linha: 4
+< test2 >, < Identificador >, Linha: 4
 < { >, < Delimitador >, Linha: 4
 < float >, < Palavra Reservada >, Linha: 5
-< v >, < Identificador >, Linha: 5
+< a >, < Identificador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< b >, < Identificador >, Linha: 5
+< , >, < Delimitador >, Linha: 5
+< c >, < Identificador >, Linha: 5
 < ; >, < Delimitador >, Linha: 5
-< chamada >, < Identificador >, Linha: 6
-< ( >, < Delimitador >, Linha: 6
+< int >, < Palavra Reservada >, Linha: 6
 < a >, < Identificador >, Linha: 6
 < , >, < Delimitador >, Linha: 6
-< ) >, < Delimitador >, Linha: 6
+< b >, < Identificador >, Linha: 6
+< , >, < Delimitador >, Linha: 6
+< c >, < Identificador >, Linha: 6
 < ; >, < Delimitador >, Linha: 6
-< } >, < Delimitador >, Linha: 7
+< : >, < Delimitador >, Linha: 7
+< : >, < Delimitador >, Linha: 7
+< metodo >, < Identificador >, Linha: 7
+< ( >, < Delimitador >, Linha: 7
+< int >, < Palavra Reservada >, Linha: 7
+< a >, < Identificador >, Linha: 7
+< , >, < Delimitador >, Linha: 7
+< objeto >, < Identificador >, Linha: 7
+< a1 >, < Identificador >, Linha: 7
+< ) >, < Delimitador >, Linha: 7
+< { >, < Delimitador >, Linha: 7
 < float >, < Palavra Reservada >, Linha: 8
-< a >, < Identificador >, Linha: 8
+< v >, < Identificador >, Linha: 8
 < ; >, < Delimitador >, Linha: 8
-< : >, < Delimitador >, Linha: 9
-< : >, < Delimitador >, Linha: 9
-< metodo2 >, < Identificador >, Linha: 9
+< chamada >, < Identificador >, Linha: 9
 < ( >, < Delimitador >, Linha: 9
+< a >, < Identificador >, Linha: 9
+< , >, < Delimitador >, Linha: 9
 < ) >, < Delimitador >, Linha: 9
-< { >, < Delimitador >, Linha: 9
+< ; >, < Delimitador >, Linha: 9
 < } >, < Delimitador >, Linha: 10
-< } >, < Delimitador >, Linha: 12
-< class >, < Palavra Reservada >, Linha: 13
-< test >, < Identificador >, Linha: 13
+< float >, < Palavra Reservada >, Linha: 11
+< a >, < Identificador >, Linha: 11
+< ; >, < Delimitador >, Linha: 11
+< : >, < Delimitador >, Linha: 12
+< : >, < Delimitador >, Linha: 12
+< metodo2 >, < Identificador >, Linha: 12
+< ( >, < Delimitador >, Linha: 12
+< ) >, < Delimitador >, Linha: 12
+< { >, < Delimitador >, Linha: 12
+< if >, < Palavra Reservada >, Linha: 13
+< ( >, < Delimitador >, Linha: 13
+< a >, < Identificador >, Linha: 13
+< = >, < Operador Relacional >, Linha: 13
+< = >, < Operador Relacional >, Linha: 13
+< b >, < Identificador >, Linha: 13
+< ) >, < Delimitador >, Linha: 13
 < { >, < Delimitador >, Linha: 13
-< objeto2 >, < Identificador >, Linha: 14
-< a >, < Identificador >, Linha: 14
+< chamada >, < Identificador >, Linha: 14
+< ( >, < Delimitador >, Linha: 14
+< ) >, < Delimitador >, Linha: 14
 < ; >, < Delimitador >, Linha: 14
-< } >, < Delimitador >, Linha: 15
+< } >, < Delimitador >, Linha: 16
+< } >, < Delimitador >, Linha: 17
+< } >, < Delimitador >, Linha: 20
+< class >, < Palavra Reservada >, Linha: 21
+< test >, < Identificador >, Linha: 21
+< { >, < Delimitador >, Linha: 21
+< objeto2 >, < Identificador >, Linha: 22
+< a >, < Identificador >, Linha: 22
+< ; >, < Delimitador >, Linha: 22
+< } >, < Delimitador >, Linha: 23
 
 Analise Léxica concluida com sucesso!
