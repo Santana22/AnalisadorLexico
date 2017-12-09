@@ -133,7 +133,7 @@ public class ALexico {
                         buffer.append(bufferTemp);
                         analise(buffer, contadorLinha, tokens);
                         buffer = new StringBuilder();
-                    } else if (v[i] == 9 || v[i] == 10 || v[i] == 13 || v[i] == 32 || v[i] == '+' || v[i] == '%' || v[i] == '*' || v[i] == ';' || v[i] == ',' || v[i] == '(' || v[i] == ')' || v[i] == '[' || v[i] == ']' || v[i] == '{' || v[i] == '}' || v[i] == ':' || v[i] == '=' || v[i] == '!') {
+                    } else if (v[i] == 9 || v[i] == 10 || v[i] == 13 || v[i] == 32 || v[i] == '+' || v[i] == '%' || v[i] == '*' || v[i] == ';' || v[i] == ',' || v[i] == '(' || v[i] == ')' || v[i] == '[' || v[i] == ']' || v[i] == '{' || v[i] == '}' || v[i] == ':' || v[i] == '=' || v[i] == '!' || v[i] == 58) {
                         analise(buffer, contadorLinha, tokens);
                         analise(new StringBuilder().append(v[i]), contadorLinha, tokens);
                         buffer = new StringBuilder();
@@ -239,7 +239,7 @@ public class ALexico {
                 lexemas.add(new Token(lexema, "Operador Relacional", contadorLinha));
             } else if (lexema.matches("\\!|\\&\\&|\\|\\|")) { //operador logico
                 lexemas.add(new Token(lexema, "Operador Lógico", contadorLinha));
-            } else if (lexema.matches(";|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
+            } else if (lexema.matches(";|:|,|\\(|\\)|\\[|\\]|\\{|\\}")) { //delimitador
                 lexemas.add(new Token(lexema, "Delimitador", contadorLinha));
             } else if (lexema.matches("\"[\\x20-\\x21\\x23-\\x7E\\x5C\\x22]*\"")) { //cadeia de caracteres
                 lexemas.add(new Token(lexema, "Cadeia de Caracteres", contadorLinha));

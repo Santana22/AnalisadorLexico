@@ -1,22 +1,3 @@
-/*
-ARQUIVO DE TESTE	
-*/
-
-final float ab = 3
-ssdddsa;
-a as;
-b bs, ;
-class test{}
-//class test{
-//float jjj,jjka;
-//:: bool main (){scan(a,b,b,c); for(a=b;a<3;a=1){} print(-3);}
-// :: floar poder(){}
-//:: float poder(float d, float e){}
-//}
-
-class test2{float a;
-int b;
-metodo :: metodo(a,b,c);
-metodo::metodo;
-criarObjeto (obj1, );
-instancia=>instancia(e,f,g);}
+class test2{
+	metodo :: chamadaMetodo(a,b,c);
+}
