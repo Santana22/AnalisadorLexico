@@ -36,7 +36,7 @@ public class ASintatico {
     }
 
     private boolean aceitarToken(String tipo) {
-        if (tokenAtual.getTipo().contains(tipo) || tokenAtual.getNome().contains(tipo)) {
+        if (tokenAtual.getTipo().equals(tipo) || tokenAtual.getNome().equals(tipo)) {
             System.out.println("Token Atual: " + tokenAtual.toString());
             proximoToken();
             return true;

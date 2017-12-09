@@ -1,6 +1,7 @@
 class test2{
-	chamada(a,b,c);
-	float a;
-	objeto a,b,c,d;
+	::metodo(){
+		float v;
+		chamada();
+	}
 
 }

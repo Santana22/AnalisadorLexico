@@ -2,27 +2,20 @@
 Iniciando Análise Léxica...< class >, < Palavra Reservada >, Linha: 1
 < test2 >, < Identificador >, Linha: 1
 < { >, < Delimitador >, Linha: 1
-< chamada >, < Identificador >, Linha: 2
+< : >, < Delimitador >, Linha: 2
+< : >, < Delimitador >, Linha: 2
+< metodo >, < Identificador >, Linha: 2
 < ( >, < Delimitador >, Linha: 2
-< a >, < Identificador >, Linha: 2
-< , >, < Delimitador >, Linha: 2
-< b >, < Identificador >, Linha: 2
-< , >, < Delimitador >, Linha: 2
-< c >, < Identificador >, Linha: 2
 < ) >, < Delimitador >, Linha: 2
-< ; >, < Delimitador >, Linha: 2
+< { >, < Delimitador >, Linha: 2
 < float >, < Palavra Reservada >, Linha: 3
-< a >, < Identificador >, Linha: 3
+< v >, < Identificador >, Linha: 3
 < ; >, < Delimitador >, Linha: 3
-< objeto >, < Identificador >, Linha: 4
-< a >, < Identificador >, Linha: 4
-< , >, < Delimitador >, Linha: 4
-< b >, < Identificador >, Linha: 4
-< , >, < Delimitador >, Linha: 4
-< c >, < Identificador >, Linha: 4
-< , >, < Delimitador >, Linha: 4
-< d >, < Identificador >, Linha: 4
+< chamada >, < Identificador >, Linha: 4
+< ( >, < Delimitador >, Linha: 4
+< ) >, < Delimitador >, Linha: 4
 < ; >, < Delimitador >, Linha: 4
-< } >, < Delimitador >, Linha: 6
+< } >, < Delimitador >, Linha: 5
+< } >, < Delimitador >, Linha: 7
 
 Analise Léxica concluida com sucesso!
