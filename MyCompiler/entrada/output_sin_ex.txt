@@ -1,1 +1,2 @@
 Análise Sintática iniciada para o arquivo ex.txt
+Erro na linha 9. Esperava: Número, Identificador, Cadeia de caracteres, true, false. Obteve: ) Delimitador.

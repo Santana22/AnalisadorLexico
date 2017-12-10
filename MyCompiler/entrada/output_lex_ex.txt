@@ -62,14 +62,35 @@ Iniciando Análise Léxica...< //comenflknmalfkna >, < Comentário de Linha >, L
 < ) >, < Delimitador >, Linha: 14
 < ; >, < Delimitador >, Linha: 14
 < } >, < Delimitador >, Linha: 16
+< for >, < Palavra Reservada >, Linha: 17
+< ( >, < Delimitador >, Linha: 17
+< a >, < Identificador >, Linha: 17
+< = >, < Operador Relacional >, Linha: 17
+< 3 >, < Número >, Linha: 17
+< + >, < Operador Aritmético >, Linha: 17
+< 1 >, < Número >, Linha: 17
+< - >, < Operador Aritmético >, Linha: 17
+< ; >, < Delimitador >, Linha: 17
+< a >, < Identificador >, Linha: 17
+< < >, < Operador Relacional >, Linha: 17
+< 2 >, < Número >, Linha: 17
+< ; >, < Delimitador >, Linha: 17
+< a >, < Identificador >, Linha: 17
+< = >, < Operador Relacional >, Linha: 17
+< a >, < Identificador >, Linha: 17
+< + >, < Operador Aritmético >, Linha: 17
+< 2 >, < Número >, Linha: 17
+< ) >, < Delimitador >, Linha: 17
+< { >, < Delimitador >, Linha: 17
 < } >, < Delimitador >, Linha: 17
-< } >, < Delimitador >, Linha: 20
-< class >, < Palavra Reservada >, Linha: 21
-< test >, < Identificador >, Linha: 21
-< { >, < Delimitador >, Linha: 21
-< objeto2 >, < Identificador >, Linha: 22
-< a >, < Identificador >, Linha: 22
-< ; >, < Delimitador >, Linha: 22
-< } >, < Delimitador >, Linha: 23
+< } >, < Delimitador >, Linha: 19
+< } >, < Delimitador >, Linha: 22
+< class >, < Palavra Reservada >, Linha: 23
+< test >, < Identificador >, Linha: 23
+< { >, < Delimitador >, Linha: 23
+< objeto2 >, < Identificador >, Linha: 24
+< a >, < Identificador >, Linha: 24
+< ; >, < Delimitador >, Linha: 24
+< } >, < Delimitador >, Linha: 25
 
 Analise Léxica concluida com sucesso!

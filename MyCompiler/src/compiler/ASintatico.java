@@ -31,6 +31,9 @@ public class ASintatico {
             System.out.println("Análise Sintática iniciada para o arquivo " + file.getName());
             this.tokens = tokens;
             inicio();
+            if (errosSintaticos == 0) {
+                saidaSintatico.write("Análise Sintática finalizada com sucesso para o arquivo " + file.getName());
+            }
             saidaSintatico.close();
 
         } catch (IOException ex) {
@@ -90,7 +93,6 @@ public class ASintatico {
     private void modoPanico(String sync[]) {
         ArrayList<String> cSync = new ArrayList();
         for (String string : sync) {
-
             if (!cSync.contains(string)) {
                 cSync.add(string);
             }
@@ -108,6 +110,7 @@ public class ASintatico {
                 return;
             }
         }
+
     }
 
     private boolean expect(String tipo) {
@@ -369,14 +372,13 @@ public class ASintatico {
         }
     }
 
-    private void variasClasses() {
-        if (aceitarToken("class")) {
-            classe();
-        } else if (tokenAtual.equals("}") && proximoToken()) {
-
-        }
-    }
-
+//    private void variasClasses() {
+//        if (aceitarToken("class")) {
+//            classe();
+//        } else if (tokenAtual.equals("}") && proximoToken()) {
+//
+//        }
+//    }
     private void comSemRetorno() {
         String sync[] = new String[10];
         sync[0] = "{";
@@ -580,13 +582,14 @@ public class ASintatico {
     }
 
     private void operation() {
-        if (aceitarToken("-")) {
-            expressionAritmeticasConsumida();
-        } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
-            valueVazio();
-        }
+        expressionLogicaRelacional();
     }
 
+//        if (aceitarToken("-")) {
+//            expressionAritmeticasConsumida();
+//        } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
+//            valueVazio();
+//        }
     private void operationLine() {
         operationFor();
         if (aceitarToken(";")) {
@@ -606,12 +609,63 @@ public class ASintatico {
         }
     }
 
-    private void expressionAritmeticasConsumida() {
+    private void expressionAritmeticas() {
         relacionalAritmetica();
     }
 
     private void relacionalAritmetica() {
-        addValor();
+        if (aceitarToken("(")) {
+            addValor();
+            operadorAritmeticos();
+            relacionalAritmetica();
+            if(aceitarToken(")")){
+                continuar();
+            }
+        } else if (aceitarToken("-")) {
+            if (aceitarToken("(")) {
+                addValor();
+                operadorAritmeticos();
+                relacionalAritmetica();
+                if(aceitarToken(")")){
+                    continuar();
+                }
+            }
+        } else {
+            addValor();
+            fatoracaoRelacionalAritmetico();
+        }
+    }
+
+    private void operadorAritmeticos() {
+        if (aceitarToken("+") || aceitarToken("-") || aceitarToken("/") || aceitarToken("%") || aceitarToken("*")) {
+            relacionalAritmetica();
+        } else {
+            String sync[] = new String[5];
+            sync[0] = "+";
+            sync[1] = "*";
+            sync[2] = "/";
+            sync[3] = "%";
+            sync[4] = "-";
+            erroSintatico(sync);
+            modoPanico(sync);
+            operadorAritmeticos();
+        }
+    }
+
+    private void continuar() {
+        if (aceitarToken("+") || aceitarToken("-") || aceitarToken("/") || aceitarToken("%") || aceitarToken("*")) {
+            operadorAritmeticosConsumido();
+            relacionalAritmetica();
+        }
+
+    }
+
+    private void operadorAritmeticosConsumido() {
+
+    }
+
+    private void fatoracaoRelacionalAritmetico() {
+        continuar();
     }
 
     private void addValor() {
@@ -619,15 +673,22 @@ public class ASintatico {
     }
 
     private void value() {
-        if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia") || aceitarToken("true") || aceitarToken("false")) {
-
-        }
+        if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de caracteres") || aceitarToken("true") || aceitarToken("false")) {
+         } else{
+            String sync[] = new String[5];
+            sync[0] = "Número";
+            sync[1] = "Identificador";
+            sync[2] = "Cadeia de caracteres";
+            sync[3] = "true";
+            sync[4] = "false";
+            erroSintatico(sync);
+            modoPanico(sync);
+        } 
     }
 
-    private void valueVazio() {
-
-    }
-
+//    private void valueVazio() {
+//
+//    }
     private void fatoracaoAcessoVetorMatriz() {
         if (aceitarToken("[")) {
             if (aceitarToken("Número")) {
