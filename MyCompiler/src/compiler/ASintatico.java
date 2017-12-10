@@ -584,8 +584,6 @@ public class ASintatico {
             expressionAritmeticasConsumida();
         } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
             valueVazio();
-        } else {
-
         }
     }
 
