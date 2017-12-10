@@ -1,0 +1,1 @@
+Análise Sintática iniciada para o arquivo ex.txt

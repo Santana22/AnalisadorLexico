@@ -26,7 +26,7 @@ public class Exec {
         for (File file : arquivos) {
             if (!file.isDirectory() && !file.getName().contains("output_")) {
                 tokens = facade.analisadorLexico(file);
-                if(true)
+                if(ALexico.continuar)
                     facade.analisadorSintatico(tokens, file);    
             }
         }

@@ -2,7 +2,11 @@ package compiler;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,16 +16,48 @@ public class ASintatico {
 
     private Token tokenAtual, tokenAnterior;
     private ArrayList<Token> tokens;
+    private int errosSintaticos = 0;
     private int posicao = -1;
     private BufferedWriter saidaSintatico;
 
     public void iniciar(ArrayList tokens, File file) {
 
-        System.out.println("Análise Sintática iniciada para o arquivo " + file.getName());
+        FileWriter output;
+        try {
+            output = new FileWriter(new File(file.getParent(), "output_sin_" + file.getName()));
+            saidaSintatico = new BufferedWriter(output);
+            saidaSintatico.write("Análise Sintática iniciada para o arquivo " + file.getName());
+            saidaSintatico.newLine();
+            System.out.println("Análise Sintática iniciada para o arquivo " + file.getName());
+            this.tokens = tokens;
+            inicio();
+            saidaSintatico.close();
 
-        this.tokens = tokens;
-        inicio();
+        } catch (IOException ex) {
+            Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    private void erroSintatico(String expected[]) {
+        errosSintaticos++;
+        String expectedTokenNames = "";
+
+        for (int i = 0; i < expected.length; i++) {
+            expectedTokenNames += expected[i].toString();
+            if (i < expected.length - 1) {
+                expectedTokenNames += ", ";
+            }
+        }
+        String errorMsg = String.format("Erro na linha %d. Esperava: %s. Obteve: %s.",
+                tokenAtual.getLinha(), expectedTokenNames, tokenAtual.getNome()
+                + " " + tokenAtual.getTipo());
+        System.out.println(errorMsg);
+        try {
+            saidaSintatico.write(errorMsg);
+            saidaSintatico.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     private boolean proximoToken() {
@@ -38,6 +74,12 @@ public class ASintatico {
 
     private boolean aceitarToken(String tipo) {
         if (tokenAtual.getTipo().equals(tipo) || tokenAtual.getNome().equals(tipo)) {
+//            try {
+//                saidaSintatico.write("Token Atual: " + tokenAtual.toString());
+//                saidaSintatico.newLine();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             System.out.println("Token Atual: " + tokenAtual.toString());
             proximoToken();
             return true;
@@ -55,7 +97,13 @@ public class ASintatico {
         }
 
         while (!cSync.contains(tokenAtual.getNome()) || cSync.contains(tokenAtual.getTipo())) {
-            System.out.println("\tToken consumido: " + tokenAtual.getNome());
+//            try {
+//                saidaSintatico.write("\tToken Consumido: " + tokenAtual.getNome());
+//                saidaSintatico.newLine();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            System.out.println("\tToken Consumido: " + tokenAtual.getNome());
             if (!proximoToken()) {
                 return;
             }
@@ -92,11 +140,11 @@ public class ASintatico {
                 variavelConstanteObjeto();
             }
         } else if (aceitarToken("Identificador")) {
-            if(aceitarToken("Identificador")){
+            if (aceitarToken("Identificador")) {
                 criarObjetos();
-            }else if(aceitarToken("=")){
+            } else if (aceitarToken("=")) {
                 instancia();
-            }else{
+            } else {
                 chamadaMetodo();
             }
             variavelConstanteObjeto();
@@ -220,7 +268,6 @@ public class ASintatico {
             }
         }
     }*/
-
     private void variaveis() {
         String sync[] = new String[10];
         if (aceitarToken("Identificador")) {
@@ -302,7 +349,7 @@ public class ASintatico {
             program();
         }
     }
-    
+
     private void returnConsumido() {
         tiposReturn();
         if (aceitarToken(";")) {
@@ -398,7 +445,7 @@ public class ASintatico {
     }
 
     private void parametros() {
-        if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")||aceitarToken("Identificador")) {
+        if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool") || aceitarToken("Identificador")) {
             tipoVazio();
             if (aceitarToken("Identificador")) {
                 acrescentarParametros();
@@ -535,7 +582,7 @@ public class ASintatico {
     private void operation() {
         if (aceitarToken("-")) {
             expressionAritmeticasConsumida();
-        } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia") || aceitarToken("true") || aceitarToken("false")) {
+        } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
             valueVazio();
         } else {
 
