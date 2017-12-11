@@ -357,9 +357,7 @@ public class ASintatico {
             }else if (aceitarToken("[")) {
                 if (aceitarToken("Número")) {
                     if (aceitarToken("]")) {
-                        while(tokenAtual.getNome().equals("[")){
-                            fatoracaoAcessoVetorMatriz();
-                        }
+                        fatoracaoAcessoVetorMatriz();
                     }
                 }
                 if(aceitarToken("=")){
@@ -755,9 +753,7 @@ public class ASintatico {
             if(tokenAtual.getNome().equals("(")||tokenAtual.getNome().equals(":")){
                 chamadaMetodo();
             }else if(tokenAtual.getNome().equals("[")){
-                do{
-                    fatoracaoAcessoVetorMatriz();
-                }while(tokenAtual.getNome().equals("["));
+                fatoracaoAcessoVetorMatriz();               
             }
             
         }else if (aceitarToken("Número") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
@@ -780,7 +776,7 @@ public class ASintatico {
         if (aceitarToken("[")) {
             if (aceitarToken("Número")) {
                 if (aceitarToken("]")) {
-
+                    fatoracaoAcessoVetorMatriz();
                 }
             }
         }
