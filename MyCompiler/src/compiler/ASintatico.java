@@ -623,7 +623,7 @@ public class ASintatico {
         if(aceitarToken("(")){
             exLogicRelational(++parenteses);
         }else{
-            value();
+            exAritmeticas(parenteses);
             if((aceitarToken("=")&&aceitarToken("="))||aceitarToken("Operador Relacional")||aceitarToken("Operador Lógico")){
                 exLogicRelational(parenteses);
             }else if(parenteses>0&&aceitarToken(")")){

@@ -12,7 +12,11 @@ Iniciando Análise Léxica...< class >, < Palavra Reservada >, Linha: 1
 < && >, < Operador Lógico >, Linha: 2
 < d >, < Identificador >, Linha: 2
 < < >, < Operador Relacional >, Linha: 2
-< e >, < Identificador >, Linha: 2
+< ( >, < Delimitador >, Linha: 2
+< 2 >, < Número >, Linha: 2
+< + >, < Operador Aritmético >, Linha: 2
+< 2 >, < Número >, Linha: 2
+< ) >, < Delimitador >, Linha: 2
 < ) >, < Delimitador >, Linha: 2
 < || >, < Operador Lógico >, Linha: 2
 < c >, < Identificador >, Linha: 2
