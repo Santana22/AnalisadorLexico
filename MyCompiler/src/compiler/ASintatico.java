@@ -142,6 +142,7 @@ public class ASintatico {
                 aceitarToken(";");
                 variavelConstanteObjeto();
             }
+            variavelConstanteObjeto();
         } else if (aceitarToken("Identificador")) {
             if (aceitarToken("Identificador")) {
                 criarObjetos();
@@ -582,7 +583,58 @@ public class ASintatico {
     }
 
     private void operation() {
-        expressionLogicaRelacional();
+        selectOperation(0);
+    }
+    
+    private void selectOperation(int parenteses){
+        if(aceitarToken("(")){
+            selectOperation(++parenteses);
+        }else{
+            value();
+            if(aceitarToken("Operador Aritmético")){
+                exAritmeticas(parenteses);
+            }else if((aceitarToken("=")&&aceitarToken("="))||aceitarToken("Operador Relacional")||aceitarToken("Operador Lógico")){
+                exLogicRelational(parenteses);
+            }else if(parenteses>0&&aceitarToken(")")){
+                
+            }
+        }
+    }
+    
+    private void exAritmeticas(int parenteses){
+        if(aceitarToken("(")){
+            exAritmeticas(++parenteses);
+        }else{
+            value();
+            if(aceitarToken("Operador Aritmético")){
+                exAritmeticas(parenteses);
+            }else if(parenteses>0&&aceitarToken(")")){
+                do{
+                    parenteses--;
+                }while(parenteses>0&&aceitarToken(")"));
+                if(aceitarToken("Operador Aritmético")){
+                    exAritmeticas(parenteses);
+                }
+            }
+        }
+    }
+    
+    private void exLogicRelational(int parenteses){
+        if(aceitarToken("(")){
+            exLogicRelational(++parenteses);
+        }else{
+            value();
+            if((aceitarToken("=")&&aceitarToken("="))||aceitarToken("Operador Relacional")||aceitarToken("Operador Lógico")){
+                exLogicRelational(parenteses);
+            }else if(parenteses>0&&aceitarToken(")")){
+                do{
+                    parenteses--;
+                }while(parenteses>0&&aceitarToken(")"));
+                if((aceitarToken("=")&&aceitarToken("="))||aceitarToken("Operador Relacional")||aceitarToken("Operador Lógico")){
+                    exLogicRelational(parenteses);
+                }
+            }
+        }
     }
 
 //        if (aceitarToken("-")) {
@@ -673,8 +725,10 @@ public class ASintatico {
     }
 
     private void value() {
-        if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de caracteres") || aceitarToken("true") || aceitarToken("false")) {
-         } else{
+        if(aceitarToken("Identificador")){
+            fatoracaoAcessoVetorMatriz();
+        }else if (aceitarToken("Número") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
+         } /*else{
             String sync[] = new String[5];
             sync[0] = "Número";
             sync[1] = "Identificador";
@@ -683,7 +737,7 @@ public class ASintatico {
             sync[4] = "false";
             erroSintatico(sync);
             modoPanico(sync);
-        } 
+        } */
     }
 
 //    private void valueVazio() {
@@ -774,11 +828,15 @@ public class ASintatico {
         if (aceitarToken(">")) {
             if (aceitarToken("Identificador")) {
                 if (aceitarToken("(")) {
-                    passagemParametros();
-                    if (aceitarToken(")")) {
+                    if(aceitarToken(")")){
                         if (aceitarToken(";")) {
                         }
+                    }else{
+                        passagemParametros();
+                        if (aceitarToken(")")&&aceitarToken(";")) {
+                        }   
                     }
+                    
                 }
             }
         }
@@ -816,10 +874,15 @@ public class ASintatico {
     }
 
     private void fatoracaoChamadaMetodo() {
-        passagemParametros();
         if (aceitarToken(")")) {
             if (aceitarToken(";")) {
             }
+        }else{
+            passagemParametros();
+            if (aceitarToken(")")) {
+                if (aceitarToken(";")) {
+                }
+                }
         }
     }
 

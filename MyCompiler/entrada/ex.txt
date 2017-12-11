@@ -1,25 +1,5 @@
-//comenflknmalfkna
-//comentario1
-/*comentario*/
 class test2{
-	float a,b,c;
-	int a,b,c;
-	::metodo(int a, objeto a1){
-		float v;
-		chamada(a,);
-	}
-	float a;
-	::metodo2(){
-		if(a==b){
-			chamada();
-			
-		}
-		for(a = 3+1-; a < 2; a = a + 2){}
-
-	}
+	chamada((a==b&&d<e)||c>b, 2/2, (a), ("cadeia"));	
 	
 
-}
-class test{
-	objeto2 a;
 }
