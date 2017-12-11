@@ -1,0 +1,538 @@
+
+Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
+< a >, < Identificador >, Linha: 1
+< ; >, < Delimitador >, Linha: 1
+< int >, < Palavra Reservada >, Linha: 2
+< a >, < Identificador >, Linha: 2
+< , >, < Delimitador >, Linha: 2
+< b >, < Identificador >, Linha: 2
+< , >, < Delimitador >, Linha: 2
+< c >, < Identificador >, Linha: 2
+< ; >, < Delimitador >, Linha: 2
+< final >, < Palavra Reservada >, Linha: 3
+< int >, < Palavra Reservada >, Linha: 3
+< a >, < Identificador >, Linha: 3
+< = >, < Operador Relacional >, Linha: 3
+< 4 >, < Número >, Linha: 3
+< ; >, < Delimitador >, Linha: 3
+< final >, < Palavra Reservada >, Linha: 4
+< bool >, < Palavra Reservada >, Linha: 4
+< a >, < Identificador >, Linha: 4
+< = >, < Operador Relacional >, Linha: 4
+< 3 >, < Número >, Linha: 4
+< , >, < Delimitador >, Linha: 4
+< b >, < Identificador >, Linha: 4
+< = >, < Operador Relacional >, Linha: 4
+< 5.5 >, < Número >, Linha: 4
+< , >, < Delimitador >, Linha: 4
+< x >, < Identificador >, Linha: 4
+< = >, < Operador Relacional >, Linha: 4
+< 7 >, < Número >, Linha: 4
+< ; >, < Delimitador >, Linha: 4
+< int >, < Palavra Reservada >, Linha: 5
+< a >, < Identificador >, Linha: 5
+< [ >, < Delimitador >, Linha: 5
+< 9 >, < Número >, Linha: 5
+< ] >, < Delimitador >, Linha: 5
+< ; >, < Delimitador >, Linha: 5
+< int >, < Palavra Reservada >, Linha: 6
+< a >, < Identificador >, Linha: 6
+< [ >, < Delimitador >, Linha: 6
+< 10 >, < Número >, Linha: 6
+< ] >, < Delimitador >, Linha: 6
+< , >, < Delimitador >, Linha: 6
+< b >, < Identificador >, Linha: 6
+< [ >, < Delimitador >, Linha: 6
+< 3 >, < Número >, Linha: 6
+< ] >, < Delimitador >, Linha: 6
+< ; >, < Delimitador >, Linha: 6
+< int >, < Palavra Reservada >, Linha: 7
+< a >, < Identificador >, Linha: 7
+< [ >, < Delimitador >, Linha: 7
+< 10 >, < Número >, Linha: 7
+< ] >, < Delimitador >, Linha: 7
+< [ >, < Delimitador >, Linha: 7
+< 3 >, < Número >, Linha: 7
+< ] >, < Delimitador >, Linha: 7
+< ; >, < Delimitador >, Linha: 7
+< Carro >, < Identificador >, Linha: 8
+< carro >, < Identificador >, Linha: 8
+< ; >, < Delimitador >, Linha: 8
+< Carro >, < Identificador >, Linha: 9
+< carro >, < Identificador >, Linha: 9
+< , >, < Delimitador >, Linha: 9
+< moto >, < Identificador >, Linha: 9
+< ; >, < Delimitador >, Linha: 9
+< class >, < Palavra Reservada >, Linha: 10
+< Carro >, < Identificador >, Linha: 10
+< < >, < Operador Relacional >, Linha: 10
+< - >, < Operador Aritmético >, Linha: 10
+< > >, < Operador Relacional >, Linha: 10
+< Veiculo >, < Identificador >, Linha: 10
+< { >, < Delimitador >, Linha: 10
+< int >, < Palavra Reservada >, Linha: 11
+< a >, < Identificador >, Linha: 11
+< ; >, < Delimitador >, Linha: 11
+< int >, < Palavra Reservada >, Linha: 12
+< a >, < Identificador >, Linha: 12
+< , >, < Delimitador >, Linha: 12
+< b >, < Identificador >, Linha: 12
+< , >, < Delimitador >, Linha: 12
+< c >, < Identificador >, Linha: 12
+< ; >, < Delimitador >, Linha: 12
+< final >, < Palavra Reservada >, Linha: 13
+< int >, < Palavra Reservada >, Linha: 13
+< a >, < Identificador >, Linha: 13
+< = >, < Operador Relacional >, Linha: 13
+< 4 >, < Número >, Linha: 13
+< ; >, < Delimitador >, Linha: 13
+< final >, < Palavra Reservada >, Linha: 14
+< bool >, < Palavra Reservada >, Linha: 14
+< a >, < Identificador >, Linha: 14
+< = >, < Operador Relacional >, Linha: 14
+< 3 >, < Número >, Linha: 14
+< , >, < Delimitador >, Linha: 14
+< b >, < Identificador >, Linha: 14
+< = >, < Operador Relacional >, Linha: 14
+< 5 >, < Número >, Linha: 14
+< , >, < Delimitador >, Linha: 14
+< x >, < Identificador >, Linha: 14
+< = >, < Operador Relacional >, Linha: 14
+< 7 >, < Número >, Linha: 14
+< ; >, < Delimitador >, Linha: 14
+< int >, < Palavra Reservada >, Linha: 15
+< a >, < Identificador >, Linha: 15
+< [ >, < Delimitador >, Linha: 15
+< 10 >, < Número >, Linha: 15
+< ] >, < Delimitador >, Linha: 15
+< , >, < Delimitador >, Linha: 15
+< b >, < Identificador >, Linha: 15
+< [ >, < Delimitador >, Linha: 15
+< 3 >, < Número >, Linha: 15
+< ] >, < Delimitador >, Linha: 15
+< ; >, < Delimitador >, Linha: 15
+< int >, < Palavra Reservada >, Linha: 16
+< a >, < Identificador >, Linha: 16
+< [ >, < Delimitador >, Linha: 16
+< 10 >, < Número >, Linha: 16
+< ] >, < Delimitador >, Linha: 16
+< ; >, < Delimitador >, Linha: 16
+< int >, < Palavra Reservada >, Linha: 17
+< a >, < Identificador >, Linha: 17
+< [ >, < Delimitador >, Linha: 17
+< 10 >, < Número >, Linha: 17
+< ] >, < Delimitador >, Linha: 17
+< [ >, < Delimitador >, Linha: 17
+< 4 >, < Número >, Linha: 17
+< ] >, < Delimitador >, Linha: 17
+< , >, < Delimitador >, Linha: 17
+< b >, < Identificador >, Linha: 17
+< [ >, < Delimitador >, Linha: 17
+< 3 >, < Número >, Linha: 17
+< ] >, < Delimitador >, Linha: 17
+< ; >, < Delimitador >, Linha: 17
+< Carro >, < Identificador >, Linha: 18
+< carro >, < Identificador >, Linha: 18
+< ; >, < Delimitador >, Linha: 18
+< Carro >, < Identificador >, Linha: 19
+< carro >, < Identificador >, Linha: 19
+< , >, < Delimitador >, Linha: 19
+< moto >, < Identificador >, Linha: 19
+< ; >, < Delimitador >, Linha: 19
+< : >, < Delimitador >, Linha: 20
+< : >, < Delimitador >, Linha: 20
+< bool >, < Palavra Reservada >, Linha: 20
+< main >, < Identificador >, Linha: 20
+< ( >, < Delimitador >, Linha: 20
+< ) >, < Delimitador >, Linha: 20
+< { >, < Delimitador >, Linha: 20
+< < >, < Operador Relacional >, Linha: 21
+< < >, < Operador Relacional >, Linha: 21
+< true >, < Palavra Reservada >, Linha: 21
+< ; >, < Delimitador >, Linha: 21
+< } >, < Delimitador >, Linha: 22
+< : >, < Delimitador >, Linha: 23
+< : >, < Delimitador >, Linha: 23
+< int >, < Palavra Reservada >, Linha: 23
+< metodo >, < Identificador >, Linha: 23
+< ( >, < Delimitador >, Linha: 23
+< int >, < Palavra Reservada >, Linha: 23
+< x >, < Identificador >, Linha: 23
+< , >, < Delimitador >, Linha: 23
+< int >, < Palavra Reservada >, Linha: 23
+< a >, < Identificador >, Linha: 23
+< ) >, < Delimitador >, Linha: 23
+< { >, < Delimitador >, Linha: 23
+< Carro >, < Identificador >, Linha: 24
+< carro >, < Identificador >, Linha: 24
+< ; >, < Delimitador >, Linha: 24
+< Carro >, < Identificador >, Linha: 25
+< carro >, < Identificador >, Linha: 25
+< , >, < Delimitador >, Linha: 25
+< moto >, < Identificador >, Linha: 25
+< ; >, < Delimitador >, Linha: 25
+< comprimento >, < Identificador >, Linha: 26
+< ( >, < Delimitador >, Linha: 26
+< ) >, < Delimitador >, Linha: 26
+< ; >, < Delimitador >, Linha: 26
+< objeto >, < Identificador >, Linha: 27
+< : >, < Delimitador >, Linha: 27
+< : >, < Delimitador >, Linha: 27
+< comprimento >, < Identificador >, Linha: 27
+< ( >, < Delimitador >, Linha: 27
+< ) >, < Delimitador >, Linha: 27
+< ; >, < Delimitador >, Linha: 27
+< objeto >, < Identificador >, Linha: 28
+< : >, < Delimitador >, Linha: 28
+< : >, < Delimitador >, Linha: 28
+< comprimento >, < Identificador >, Linha: 28
+< ; >, < Delimitador >, Linha: 28
+< a >, < Identificador >, Linha: 29
+< = >, < Operador Relacional >, Linha: 29
+< objeto >, < Identificador >, Linha: 29
+< : >, < Delimitador >, Linha: 29
+< : >, < Delimitador >, Linha: 29
+< comprimento >, < Identificador >, Linha: 29
+< ; >, < Delimitador >, Linha: 29
+< a >, < Identificador >, Linha: 30
+< = >, < Operador Relacional >, Linha: 30
+< comprimento >, < Identificador >, Linha: 30
+< ( >, < Delimitador >, Linha: 30
+< ) >, < Delimitador >, Linha: 30
+< ; >, < Delimitador >, Linha: 30
+< a >, < Identificador >, Linha: 31
+< = >, < Operador Relacional >, Linha: 31
+< objeto >, < Identificador >, Linha: 31
+< : >, < Delimitador >, Linha: 31
+< : >, < Delimitador >, Linha: 31
+< comprimento >, < Identificador >, Linha: 31
+< ( >, < Delimitador >, Linha: 31
+< ) >, < Delimitador >, Linha: 31
+< ; >, < Delimitador >, Linha: 31
+< a >, < Identificador >, Linha: 32
+< = >, < Operador Relacional >, Linha: 32
+< objeto >, < Identificador >, Linha: 32
+< : >, < Delimitador >, Linha: 32
+< : >, < Delimitador >, Linha: 32
+< comprimento >, < Identificador >, Linha: 32
+< ( >, < Delimitador >, Linha: 32
+< a >, < Identificador >, Linha: 32
+< ) >, < Delimitador >, Linha: 32
+< ; >, < Delimitador >, Linha: 32
+< moto >, < Identificador >, Linha: 33
+< = >, < Operador Relacional >, Linha: 33
+< > >, < Operador Relacional >, Linha: 33
+< Moto >, < Identificador >, Linha: 33
+< ( >, < Delimitador >, Linha: 33
+< ) >, < Delimitador >, Linha: 33
+< ; >, < Delimitador >, Linha: 33
+< moto >, < Identificador >, Linha: 34
+< = >, < Operador Relacional >, Linha: 34
+< > >, < Operador Relacional >, Linha: 34
+< Moto >, < Identificador >, Linha: 34
+< ( >, < Delimitador >, Linha: 34
+< a >, < Identificador >, Linha: 34
+< ) >, < Delimitador >, Linha: 34
+< ; >, < Delimitador >, Linha: 34
+< moto >, < Identificador >, Linha: 35
+< = >, < Operador Relacional >, Linha: 35
+< > >, < Operador Relacional >, Linha: 35
+< Moto >, < Identificador >, Linha: 35
+< ( >, < Delimitador >, Linha: 35
+< a >, < Identificador >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< 2 >, < Número >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< vetor >, < Identificador >, Linha: 35
+< [ >, < Delimitador >, Linha: 35
+< 2 >, < Número >, Linha: 35
+< ] >, < Delimitador >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< "string" >, < Cadeia de Caracteres >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< true >, < Palavra Reservada >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< ( >, < Delimitador >, Linha: 35
+< 3 >, < Número >, Linha: 35
+< + >, < Operador Aritmético >, Linha: 35
+< 6 >, < Número >, Linha: 35
+< ) >, < Delimitador >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< 2 >, < Número >, Linha: 35
+< = >, < Operador Relacional >, Linha: 35
+< = >, < Operador Relacional >, Linha: 35
+< 2 >, < Número >, Linha: 35
+< , >, < Delimitador >, Linha: 35
+< comprimento >, < Identificador >, Linha: 35
+< ( >, < Delimitador >, Linha: 35
+< ) >, < Delimitador >, Linha: 35
+< ) >, < Delimitador >, Linha: 35
+< ; >, < Delimitador >, Linha: 35
+< a >, < Identificador >, Linha: 36
+< = >, < Operador Relacional >, Linha: 36
+< b >, < Identificador >, Linha: 36
+< ; >, < Delimitador >, Linha: 36
+< scan >, < Palavra Reservada >, Linha: 37
+< ( >, < Delimitador >, Linha: 37
+< a >, < Identificador >, Linha: 37
+< ) >, < Delimitador >, Linha: 37
+< ; >, < Delimitador >, Linha: 37
+< print >, < Palavra Reservada >, Linha: 38
+< ( >, < Delimitador >, Linha: 38
+< a >, < Identificador >, Linha: 38
+< ) >, < Delimitador >, Linha: 38
+< ; >, < Delimitador >, Linha: 38
+< int >, < Palavra Reservada >, Linha: 39
+< a >, < Identificador >, Linha: 39
+< [ >, < Delimitador >, Linha: 39
+< 10 >, < Número >, Linha: 39
+< ] >, < Delimitador >, Linha: 39
+< ; >, < Delimitador >, Linha: 39
+< int >, < Palavra Reservada >, Linha: 40
+< a >, < Identificador >, Linha: 40
+< [ >, < Delimitador >, Linha: 40
+< 10 >, < Número >, Linha: 40
+< ] >, < Delimitador >, Linha: 40
+< , >, < Delimitador >, Linha: 40
+< b >, < Identificador >, Linha: 40
+< [ >, < Delimitador >, Linha: 40
+< 3 >, < Número >, Linha: 40
+< ] >, < Delimitador >, Linha: 40
+< ; >, < Delimitador >, Linha: 40
+< int >, < Palavra Reservada >, Linha: 41
+< a >, < Identificador >, Linha: 41
+< [ >, < Delimitador >, Linha: 41
+< 10 >, < Número >, Linha: 41
+< ] >, < Delimitador >, Linha: 41
+< , >, < Delimitador >, Linha: 41
+< b >, < Identificador >, Linha: 41
+< [ >, < Delimitador >, Linha: 41
+< 3 >, < Número >, Linha: 41
+< ] >, < Delimitador >, Linha: 41
+< ; >, < Delimitador >, Linha: 41
+< for >, < Palavra Reservada >, Linha: 42
+< ( >, < Delimitador >, Linha: 42
+< i >, < Identificador >, Linha: 42
+< = >, < Operador Relacional >, Linha: 42
+< 0 >, < Número >, Linha: 42
+< ; >, < Delimitador >, Linha: 42
+< i >, < Identificador >, Linha: 42
+< < >, < Operador Relacional >, Linha: 42
+< 3 >, < Número >, Linha: 42
+< ; >, < Delimitador >, Linha: 42
+< i >, < Identificador >, Linha: 42
+< = >, < Operador Relacional >, Linha: 42
+< i >, < Identificador >, Linha: 42
+< + >, < Operador Aritmético >, Linha: 42
+< 1 >, < Número >, Linha: 42
+< ) >, < Delimitador >, Linha: 42
+< { >, < Delimitador >, Linha: 42
+< if >, < Palavra Reservada >, Linha: 43
+< ( >, < Delimitador >, Linha: 43
+< i >, < Identificador >, Linha: 43
+< = >, < Operador Relacional >, Linha: 43
+< = >, < Operador Relacional >, Linha: 43
+< 0 >, < Número >, Linha: 43
+< && >, < Operador Lógico >, Linha: 43
+< ( >, < Delimitador >, Linha: 43
+< i >, < Identificador >, Linha: 43
+< < >, < Operador Relacional >, Linha: 43
+< 4 >, < Número >, Linha: 43
+< || >, < Operador Lógico >, Linha: 43
+< i >, < Identificador >, Linha: 43
+< < >, < Operador Relacional >, Linha: 43
+< 3 >, < Número >, Linha: 43
+< ) >, < Delimitador >, Linha: 43
+< ) >, < Delimitador >, Linha: 43
+< { >, < Delimitador >, Linha: 43
+< i >, < Identificador >, Linha: 44
+< = >, < Operador Relacional >, Linha: 44
+< 6 >, < Número >, Linha: 44
+< ; >, < Delimitador >, Linha: 44
+< i >, < Identificador >, Linha: 45
+< = >, < Operador Relacional >, Linha: 45
+< a >, < Identificador >, Linha: 45
+< ; >, < Delimitador >, Linha: 45
+< matriz >, < Identificador >, Linha: 46
+< [ >, < Delimitador >, Linha: 46
+< 3 >, < Número >, Linha: 46
+< ] >, < Delimitador >, Linha: 46
+< [ >, < Delimitador >, Linha: 46
+< 2 >, < Número >, Linha: 46
+< ] >, < Delimitador >, Linha: 46
+< = >, < Operador Relacional >, Linha: 46
+< vetor >, < Identificador >, Linha: 46
+< [ >, < Delimitador >, Linha: 46
+< 3 >, < Número >, Linha: 46
+< ] >, < Delimitador >, Linha: 46
+< ; >, < Delimitador >, Linha: 46
+< vetor >, < Identificador >, Linha: 47
+< [ >, < Delimitador >, Linha: 47
+< 3 >, < Número >, Linha: 47
+< ] >, < Delimitador >, Linha: 47
+< = >, < Operador Relacional >, Linha: 47
+< a >, < Identificador >, Linha: 47
+< ; >, < Delimitador >, Linha: 47
+< a >, < Identificador >, Linha: 48
+< = >, < Operador Relacional >, Linha: 48
+< matriz >, < Identificador >, Linha: 48
+< [ >, < Delimitador >, Linha: 48
+< 2 >, < Número >, Linha: 48
+< ] >, < Delimitador >, Linha: 48
+< [ >, < Delimitador >, Linha: 48
+< 3 >, < Número >, Linha: 48
+< ] >, < Delimitador >, Linha: 48
+< + >, < Operador Aritmético >, Linha: 48
+< matriz >, < Identificador >, Linha: 48
+< [ >, < Delimitador >, Linha: 48
+< 2 >, < Número >, Linha: 48
+< ] >, < Delimitador >, Linha: 48
+< [ >, < Delimitador >, Linha: 48
+< 1 >, < Número >, Linha: 48
+< ] >, < Delimitador >, Linha: 48
+< ; >, < Delimitador >, Linha: 48
+< a >, < Identificador >, Linha: 49
+< = >, < Operador Relacional >, Linha: 49
+< objeto >, < Identificador >, Linha: 49
+< : >, < Delimitador >, Linha: 49
+< : >, < Delimitador >, Linha: 49
+< comprimento >, < Identificador >, Linha: 49
+< ( >, < Delimitador >, Linha: 49
+< ) >, < Delimitador >, Linha: 49
+< + >, < Operador Aritmético >, Linha: 49
+< matriz >, < Identificador >, Linha: 49
+< [ >, < Delimitador >, Linha: 49
+< 2 >, < Número >, Linha: 49
+< ] >, < Delimitador >, Linha: 49
+< [ >, < Delimitador >, Linha: 49
+< 1 >, < Número >, Linha: 49
+< ] >, < Delimitador >, Linha: 49
+< ; >, < Delimitador >, Linha: 49
+< } >, < Delimitador >, Linha: 50
+< } >, < Delimitador >, Linha: 51
+< < >, < Operador Relacional >, Linha: 52
+< < >, < Operador Relacional >, Linha: 52
+< 2 >, < Número >, Linha: 52
+< + >, < Operador Aritmético >, Linha: 52
+< b >, < Identificador >, Linha: 52
+< + >, < Operador Aritmético >, Linha: 52
+< 3 >, < Número >, Linha: 52
+< ; >, < Delimitador >, Linha: 52
+< } >, < Delimitador >, Linha: 53
+< : >, < Delimitador >, Linha: 54
+< : >, < Delimitador >, Linha: 54
+< metodo >, < Identificador >, Linha: 54
+< ( >, < Delimitador >, Linha: 54
+< ) >, < Delimitador >, Linha: 54
+< { >, < Delimitador >, Linha: 54
+< scan >, < Palavra Reservada >, Linha: 55
+< ( >, < Delimitador >, Linha: 55
+< a >, < Identificador >, Linha: 55
+< , >, < Delimitador >, Linha: 55
+< b >, < Identificador >, Linha: 55
+< ) >, < Delimitador >, Linha: 55
+< ; >, < Delimitador >, Linha: 55
+< print >, < Palavra Reservada >, Linha: 56
+< ( >, < Delimitador >, Linha: 56
+< a >, < Identificador >, Linha: 56
+< , >, < Delimitador >, Linha: 56
+< "a" >, < Cadeia de Caracteres >, Linha: 56
+< , >, < Delimitador >, Linha: 56
+< "a\"" >, < Cadeia de Caracteres >, Linha: 56
+< ) >, < Delimitador >, Linha: 56
+< ; >, < Delimitador >, Linha: 56
+< int >, < Palavra Reservada >, Linha: 57
+< a >, < Identificador >, Linha: 57
+< ; >, < Delimitador >, Linha: 57
+< for >, < Palavra Reservada >, Linha: 58
+< ( >, < Delimitador >, Linha: 58
+< i >, < Identificador >, Linha: 58
+< = >, < Operador Relacional >, Linha: 58
+< 0 >, < Número >, Linha: 58
+< ; >, < Delimitador >, Linha: 58
+< i >, < Identificador >, Linha: 58
+< < >, < Operador Relacional >, Linha: 58
+< 3 >, < Número >, Linha: 58
+< ; >, < Delimitador >, Linha: 58
+< i >, < Identificador >, Linha: 58
+< = >, < Operador Relacional >, Linha: 58
+< i >, < Identificador >, Linha: 58
+< + >, < Operador Aritmético >, Linha: 58
+< 1 >, < Número >, Linha: 58
+< ) >, < Delimitador >, Linha: 58
+< { >, < Delimitador >, Linha: 58
+< < >, < Operador Relacional >, Linha: 59
+< < >, < Operador Relacional >, Linha: 59
+< true >, < Palavra Reservada >, Linha: 59
+< ; >, < Delimitador >, Linha: 59
+< if >, < Palavra Reservada >, Linha: 60
+< ( >, < Delimitador >, Linha: 60
+< i >, < Identificador >, Linha: 60
+< = >, < Operador Relacional >, Linha: 60
+< = >, < Operador Relacional >, Linha: 60
+< 0 >, < Número >, Linha: 60
+< ) >, < Delimitador >, Linha: 60
+< { >, < Delimitador >, Linha: 60
+< i >, < Identificador >, Linha: 61
+< = >, < Operador Relacional >, Linha: 61
+< 6 >, < Número >, Linha: 61
+< ; >, < Delimitador >, Linha: 61
+< i >, < Identificador >, Linha: 62
+< = >, < Operador Relacional >, Linha: 62
+< 4 >, < Número >, Linha: 62
+< + >, < Operador Aritmético >, Linha: 62
+< 6 >, < Número >, Linha: 62
+< ; >, < Delimitador >, Linha: 62
+< i >, < Identificador >, Linha: 63
+< = >, < Operador Relacional >, Linha: 63
+< - >, < Operador Aritmético >, Linha: 63
+< ( >, < Delimitador >, Linha: 63
+< a >, < Identificador >, Linha: 63
+< + >, < Operador Aritmético >, Linha: 63
+< ( >, < Delimitador >, Linha: 63
+< -3 >, < Número >, Linha: 63
+< + >, < Operador Aritmético >, Linha: 63
+< x >, < Identificador >, Linha: 63
+< + >, < Operador Aritmético >, Linha: 63
+< 6 >, < Número >, Linha: 63
+< ) >, < Delimitador >, Linha: 63
+< ) >, < Delimitador >, Linha: 63
+< * >, < Operador Aritmético >, Linha: 63
+< 3 >, < Número >, Linha: 63
+< + >, < Operador Aritmético >, Linha: 63
+< 3 >, < Número >, Linha: 63
+< ; >, < Delimitador >, Linha: 63
+< i >, < Identificador >, Linha: 64
+< = >, < Operador Relacional >, Linha: 64
+< i >, < Identificador >, Linha: 64
+< < >, < Operador Relacional >, Linha: 64
+< 4 >, < Número >, Linha: 64
+< && >, < Operador Lógico >, Linha: 64
+< ( >, < Delimitador >, Linha: 64
+< 7 >, < Número >, Linha: 64
+< = >, < Operador Relacional >, Linha: 64
+< = >, < Operador Relacional >, Linha: 64
+< 8 >, < Número >, Linha: 64
+< ) >, < Delimitador >, Linha: 64
+< ; >, < Delimitador >, Linha: 64
+< < >, < Operador Relacional >, Linha: 65
+< < >, < Operador Relacional >, Linha: 65
+< true >, < Palavra Reservada >, Linha: 65
+< ; >, < Delimitador >, Linha: 65
+< } >, < Delimitador >, Linha: 66
+< else >, < Palavra Reservada >, Linha: 66
+< { >, < Delimitador >, Linha: 66
+< i >, < Identificador >, Linha: 67
+< = >, < Operador Relacional >, Linha: 67
+< "kagando o codigo" >, < Cadeia de Caracteres >, Linha: 67
+< ; >, < Delimitador >, Linha: 67
+< } >, < Delimitador >, Linha: 68
+< } >, < Delimitador >, Linha: 69
+< } >, < Delimitador >, Linha: 71
+< } >, < Delimitador >, Linha: 72
+< class >, < Palavra Reservada >, Linha: 73
+< Carro >, < Identificador >, Linha: 73
+< { >, < Delimitador >, Linha: 73
+< } >, < Delimitador >, Linha: 75
+
+Analise Léxica concluida com sucesso!

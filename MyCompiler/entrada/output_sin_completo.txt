@@ -1,0 +1,2 @@
+Análise Sintática iniciada para o arquivo completo.txt
+Análise Sintática finalizada com sucesso para o arquivo completo.txt

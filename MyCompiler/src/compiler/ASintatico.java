@@ -343,11 +343,32 @@ public class ASintatico {
         } else if (aceitarToken("-")) {
             classificarVariavel();
         } else if (aceitarToken("Identificador")) {
-            if (aceitarToken("=")) {
-                instancia();
+            if (aceitarToken("=")){
+                if(tokenAtual.getNome().equals(">")){
+                    instancia();
+                }else{
+                    operation();
+                    if(aceitarToken(";")){
+                        
+                    }
+                }
             } else if (aceitarToken("Identificador")) {
                 criarObjetos();
-            } else {
+            }else if (aceitarToken("[")) {
+                if (aceitarToken("Número")) {
+                    if (aceitarToken("]")) {
+                        while(tokenAtual.getNome().equals("[")){
+                            fatoracaoAcessoVetorMatriz();
+                        }
+                    }
+                }
+                if(aceitarToken("=")){
+                    operation();
+                    if(aceitarToken(";")){
+
+                    }
+                }
+            }else {
                 chamadaMetodo();
             }
             program();
@@ -601,29 +622,34 @@ public class ASintatico {
         }
     }
     
-    private void exAritmeticas(int parenteses){
+    private int exAritmeticas(int parenteses){
         if(aceitarToken("(")){
-            exAritmeticas(++parenteses);
+            parenteses = exAritmeticas(++parenteses);
         }else{
             value();
             if(aceitarToken("Operador Aritmético")){
-                exAritmeticas(parenteses);
+                parenteses = exAritmeticas(parenteses);
             }else if(parenteses>0&&aceitarToken(")")){
                 do{
                     parenteses--;
                 }while(parenteses>0&&aceitarToken(")"));
                 if(aceitarToken("Operador Aritmético")){
-                    exAritmeticas(parenteses);
+                    parenteses = exAritmeticas(parenteses);
+                }else{
+                    return parenteses;
                 }
+            }else{
+                return parenteses;
             }
         }
+        return parenteses;
     }
     
     private void exLogicRelational(int parenteses){
         if(aceitarToken("(")){
             exLogicRelational(++parenteses);
         }else{
-            exAritmeticas(parenteses);
+            parenteses = exAritmeticas(parenteses);
             if((aceitarToken("=")&&aceitarToken("="))||aceitarToken("Operador Relacional")||aceitarToken("Operador Lógico")){
                 exLogicRelational(parenteses);
             }else if(parenteses>0&&aceitarToken(")")){
@@ -726,7 +752,14 @@ public class ASintatico {
 
     private void value() {
         if(aceitarToken("Identificador")){
-            fatoracaoAcessoVetorMatriz();
+            if(tokenAtual.getNome().equals("(")||tokenAtual.getNome().equals(":")){
+                chamadaMetodo();
+            }else if(tokenAtual.getNome().equals("[")){
+                do{
+                    fatoracaoAcessoVetorMatriz();
+                }while(tokenAtual.getNome().equals("["));
+            }
+            
         }else if (aceitarToken("Número") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
          } /*else{
             String sync[] = new String[5];
@@ -859,16 +892,27 @@ public class ASintatico {
     }
 
     private void chamadaMetodo() {
-        if (aceitarToken(":")) {
-            if (aceitarToken(":")) {
-                if (aceitarToken("Identificador")) {
-                    if (aceitarToken("(")) {
-                        fatoracaoChamadaMetodo();
-                    } else if (aceitarToken(";")) {
+        if(aceitarToken("Identificador")){
+            if (aceitarToken(":")){
+                if (aceitarToken(":")) {
+                    if (aceitarToken("Identificador")) {
+                        if (aceitarToken("(")) {
+                            fatoracaoChamadaMetodo();
+                        } else if (aceitarToken(";")) {
+                        }
                     }
                 }
             }
-        } else if (aceitarToken("(")) {
+        } else if (aceitarToken(":")){
+                if (aceitarToken(":")) {
+                    if (aceitarToken("Identificador")) {
+                        if (aceitarToken("(")) {
+                            fatoracaoChamadaMetodo();
+                        } else if (aceitarToken(";")) {
+                        }
+                    }
+                }
+        }else if (aceitarToken("(")) {
             fatoracaoChamadaMetodo();
         }
     }
