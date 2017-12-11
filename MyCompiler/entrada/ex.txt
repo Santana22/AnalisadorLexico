@@ -1,5 +1,9 @@
 class test2{
 	chamada((a==b&&d<(2+2))||c>b, 2/2, (a), ("cadeia"));	
+	::metodo(a){
+		if(a==b){
+		}
+	}
 	
 
 }

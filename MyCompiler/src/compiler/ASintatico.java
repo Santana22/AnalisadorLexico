@@ -466,7 +466,7 @@ public class ASintatico {
         if (aceitarToken("(")) {
             operationFor();
             if (aceitarToken(";")) {
-                expressionLogicaRelacional();
+                exLogicRelational(0);
                 if (aceitarToken(";")) {
                     operationFor();
                     if (aceitarToken(")")) {
@@ -484,7 +484,7 @@ public class ASintatico {
 
     private void ifConsumido() {
         if (aceitarToken("(")) {
-            expressionLogicaRelacional();
+            exLogicRelational(0);
             if (aceitarToken(")")) {
                 if (aceitarToken("{")) {
                     program();

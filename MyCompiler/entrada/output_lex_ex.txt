@@ -36,6 +36,23 @@ Iniciando Análise Léxica...< class >, < Palavra Reservada >, Linha: 1
 < ) >, < Delimitador >, Linha: 2
 < ) >, < Delimitador >, Linha: 2
 < ; >, < Delimitador >, Linha: 2
+< : >, < Delimitador >, Linha: 3
+< : >, < Delimitador >, Linha: 3
+< metodo >, < Identificador >, Linha: 3
+< ( >, < Delimitador >, Linha: 3
+< a >, < Identificador >, Linha: 3
+< ) >, < Delimitador >, Linha: 3
+< { >, < Delimitador >, Linha: 3
+< if >, < Palavra Reservada >, Linha: 4
+< ( >, < Delimitador >, Linha: 4
+< a >, < Identificador >, Linha: 4
+< = >, < Operador Relacional >, Linha: 4
+< = >, < Operador Relacional >, Linha: 4
+< b >, < Identificador >, Linha: 4
+< ) >, < Delimitador >, Linha: 4
+< { >, < Delimitador >, Linha: 4
 < } >, < Delimitador >, Linha: 5
+< } >, < Delimitador >, Linha: 6
+< } >, < Delimitador >, Linha: 9
 
 Analise Léxica concluida com sucesso!
