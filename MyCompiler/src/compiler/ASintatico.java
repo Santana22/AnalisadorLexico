@@ -235,43 +235,6 @@ public class ASintatico {
         }
     }
 
-    /*private void criarObjetosLinhaConsumido() {
-        String sync[] = new String[2];
-
-        if (aceitarToken("Identificador")) {
-            variosObjetos();
-            if (!aceitarToken(";")) {
-                sync[0] = ";";
-                modoPanico(sync);
-                aceitarToken(";");
-            }
-
-        } else {
-            sync[0] = "Identificador";
-            modoPanico(sync);
-            aceitarToken("Identificador");
-            variosObjetos();
-            if (!aceitarToken(";")) {
-                sync[0] = ";";
-                modoPanico(sync);
-                aceitarToken(";");
-            }
-        }
-    }
-
-    private void variosObjetos() {
-        String sync[] = new String[10];
-        sync[0] = ",";
-        if (aceitarToken(",")) {
-            if (aceitarToken("Identificador")) {
-                variosObjetos();
-            } else {
-                sync[0] = "Identificador";
-                modoPanico(sync);
-                aceitarToken("Identificador");
-            }
-        }
-    }*/
     private void variaveis() {
         String sync[] = new String[10];
         if (aceitarToken("Identificador")) {
@@ -592,11 +555,6 @@ public class ASintatico {
         }
     }
 
-    private void expressionLogicaRelacional() {
-        relacional();
-        variasExpression();
-    }
-
     private void operation() {
         selectOperation(0);
     }
@@ -657,11 +615,6 @@ public class ASintatico {
         }
     }
 
-//        if (aceitarToken("-")) {
-//            expressionAritmeticasConsumida();
-//        } else if (aceitarToken("Número") || aceitarToken("Identificador") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
-//            valueVazio();
-//        }
     private void operationLine() {
         operationFor();
         if (aceitarToken(";")) {
@@ -679,69 +632,6 @@ public class ASintatico {
                 }
             }
         }
-    }
-
-    private void expressionAritmeticas() {
-        relacionalAritmetica();
-    }
-
-    private void relacionalAritmetica() {
-        if (aceitarToken("(")) {
-            addValor();
-            operadorAritmeticos();
-            relacionalAritmetica();
-            if(aceitarToken(")")){
-                continuar();
-            }
-        } else if (aceitarToken("-")) {
-            if (aceitarToken("(")) {
-                addValor();
-                operadorAritmeticos();
-                relacionalAritmetica();
-                if(aceitarToken(")")){
-                    continuar();
-                }
-            }
-        } else {
-            addValor();
-            fatoracaoRelacionalAritmetico();
-        }
-    }
-
-    private void operadorAritmeticos() {
-        if (aceitarToken("+") || aceitarToken("-") || aceitarToken("/") || aceitarToken("%") || aceitarToken("*")) {
-            relacionalAritmetica();
-        } else {
-            String sync[] = new String[5];
-            sync[0] = "+";
-            sync[1] = "*";
-            sync[2] = "/";
-            sync[3] = "%";
-            sync[4] = "-";
-            erroSintatico(sync);
-            modoPanico(sync);
-            operadorAritmeticos();
-        }
-    }
-
-    private void continuar() {
-        if (aceitarToken("+") || aceitarToken("-") || aceitarToken("/") || aceitarToken("%") || aceitarToken("*")) {
-            operadorAritmeticosConsumido();
-            relacionalAritmetica();
-        }
-
-    }
-
-    private void operadorAritmeticosConsumido() {
-
-    }
-
-    private void fatoracaoRelacionalAritmetico() {
-        continuar();
-    }
-
-    private void addValor() {
-        value();
     }
 
     private void value() {
@@ -778,75 +668,12 @@ public class ASintatico {
         }
     }
 
-    private void relacional() {
-        if (aceitarToken("(")) {
-            expressionLogicaRelacional();
-            if (aceitarToken(")")) {
-
-            }
-        } else if (aceitarToken("!")) {
-            if (aceitarToken("(")) {
-                expressionLogicaRelacional();
-                if (aceitarToken(")")) {
-
-                }
-            }
-
-        } else {
-            addValor();
-            operadorRelacional();
-        }
-    }
-
-    private void operadorRelacional() {
-        if (aceitarToken("!")) {
-            if (aceitarToken("=")) {
-                addValor();
-            }
-        } else if (aceitarToken("=")) {
-            if (aceitarToken("=")) {
-                addValor();
-            }
-        } else if (aceitarToken(">")) {
-            if (aceitarToken("=")) {
-                addValor();
-            }
-            addValor();
-        } else if (aceitarToken("<")) {
-            if (aceitarToken("=")) {
-                addValor();
-            }
-            addValor();
-        }
-    }
-
+    
     private void criarVariavel() {
         variaveis();
         if (aceitarToken(";")) {
             program();
         }
-    }
-
-    private void variasExpression() {
-        if (aceitarToken("&")) {
-            if (aceitarToken("&")) {
-                operadorLogicoVazio();
-            }
-            variasExp();
-        } else if (aceitarToken("|")) {
-            if (aceitarToken("|")) {
-                operadorLogicoVazio();
-                variasExp();
-            }
-        }
-    }
-
-    private void operadorLogicoVazio() {
-
-    }
-
-    private void variasExp() {
-        expressionLogicaRelacional();
     }
 
     private void instancia() {
