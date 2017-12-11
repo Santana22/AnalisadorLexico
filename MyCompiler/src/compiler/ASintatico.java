@@ -112,6 +112,8 @@ public class ASintatico {
                         nivel = 0;
                         classe();
                     }
+                }else{
+                    panicMode();
                 }
             }
         }
@@ -160,6 +162,8 @@ public class ASintatico {
 
                     }
                 }
+            }else{
+                searchNextSync();
             }
         }
     }
@@ -656,18 +660,21 @@ public class ASintatico {
      */
     private void panicMode(){
         searchNextSync();
-        if(tokenAtual.getNome().equals(";")){
+        if(aceitarToken(";")){
             if(nivel==0){
                 inicio();
             }else if(nivel==1){
                 variavelConstanteObjeto();
                 metodo();
+                if(aceitarToken("}")){
+                    classe();
+                }
             }else if(nivel==2||nivel==3){
                 program();
             }else{
                 panicMode();
             }
-        }else if(tokenAtual.getNome().equals("{")){
+        }else if(aceitarToken("{")){
             if(nivel==1){
                 variavelConstanteObjeto();
                 metodo();
