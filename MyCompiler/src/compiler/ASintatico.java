@@ -68,14 +68,6 @@ public class ASintatico {
         return false;
     }
 
-
-    private boolean expect(String tipo) {
-        if (aceitarToken(tipo)) {
-            return true;
-        }
-        return false;
-    }
-
     private void inicio() {
         proximoToken();
         variavelConstanteObjeto();
