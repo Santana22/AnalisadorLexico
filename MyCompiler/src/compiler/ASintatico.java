@@ -354,12 +354,8 @@ public class ASintatico {
                 }
             } else if (aceitarToken("Identificador")) {
                 criarObjetos();
-            }else if (aceitarToken("[")) {
-                if (aceitarToken("Número")) {
-                    if (aceitarToken("]")) {
-                        fatoracaoAcessoVetorMatriz();
-                    }
-                }
+            }else if (tokenAtual.getNome().equals("[")) {
+                fatoracaoAcessoVetorMatriz();
                 if(aceitarToken("=")){
                     operation();
                     if(aceitarToken(";")){
