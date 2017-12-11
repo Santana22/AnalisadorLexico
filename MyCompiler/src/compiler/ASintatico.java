@@ -17,6 +17,7 @@ public class ASintatico {
     private Token tokenAtual, tokenAnterior;
     private ArrayList<Token> tokens;
     private int errosSintaticos = 0;
+    private int nivel = 0; //variavel que indica em qual nivel a analise está: nivel 0 - corpo principal, nivel 1 - classe, nivel 2 - metodo e nivel 3 - codicionais
     private int posicao = -1;
     private BufferedWriter saidaSintatico;
 
@@ -101,12 +102,14 @@ public class ASintatico {
 
     private void classe() {
         if (aceitarToken("class")) {
+                    nivel = 1;
             if (aceitarToken("Identificador")) {
                 herancaNao();
                 if (aceitarToken("{")) {
                     variavelConstanteObjeto();
                     metodo();
                     if (aceitarToken("}")) {
+                        nivel = 0;
                         classe();
                     }
                 }
@@ -202,7 +205,6 @@ public class ASintatico {
             forConsumido();
         } else if (aceitarToken("if")) {
             ifConsumido();
-
         } else if (aceitarToken("scan")) {
             scanConsumido();
 
@@ -257,6 +259,7 @@ public class ASintatico {
     private void metodo() {
         if (aceitarToken(":")) {
             if (aceitarToken(":")) {
+                nivel = 2;
                 comSemRetorno();
             }
         }
@@ -270,6 +273,7 @@ public class ASintatico {
                     if (aceitarToken("{")) {
                         program();
                         if (aceitarToken("}")) {
+                            nivel = 1;
                             variavelConstanteObjeto();
                             metodo();
                         }
@@ -341,6 +345,7 @@ public class ASintatico {
     }
 
     private void forConsumido() {
+        nivel = 3;
         if (aceitarToken("(")) {
             operationFor();
             if (aceitarToken(";")) {
@@ -351,6 +356,7 @@ public class ASintatico {
                         if (aceitarToken("{")) {
                             program();
                             if (aceitarToken("}")) {
+                                nivel = 2;
                                 program();
                             }
                         }
@@ -361,12 +367,14 @@ public class ASintatico {
     }
 
     private void ifConsumido() {
+        nivel = 3;
         if (aceitarToken("(")) {
             exLogicRelational(0);
             if (aceitarToken(")")) {
                 if (aceitarToken("{")) {
                     program();
                     if (aceitarToken("}")) {
+                        nivel = 2;
                         if (aceitarToken("else")) {
                             elseConsumido();
                         }
@@ -379,9 +387,11 @@ public class ASintatico {
     }
 
     private void elseConsumido() {
+        nivel = 3;
         if (aceitarToken("{")) {
             program();
             if (aceitarToken("}")) {
+                nivel = 2;
             }
         }
     }
@@ -632,6 +642,85 @@ public class ASintatico {
                 }
             }
         }
+    }
+    
+    /*
+    nivel - 0: corpo principal do arquivo
+    nivel - 1: declaracão de classe
+    nivel - 2: declaração de metodo
+    nivel - 3: estruturas condicionais
+    */
+    
+    /**
+     * Metodo de recuperação de erro
+     */
+    private void panicMode(){
+        searchNextSync();
+        if(tokenAtual.getNome().equals(";")){
+            if(nivel==0){
+                inicio();
+            }else if(nivel==1){
+                variavelConstanteObjeto();
+                metodo();
+            }else if(nivel==2||nivel==3){
+                program();
+            }else{
+                panicMode();
+            }
+        }else if(tokenAtual.getNome().equals("{")){
+            if(nivel==1){
+                variavelConstanteObjeto();
+                metodo();
+            }else if(nivel==2||nivel==3){
+                program();
+            }else{
+                panicMode();
+            }
+        }else if(aceitarToken("}")){
+            if(nivel==1){
+                nivel=0;
+                classe();
+            }else if(nivel==2){
+                nivel=1;
+                variavelConstanteObjeto();
+                metodo();
+            }else if(nivel==3){
+                nivel=2;
+                program();
+            }
+        }else if(tokenAtual.getNome().equals(":")){
+            if(nivel!=0){
+                metodo();
+            }else{
+                panicMode();
+            }
+        }else if(tokenAtual.getNome().equals("class")){
+            classe();
+        }
+    }
+    
+    /**
+     * Procura o proximo token de sincronização
+     */
+    private void searchNextSync(){
+        if(tokenAtual.getNome().equals(";")||tokenAtual.getNome().equals("{")||tokenAtual.getNome().equals("}")||(tokenAtual.getNome().equals(":")&&showProx()!=null&&showProx().getNome().equals(":"))||tokenAtual.getNome().equals("class")){
+            
+        }else{
+            if(proximoToken()){
+                searchNextSync();
+            }
+        }
+    }
+    
+    /**
+     * devolve o proximo token caso exista
+     * @return 
+     */
+    private Token showProx(){
+        if(posicao+1<tokens.size()){
+            return tokens.get(posicao+1);
+        }
+        return null;
     }
 
 }
