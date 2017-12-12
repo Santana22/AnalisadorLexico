@@ -96,7 +96,7 @@ public class ASintatico {
             tipoVazio();
             tratamentoVariavel();
         } else {
-
+            
         }
     }
 
@@ -111,10 +111,14 @@ public class ASintatico {
                     if (aceitarToken("}")) {
                         nivel = 0;
                         classe();
+                    }else{
+                        panicMode();
                     }
                 }else{
                     panicMode();
                 }
+            }else{
+               panicMode();
             }
         }
 
@@ -136,8 +140,14 @@ public class ASintatico {
             if (aceitarToken("=")) {
                 if (aceitarToken("Número")) {
                     geradorConstante();
-                } 
+                }else{
+                    panicMode();
+                }
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
     }
 
@@ -145,6 +155,8 @@ public class ASintatico {
         variaveis();
         if (aceitarToken(";")) {
             variavelConstanteObjeto();
+        }else{
+            panicMode();
         }
     }
 
@@ -160,7 +172,11 @@ public class ASintatico {
                 if (aceitarToken(">")) {
                     if (aceitarToken("Identificador")) {
 
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
             }else{
                 panicMode();
@@ -171,6 +187,8 @@ public class ASintatico {
     private void variaveis() {
         if (aceitarToken("Identificador")) {
             fatoracaoVariaveis();
+        }else{
+            panicMode();
         }
 
     }
@@ -202,7 +220,11 @@ public class ASintatico {
             if (aceitarToken("Número")) {
                 if (aceitarToken("]")) {
                     fatoracaoFatoracaoVariaveis();
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
         }
         acrescentar();
@@ -257,6 +279,8 @@ public class ASintatico {
         tiposReturn();
         if (aceitarToken(";")) {
             program();
+        }else{
+            panicMode();
         }
     }
 
@@ -269,6 +293,8 @@ public class ASintatico {
             if (aceitarToken(":")) {
                 nivel = 2;
                 comSemRetorno();
+            }else{
+                panicMode();
             }
         }
     }
@@ -290,13 +316,39 @@ public class ASintatico {
                     }else{
                         panicMode();
                     }
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
         } else if (aceitarToken("bool")) {
             if (aceitarToken("main")) {
                 main();
+            }else if (aceitarToken("Identificador")) {
+                if (aceitarToken("(")) {
+                    parametros();
+                    if (aceitarToken(")")) {
+                        if (aceitarToken("{")) {
+                            program();
+                            if (aceitarToken("}")) {
+                                metodo();
+                            }else{
+                                panicMode();
+                            }
+                        }else{
+                            panicMode();
+                        }
+                    }else{
+                        panicMode();
+                    }
+                }else{
+                    panicMode();
+                }
+            }else{
+                panicMode();
             }
-
+        } else if(tipo()){
             if (aceitarToken("Identificador")) {
                 if (aceitarToken("(")) {
                     parametros();
@@ -305,30 +357,23 @@ public class ASintatico {
                             program();
                             if (aceitarToken("}")) {
                                 metodo();
+                            }else{
+                                panicMode();
                             }
                         }else{
                             panicMode();
                         }
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
-        } else {
-            tipo();
-            if (aceitarToken("Identificador")) {
-                if (aceitarToken("(")) {
-                    parametros();
-                    if (aceitarToken(")")) {
-                        if (aceitarToken("{")) {
-                            program();
-                            if (aceitarToken("}")) {
-                                metodo();
-                            }
-                        }else{
-                            panicMode();
-                        }
-                    }
-                }
-            }
+        }else{
+            panicMode();
         }
     }
 
@@ -345,7 +390,11 @@ public class ASintatico {
                 }else{
                     panicMode();
                 }
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
     }
 
@@ -354,6 +403,8 @@ public class ASintatico {
             tipoVazio();
             if (aceitarToken("Identificador")) {
                 acrescentarParametros();
+            }else{
+                panicMode();
             }
         }
     }
@@ -378,11 +429,23 @@ public class ASintatico {
                             if (aceitarToken("}")) {
                                 nivel = 2;
                                 program();
+                            }else{
+                                panicMode();
                             }
+                        }else{
+                            panicMode();
                         }
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
     }
 
@@ -399,11 +462,17 @@ public class ASintatico {
                             elseConsumido();
                         }
                         program();
+                    }else{
+                        panicMode();
                     }
                 }else{
                     panicMode();
                 }
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
 
     }
@@ -414,7 +483,11 @@ public class ASintatico {
             program();
             if (aceitarToken("}")) {
                 nivel = 2;
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
     }
 
@@ -425,9 +498,17 @@ public class ASintatico {
                 if (aceitarToken(")")) {
                     if (aceitarToken(";")) {
                         program();
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
     }
 
@@ -435,6 +516,8 @@ public class ASintatico {
         if (aceitarToken(",")) {
             if (aceitarToken("Identificador")) {
                 multiplasLeituras();
+            }else{
+                panicMode();
             }
         }
     }
@@ -446,8 +529,14 @@ public class ASintatico {
             if (aceitarToken(")")) {
                 if (aceitarToken(";")) {
                     program();
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
+        }else{
+            panicMode();
         }
     }
 
@@ -476,11 +565,15 @@ public class ASintatico {
         if (aceitarToken("Identificador")) {
             if (aceitarToken("=")) {
                 operation();
+            }else{
+                panicMode();
             }
         } else {
             acessoVetorMatriz();
             if (aceitarToken("=")) {
                 operation();
+            }else{
+                panicMode();
             }
         }
     }
@@ -549,6 +642,8 @@ public class ASintatico {
         operationFor();
         if (aceitarToken(";")) {
             program();
+        }else{
+            panicMode();
         }
     }
 
@@ -558,7 +653,11 @@ public class ASintatico {
                 if (aceitarToken("Número")) {
                     if (aceitarToken("]")) {
                         fatoracaoAcessoVetorMatriz();
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
             }
         }
@@ -571,7 +670,6 @@ public class ASintatico {
             } else if (tokenAtual.getNome().equals("[")) {
                 fatoracaoAcessoVetorMatriz();
             }
-
         } else if (aceitarToken("Número") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
         }
     }
@@ -581,7 +679,11 @@ public class ASintatico {
             if (aceitarToken("Número")) {
                 if (aceitarToken("]")) {
                     fatoracaoAcessoVetorMatriz();
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
         }
     }
@@ -590,6 +692,8 @@ public class ASintatico {
         variaveis();
         if (aceitarToken(";")) {
             program();
+        }else{
+            panicMode();
         }
     }
 
@@ -599,14 +703,22 @@ public class ASintatico {
                 if (aceitarToken("(")) {
                     if (aceitarToken(")")) {
                         if (aceitarToken(";")) {
+                        }else{
+                            panicMode();
                         }
                     } else {
                         passagemParametros();
                         if (aceitarToken(")") && aceitarToken(";")) {
+                        }else{
+                            panicMode();
                         }
                     }
 
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
         }
     }
@@ -622,8 +734,12 @@ public class ASintatico {
         if (aceitarToken(",")) {
             if (aceitarToken("Identificador")) {
                 criarObjetos();
+            }else{
+                panicMode();
             }
         } else if (aceitarToken(";")) {
+        }else{
+            panicMode();
         }
     }
 
@@ -635,8 +751,14 @@ public class ASintatico {
                         if (aceitarToken("(")) {
                             fatoracaoChamadaMetodo();
                         } else if (aceitarToken(";")) {
+                        }else{
+                            panicMode();
                         }
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
             }
         } else if (aceitarToken(":")) {
@@ -645,8 +767,14 @@ public class ASintatico {
                     if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
                     } else if (aceitarToken(";")) {
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
         } else if (aceitarToken("(")) {
             fatoracaoChamadaMetodo();
@@ -661,7 +789,11 @@ public class ASintatico {
             passagemParametros();
             if (aceitarToken(")")) {
                 if (aceitarToken(";")) {
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             }
         }
     }
@@ -677,6 +809,7 @@ public class ASintatico {
      * Metodo de recuperação de erro
      */
     private void panicMode(){
+        //colocar o print do erro.
         searchNextSync();
         if(aceitarToken(";")){
             if(nivel==0){
