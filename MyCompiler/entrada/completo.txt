@@ -20,7 +20,7 @@ class Carro <-> Veiculo{
 	::bool main(){			
 		<< true;
 	}
-	::int metodo(int x, int a)
+	::int metodo(int x, int a){
 		Carro carro;
 		Carro carro, moto;
 		comprimento();

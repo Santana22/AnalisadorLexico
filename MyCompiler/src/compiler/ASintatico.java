@@ -163,7 +163,7 @@ public class ASintatico {
                     }
                 }
             }else{
-                searchNextSync();
+                panicMode();
             }
         }
     }
@@ -180,7 +180,11 @@ public class ASintatico {
             if (aceitarToken("Número")) {
                 if (aceitarToken("]")) {
                     fatoracaoFatoracaoVariaveis();
+                }else{
+                    panicMode();
                 }
+            }else{
+                panicMode();
             } 
         }
         acrescentar();
@@ -280,6 +284,8 @@ public class ASintatico {
                             nivel = 1;
                             variavelConstanteObjeto();
                             metodo();
+                        }else{
+                            panicMode();
                         }
                     }else{
                         panicMode();
@@ -333,7 +339,11 @@ public class ASintatico {
                     program();
                     if (aceitarToken("}")) {
                         metodo();
+                    }else{
+                        panicMode();
                     }
+                }else{
+                    panicMode();
                 }
             }
         }
@@ -390,6 +400,8 @@ public class ASintatico {
                         }
                         program();
                     }
+                }else{
+                    panicMode();
                 }
             }
         }
@@ -675,10 +687,17 @@ public class ASintatico {
                 if(aceitarToken("}")){
                     classe();
                 }
-            }else if(nivel==2||nivel==3){
+            }else if(nivel==2){
                 program();
                 if(aceitarToken("}")){
                     metodo();
+                }else{
+                    panicMode();
+                }
+            }else if(nivel==3){
+                program();
+                if(aceitarToken("}")){
+                    program();
                 }
             }else{
                 panicMode();
@@ -687,8 +706,21 @@ public class ASintatico {
             if(nivel==1){
                 variavelConstanteObjeto();
                 metodo();
-            }else if(nivel==2||nivel==3){
+                if(aceitarToken("}")){
+                    classe();
+                }
+            }else if(nivel==2){
                 program();
+                if(aceitarToken("}")){
+                    metodo();
+                }else{
+                    panicMode();
+                }
+            }else if(nivel==3){
+                program();
+                if(aceitarToken("}")){
+                    program();
+                }
             }else{
                 panicMode();
             }
