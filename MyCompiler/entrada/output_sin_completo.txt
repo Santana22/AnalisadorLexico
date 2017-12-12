@@ -1,2 +1,5 @@
 Análise Sintática iniciada para o arquivo completo.txt
-Análise Sintática finalizada com sucesso para o arquivo completo.txt
+Erro sintático próximo ao token Carro na linha 24
+Erro sintático próximo ao token if na linha 43
+Erro sintático próximo ao token < na linha 52
+Análise Sintática finalizada com erro para o arquivo completo.txt
