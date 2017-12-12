@@ -162,6 +162,7 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < int >, < Palavra Reservada >, Linha: 23
 < a >, < Identificador >, Linha: 23
 < ) >, < Delimitador >, Linha: 23
+< { >, < Delimitador >, Linha: 23
 < Carro >, < Identificador >, Linha: 24
 < carro >, < Identificador >, Linha: 24
 < ; >, < Delimitador >, Linha: 24
@@ -325,6 +326,7 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < + >, < Operador Aritmético >, Linha: 42
 < 1 >, < Número >, Linha: 42
 < ) >, < Delimitador >, Linha: 42
+< { >, < Delimitador >, Linha: 42
 < if >, < Palavra Reservada >, Linha: 43
 < ( >, < Delimitador >, Linha: 43
 < i >, < Identificador >, Linha: 43

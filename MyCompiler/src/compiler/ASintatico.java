@@ -66,6 +66,7 @@ public class ASintatico {
 
     private boolean aceitarToken(String tipo) {
         if (tokenAtual.getTipo().equals(tipo) || tokenAtual.getNome().equals(tipo)) {
+            System.out.println(tokenAtual);
             proximoToken();
             return true;
         }
@@ -291,8 +292,8 @@ public class ASintatico {
 
     private void metodo() {
         if (aceitarToken(":")) {
+            nivel = 2;
             if (aceitarToken(":")) {
-                nivel = 2;
                 comSemRetorno();
             } else {
                 panicMode();
@@ -817,7 +818,8 @@ public class ASintatico {
             searchNextSync();
         if (aceitarToken(";")) {
             if (nivel == 0) {
-                inicio();
+                variavelConstanteObjeto();
+                classe();
             } else if (nivel == 1) {
                 variavelConstanteObjeto();
                 metodo();
@@ -859,6 +861,7 @@ public class ASintatico {
                     program();
                 }
             } else {
+                proximoToken();
                 panicMode();
             }
         } else if (aceitarToken("}")) {
@@ -877,11 +880,33 @@ public class ASintatico {
             if (nivel != 0) {
                 metodo();
             } else {
-                panicMode();
+                while(!tokenAtual.getNome().equals("class")){ //se encontrar um metodo fora de classe procura a proxima classe
+                    proximoToken();
+                    searchNextSync();
+                }
+                classe();
             }
         } else if (tokenAtual.getNome().equals("class")) {
             classe();
-        } 
+        } else if(tokenAtual.getNome().equals("if")||tokenAtual.getNome().equals("for")||tokenAtual.getNome().equals("else")||tokenAtual.getNome().equals("scan")||tokenAtual.getNome().equals("print")){
+            program();
+            if(aceitarToken("}")){
+                program();    
+            }     
+        }else if(tokenAtual.getNome().equals("int")||tokenAtual.getNome().equals("float")||tokenAtual.getNome().equals("bool")||tokenAtual.getNome().equals("string")&&showProx()!=null&&showProx().getNome().equals("Identificador")){
+            if(nivel==0){
+                variavelConstanteObjeto();
+                classe();
+            }else if(nivel==1||nivel==2){ //classe ou metodo procurar a '{' ou ';', a declaração pode conter erros
+                proximoToken();
+                panicMode();
+            }else if(nivel==3){
+                program();
+                if(aceitarToken("}")){
+                    program();    
+                }  
+            }
+        }
         } catch (IOException ex) {
             Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -892,9 +917,10 @@ public class ASintatico {
      * Procura o proximo token de sincronização
      */
     private void searchNextSync() {
-        if (tokenAtual.getNome().equals(";") || tokenAtual.getNome().equals("{") || tokenAtual.getNome().equals("}") || (tokenAtual.getNome().equals(":") && showProx() != null && showProx().getNome().equals(":")) || tokenAtual.getNome().equals("class")) {
+        if (tokenAtual.getNome().equals(";") || tokenAtual.getNome().equals("{") || tokenAtual.getNome().equals("}") || (tokenAtual.getNome().equals(":") && showProx() != null && showProx().getNome().equals(":")) || tokenAtual.getNome().equals("class")||tokenAtual.getNome().equals("if")||tokenAtual.getNome().equals("for")||tokenAtual.getNome().equals("else")||tokenAtual.getNome().equals("scan")||tokenAtual.getNome().equals("print")) {
 
-        } else {
+        }else if(tokenAtual.getNome().equals("int")||tokenAtual.getNome().equals("float")||tokenAtual.getNome().equals("bool")||tokenAtual.getNome().equals("string")&&showProx()!=null&&showProx().getNome().equals("Identificador")){
+        }else {
             if (proximoToken()) {
                 searchNextSync();
             }
