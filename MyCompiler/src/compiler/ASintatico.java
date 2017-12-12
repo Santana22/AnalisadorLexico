@@ -281,6 +281,8 @@ public class ASintatico {
                             variavelConstanteObjeto();
                             metodo();
                         }
+                    }else{
+                        panicMode();
                     }
                 }
             }
@@ -298,6 +300,8 @@ public class ASintatico {
                             if (aceitarToken("}")) {
                                 metodo();
                             }
+                        }else{
+                            panicMode();
                         }
                     }
                 }
@@ -313,6 +317,8 @@ public class ASintatico {
                             if (aceitarToken("}")) {
                                 metodo();
                             }
+                        }else{
+                            panicMode();
                         }
                     }
                 }
@@ -671,6 +677,9 @@ public class ASintatico {
                 }
             }else if(nivel==2||nivel==3){
                 program();
+                if(aceitarToken("}")){
+                    metodo();
+                }
             }else{
                 panicMode();
             }
