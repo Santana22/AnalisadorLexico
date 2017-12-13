@@ -21,7 +21,9 @@ public class ASintatico {
     private int nivel = 0; //variavel que indica em qual nivel a analise está: nivel 0 - corpo principal, nivel 1 - classe, nivel 2 - metodo e nivel 3 - codicionais
     private int posicao = -1;
     private BufferedWriter saidaSintatico;
-
+    private boolean umaClasse = false;
+    private int umaMain = 0;
+    
     /**
      * Método que inicia a análise sintática.
      *
@@ -38,10 +40,18 @@ public class ASintatico {
             System.out.println("Análise Sintática iniciada para o arquivo " + file.getName());
             this.tokens = tokens;
             inicio();
-            if (errosSintaticos == 0) {
+            if (errosSintaticos == 0 && umaClasse && umaMain == 1) {
                 System.out.println("Análise Sintática finalizada com sucesso para o arquivo " + file.getName());
                 saidaSintatico.write("Análise Sintática finalizada com sucesso para o arquivo " + file.getName());
             } else{
+                if (!umaClasse) {
+                    saidaSintatico.write("Erro Grave: Deve existir, pelo menos, uma classe.");
+                    saidaSintatico.newLine();
+                }
+                if(umaMain != 1){
+                    saidaSintatico.write("Erro Grave: Deve existir somente um método main no arquivo.");
+                    saidaSintatico.newLine();
+                }
                 System.out.println("Análise Sintática finalizada com erro para o arquivo " + file.getName());
                 saidaSintatico.write("Análise Sintática finalizada com erro para o arquivo " + file.getName());
             }
@@ -107,6 +117,9 @@ public class ASintatico {
 
     private void classe() {
         if (aceitarToken("class")) {
+            if(!umaClasse){
+                umaClasse =  true;
+            }
             nivel = 1;
             if (aceitarToken("Identificador")) {
                 herancaNao();
@@ -326,6 +339,7 @@ public class ASintatico {
             }
         } else if (aceitarToken("bool")) {
             if (aceitarToken("main")) {
+                umaMain++;
                 main();
             } else if (aceitarToken("Identificador")) {
                 if (aceitarToken("(")) {
@@ -640,6 +654,7 @@ public class ASintatico {
         }
     }
 
+    
     private void operationLine() {
         operationFor();
         if (aceitarToken(";")) {

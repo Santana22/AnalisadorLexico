@@ -71,5 +71,4 @@ class Carro <-> Veiculo{
 	}
 }
 class Carro{
-
 }
