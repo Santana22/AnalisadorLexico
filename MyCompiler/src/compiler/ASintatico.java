@@ -831,6 +831,7 @@ public class ASintatico {
                 if (aceitarToken("}")) {
                     metodo();
                 } else {
+                    proximoToken();
                     panicMode();
                 }
             } else if (nivel == 3) {
@@ -897,7 +898,14 @@ public class ASintatico {
             if(nivel==0){
                 variavelConstanteObjeto();
                 classe();
-            }else if(nivel==1||nivel==2){ //classe ou metodo procurar a '{' ou ';', a declaração pode conter erros
+            }else if(nivel==1){
+                variavelConstanteObjeto();
+                metodo();
+                if (aceitarToken("}")) {
+                    classe();
+                }
+            }
+            else if(nivel==2){ //classe ou metodo procurar a '{' ou ';', a declaração pode conter erros
                 proximoToken();
                 panicMode();
             }else if(nivel==3){
