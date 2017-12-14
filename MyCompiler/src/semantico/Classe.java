@@ -97,30 +97,13 @@ public class Classe {
      * @param identificador
      * @return 
      */
-    public List<Metodo> getMetodos(String identificador){
-        List <Metodo>metodosEncontrados = new ArrayList<>();
+    public Metodo getMetodo(String identificador){
         for(Metodo m:metodos){
             if(m.getNome().equals(identificador)){
-                metodosEncontrados.add(m);
+                return m;
             }
         }
-        return metodosEncontrados;
-    }
-    
-    /**
-     * Retorna a lista de metodos com aquele nome e tipo
-     * @param identificador
-     * @param tipo
-     * @return 
-     */
-    public List<Metodo> getMetodos(String identificador, String tipo){
-        List <Metodo>metodosEncontrados = new ArrayList<>();
-        for(Metodo m:metodos){
-            if(m.getNome().equals(identificador)&&m.getTipo().equals(tipo)){
-                metodosEncontrados.add(m);
-            }
-        }
-        return metodosEncontrados;
+        return null;
     }
     
     /**
@@ -149,5 +132,4 @@ public class Classe {
     public boolean contains(Metodo m){
         return metodos.contains(m);
     }
-    
 }

@@ -96,7 +96,7 @@ public class Metodo {
     }
 
     /**
-     * Verifica se os metodos são realmente iguais ou uma sobrecarga
+     * Verifica se os metodos são iguais: tem o mesmo nome
      * @param o
      * @return 
      */
@@ -104,16 +104,7 @@ public class Metodo {
     public boolean equals(Object o){
         if(o instanceof Metodo){
             Metodo m = ((Metodo)o);
-            if(m.getNome().equals(nome)&&m.getTipo().equals(tipo)){ //verifica se o retorno e o nome são iguais
-                if(parametros.size()!=m.getParametros().size()){ //verifica se possui a mesma quantidade de parametros
-                    return false;
-                }
-                List <Variavel> p1 = m.getParametros();
-                for(int i=0;i<parametros.size();i++){ //verifica se todos os parametros são do mesmo tipo
-                    if(!parametros.get(i).getTipo().equals(p1.get(i).getTipo())){
-                        return false;
-                    }
-                }
+            if(m.getNome().equals(nome)){ //verifica se o retorno e o nome são iguais
                 return true;
             }
         }

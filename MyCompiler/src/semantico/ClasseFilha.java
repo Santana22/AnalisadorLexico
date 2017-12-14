@@ -5,8 +5,6 @@
  */
 package semantico;
 
-import java.util.List;
-
 /**
  *
  * @author Emerson
@@ -28,25 +26,12 @@ public class ClasseFilha extends Classe{
     }
     
     @Override
-    public boolean addMetodo(Metodo m){
-        if(mae.contains(m)){
-            return false;
+    public Metodo getMetodo(String identificador){
+        Metodo m = super.getMetodo(identificador);
+        if(m!=null){
+            return m;
         }
-        return super.addMetodo(m);
-    }
-    
-    @Override
-    public List<Metodo> getMetodos(String identificador){
-        List <Metodo> m = mae.getMetodos(identificador);
-        m.addAll(super.getMetodos(identificador));
-        return m;
-    }
-    
-    @Override
-    public List<Metodo> getMetodos(String identificador, String tipo){
-        List <Metodo> m = mae.getMetodos(identificador, tipo);
-        m.addAll(super.getMetodos(identificador, tipo));
-        return m;
+        return mae.getMetodo(identificador);
     }
     
     @Override
