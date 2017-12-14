@@ -61,7 +61,7 @@ public class Metodo {
     }
     
     /**
-     * Adiciona uma variavel caso não exista nesse metodos
+     * Adiciona uma variavel caso não exista nesse metodo
      * @param v
      * @return 
      */
@@ -80,20 +80,6 @@ public class Metodo {
     public List<Variavel> getParametros() {
         return parametros;
     }
-    
-    /**
-     * Verifica se aquela variavel foi declarada
-     * @param identificador
-     * @return 
-     */
-    public boolean contains(String identificador){
-        for(Variavel v:variaveis){
-            if(v.getNome().equals(identificador)){
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * Verifica se os metodos são iguais: tem o mesmo nome
@@ -104,7 +90,7 @@ public class Metodo {
     public boolean equals(Object o){
         if(o instanceof Metodo){
             Metodo m = ((Metodo)o);
-            if(m.getNome().equals(nome)){ //verifica se o retorno e o nome são iguais
+            if(m.getNome().equals(nome)){ //verifica se os nomes são iguais
                 return true;
             }
         }

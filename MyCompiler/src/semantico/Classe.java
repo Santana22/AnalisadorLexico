@@ -55,6 +55,11 @@ public class Classe {
         return hash;
     }
     
+    /**
+     * Verifica se a classe possui o mesmo nome.
+     * @param o
+     * @return 
+     */
     @Override
     public boolean equals(Object o){
         if(o instanceof Classe){
@@ -93,7 +98,7 @@ public class Classe {
     }
     
     /**
-     * Retorna a lista de metodos com aquele nome
+     * Retorna o metodo caso seja encontrado, caso contrario retorna null
      * @param identificador
      * @return 
      */
@@ -129,6 +134,11 @@ public class Classe {
         return variaveis.contains(v);
     }
     
+    /**
+     * Verifica se aquele metodo existe
+     * @param m
+     * @return 
+     */
     public boolean contains(Metodo m){
         return metodos.contains(m);
     }

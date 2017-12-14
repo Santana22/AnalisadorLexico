@@ -25,6 +25,11 @@ public class ClasseFilha extends Classe{
         return super.addVariavel(v);
     }
     
+    /**
+     * Procura metodo nessa classe ou na classe mãe
+     * @param identificador
+     * @return null caso não seja encontrado
+     */
     @Override
     public Metodo getMetodo(String identificador){
         Metodo m = super.getMetodo(identificador);
@@ -34,6 +39,11 @@ public class ClasseFilha extends Classe{
         return mae.getMetodo(identificador);
     }
     
+    /**
+     * Procura a variavel nessa classe ou na classe mãe
+     * @param identificador
+     * @return null caso não seja encontrada
+     */
     @Override
     public Variavel getVariavel(String identificador){
         Variavel v = mae.getVariavel(identificador);
@@ -43,6 +53,11 @@ public class ClasseFilha extends Classe{
         return super.getVariavel(identificador);
     }
     
+    /**
+     * Verifica se a variavel existe na classe mãe ou filha
+     * @param v
+     * @return 
+     */
     @Override
     public boolean contains(Variavel v){
         if(mae.contains(v)){
@@ -51,6 +66,11 @@ public class ClasseFilha extends Classe{
         return super.contains(v);
     }
     
+    /**
+     * Verifica se o metodo existe nesta classe, caso não procura na classe mãe
+     * @param m
+     * @return 
+     */
     @Override
     public boolean contains(Metodo m){
         if(mae.contains(m)){
