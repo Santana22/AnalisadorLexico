@@ -1,3 +1,2 @@
 Análise Sintática iniciada para o arquivo completo.txt
-Erro Grave: Deve existir somente um método main no arquivo.
-Análise Sintática finalizada com erro para o arquivo completo.txt
+Análise Sintática finalizada com sucesso para o arquivo completo.txt

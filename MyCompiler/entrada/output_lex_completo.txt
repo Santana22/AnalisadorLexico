@@ -533,18 +533,6 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < class >, < Palavra Reservada >, Linha: 73
 < Carro >, < Identificador >, Linha: 73
 < { >, < Delimitador >, Linha: 73
-< : >, < Delimitador >, Linha: 74
-< : >, < Delimitador >, Linha: 74
-< bool >, < Palavra Reservada >, Linha: 74
-< main >, < Identificador >, Linha: 74
-< ( >, < Delimitador >, Linha: 74
-< ) >, < Delimitador >, Linha: 74
-< { >, < Delimitador >, Linha: 74
-< < >, < Operador Relacional >, Linha: 75
-< < >, < Operador Relacional >, Linha: 75
-< true >, < Palavra Reservada >, Linha: 75
-< ; >, < Delimitador >, Linha: 75
-< } >, < Delimitador >, Linha: 76
-< } >, < Delimitador >, Linha: 77
+< } >, < Delimitador >, Linha: 74
 
 Analise Léxica concluida com sucesso!
