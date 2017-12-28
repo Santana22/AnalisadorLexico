@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Emerson
  */
-public class Classe {
+public class Classe implements Cloneable{
     private String nome;
     private List <Variavel> variaveis;
     private List <Metodo> metodos;
@@ -142,4 +142,5 @@ public class Classe {
     public boolean contains(Metodo m){
         return metodos.contains(m);
     }
+
 }

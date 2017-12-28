@@ -34,7 +34,7 @@ public abstract class Global {
      * @param c
      * @return 
      */
-    public static boolean addMetodo(Classe c){
+    public static boolean addClasse(Classe c){
         if(!classes.contains(c)){
             classes.add(c);
             return true;

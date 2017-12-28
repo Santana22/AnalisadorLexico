@@ -13,11 +13,15 @@ import java.util.Objects;
  *
  * @author Emerson
  */
-public class Metodo {
+public class Metodo implements Cloneable{
     private String tipo;
     private String nome;
     private List <Variavel> variaveis;
     private List <Variavel> parametros;
+    
+    public Metodo(){
+        
+    }
     
     /**
      * Construtor para o caso do metodo ser void
@@ -58,6 +62,10 @@ public class Metodo {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public void setParametros(List<Variavel> parametros) {
+        this.parametros = parametros;
     }
     
     /**
@@ -104,5 +112,5 @@ public class Metodo {
         hash = 79 * hash + Objects.hashCode(this.nome);
         hash = 79 * hash + Objects.hashCode(this.parametros);
         return hash;
-    }
+    }  
 }
