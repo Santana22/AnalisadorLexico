@@ -142,7 +142,6 @@ public class ASemanticoParser1 {
                 classeAtual = new Classe(tokenAnterior.getNome());
                 herancaNao();
                 if (aceitarToken("{")) {
-                    global.addClasse(classeAtual);
                     variavelConstanteObjeto();
                     metodo();
                     if (aceitarToken("}")) {
