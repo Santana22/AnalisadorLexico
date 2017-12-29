@@ -15,14 +15,7 @@ public class ClasseFilha extends Classe{
     
     public ClasseFilha(String nome, String nomeMae) {
         super(nome);
-    }
-    
-    @Override
-    public boolean addVariavel(Variavel v){
-        if(mae.contains(v)){
-            return false;
-        }
-        return super.addVariavel(v);
+        this.nomeMae = nomeMae;
     }
     
     /**
@@ -62,11 +55,11 @@ public class ClasseFilha extends Classe{
      */
     @Override
     public Variavel getVariavel(String identificador){
-        Variavel v = mae.getVariavel(identificador);
+        Variavel v = super.getVariavel(identificador);
         if(v!=null){
             return v;
         }
-        return super.getVariavel(identificador);
+        return mae.getVariavel(identificador);
     }
     
     /**

@@ -94,6 +94,7 @@ public class ASemanticoParser1 {
         
         this.tokens = tokens;
         inicio();
+        verificarHenranca();
     }
     
     private void inicio() {
@@ -727,6 +728,20 @@ public class ASemanticoParser1 {
             //tentando declarar metodo fora da classe erro
         }else{
             classeAtual.addMetodo(metodoAtual);
+        }
+    }
+    
+    private void verificarHenranca(){
+        List <Classe> classes = global.getClasses();
+        for(Classe c: classes){
+            if(c instanceof ClasseFilha){
+                Classe mae = global.getClasse(((ClasseFilha) c).getNomeMae());
+                if(mae!=null){
+                    ((ClasseFilha) c).setMae(mae);
+                }else{
+                    System.out.println("mae não encontrada");
+                }
+            }
         }
     }
 }

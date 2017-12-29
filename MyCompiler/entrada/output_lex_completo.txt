@@ -65,6 +65,10 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < ; >, < Delimitador >, Linha: 9
 < class >, < Palavra Reservada >, Linha: 10
 < a >, < Identificador >, Linha: 10
+< < >, < Operador Relacional >, Linha: 10
+< - >, < Operador Aritmético >, Linha: 10
+< > >, < Operador Relacional >, Linha: 10
+< Carro >, < Identificador >, Linha: 10
 < { >, < Delimitador >, Linha: 10
 < int >, < Palavra Reservada >, Linha: 11
 < a >, < Identificador >, Linha: 11

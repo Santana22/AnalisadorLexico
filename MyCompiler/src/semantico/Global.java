@@ -85,5 +85,8 @@ public class Global {
         }
         return null;
     }
-    
+
+    public List<Classe> getClasses() {
+        return classes;
+    }
 }
