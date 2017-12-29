@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public class Exec {
 
+
+    
     private static Facade facade = Facade.getInstance();
 
     /**

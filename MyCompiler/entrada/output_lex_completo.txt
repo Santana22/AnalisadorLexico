@@ -38,7 +38,7 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < int >, < Palavra Reservada >, Linha: 6
 < a >, < Identificador >, Linha: 6
 < [ >, < Delimitador >, Linha: 6
-< 10 >, < Número >, Linha: 6
+< -21 >, < Número >, Linha: 6
 < ] >, < Delimitador >, Linha: 6
 < , >, < Delimitador >, Linha: 6
 < b >, < Identificador >, Linha: 6
@@ -285,7 +285,7 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < int >, < Palavra Reservada >, Linha: 39
 < a >, < Identificador >, Linha: 39
 < [ >, < Delimitador >, Linha: 39
-< 10 >, < Número >, Linha: 39
+< 10.0 >, < Número >, Linha: 39
 < ] >, < Delimitador >, Linha: 39
 < ; >, < Delimitador >, Linha: 39
 < int >, < Palavra Reservada >, Linha: 40

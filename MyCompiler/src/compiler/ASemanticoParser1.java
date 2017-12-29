@@ -212,6 +212,7 @@ public class ASemanticoParser1 {
     private void fatoracaoVariaveis() {
         if (aceitarToken("[")) {
             if (aceitarToken("Número")) {
+                verificarTamanhoVetor();
                 if (aceitarToken("]")) {
                     fatoracaoFatoracaoVariaveis();
                 }
@@ -230,6 +231,7 @@ public class ASemanticoParser1 {
     private void fatoracaoFatoracaoVariaveis() {
         if (aceitarToken("[")) {
             if (aceitarToken("Número")) {
+                verificarTamanhoVetor();
                 if (aceitarToken("]")) {
                     fatoracaoFatoracaoVariaveis();
                 }
@@ -741,6 +743,18 @@ public class ASemanticoParser1 {
                 }else{
                     System.out.println("mae não encontrada");
                 }
+            }
+        }
+    }
+
+    private void verificarTamanhoVetor() {
+        String numero = tokenAnterior.getNome();
+        if(numero.contains(".")){
+            System.out.println("Erro, somente permitidos numero inteiros para tamanho de vetor");
+        }else {
+            int num = Integer.parseInt(numero);
+            if(num<1){
+                System.out.println("Erro, tamanho do vetor menor 1");
             }
         }
     }

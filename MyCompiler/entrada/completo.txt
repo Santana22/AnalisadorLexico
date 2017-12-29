@@ -3,7 +3,7 @@ int a,b,c;
 final int a = 4;
 final bool a = 3,b = 5.5,x =7;
 int a[9];
-int a[10], b[3];
+int a[-21], b[3];
 int a[10][3];
 Carro carro;
 Carro carro, moto;
@@ -36,7 +36,7 @@ class a <-> Carro{
 		a = b;	
 		scan(a);
 		print(a);
-		int a[10];
+		int a[10.0];
 		int a[10], b[3];
 		int a[10], b[3];
 		for(i = 0; i<3; i = i+1){
