@@ -252,11 +252,14 @@ public class ASemanticoParser1 {
                 returnConsumido();
             }
         } else if (tipo()) {
+            variavelAtual=new Variavel();
             variavelAtual.setNome(tokenAnterior.getNome());
             criarVariavel();
         } else if (aceitarToken("-")) {
             classificarVariavel();
         } else if (aceitarToken("Identificador")) {
+            variavelAtual = new Variavel();
+            variavelAtual.setTipo(tokenAnterior.getNome());
             if (aceitarToken("=")) {
                 if (tokenAtual.getNome().equals(">")) {
                     instancia();
@@ -267,6 +270,7 @@ public class ASemanticoParser1 {
                     }
                 }
             } else if (aceitarToken("Identificador")) {
+                variavelAtual.setNome(tokenAnterior.getNome());
                 criarObjetos();
             } else if (tokenAtual.getNome().equals("[")) {
                 fatoracaoAcessoVetorMatriz();

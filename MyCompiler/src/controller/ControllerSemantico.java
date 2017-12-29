@@ -30,10 +30,10 @@ public class ControllerSemantico {
         
         //Variavel v = g.getClasse("a").getMetodo("metodo").getVariavel("moto");
         
-        Variavel v = g.getClasse("a").getMetodo("metodo").getVariaveis().get(0);
+        Variavel v = g.getClasse("a").getVariavel("carro");
         
         System.out.println("name: "+v.getNome());
-        //System.out.println("nome: "+v.getNome()+" tipo: "+v.getTipo());
+        System.out.println("nome: "+v.getNome()+" tipo: "+v.getTipo());
     }
     
 }
