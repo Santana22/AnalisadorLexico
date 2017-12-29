@@ -19,10 +19,12 @@ public class Variavel{
     public Variavel() {
     }
     
-    public Variavel(String tipo, String nome, boolean constante) {
-        this.tipo = tipo;
-        this.nome = nome;
+    public Variavel(boolean constante){
         this.constante = constante;
+    }
+    
+    public Variavel (String tipo){
+        this.tipo = tipo;
     }
 
     public String getTipo() {

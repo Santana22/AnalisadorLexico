@@ -10,11 +10,11 @@ package semantico;
  * @author Emerson
  */
 public class ClasseFilha extends Classe{
-    private final Classe mae;
+    private Classe mae;
+    private String nomeMae;
     
-    public ClasseFilha(String nome, Classe mae) {
+    public ClasseFilha(String nome, String nomeMae) {
         super(nome);
-        this.mae = mae;
     }
     
     @Override
@@ -37,6 +37,22 @@ public class ClasseFilha extends Classe{
             return m;
         }
         return mae.getMetodo(identificador);
+    }
+
+    public Classe getMae() {
+        return mae;
+    }
+
+    public void setMae(Classe mae) {
+        this.mae = mae;
+    }
+
+    public String getNomeMae() {
+        return nomeMae;
+    }
+
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae = nomeMae;
     }
     
     /**

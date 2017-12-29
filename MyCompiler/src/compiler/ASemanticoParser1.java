@@ -35,7 +35,9 @@ public class ASemanticoParser1 {
     private Classe classeAtual = null;
     private Metodo metodoAtual = null;
     private Variavel variavelAtual = null;
+    private Variavel parametroAtual = null;
     private List <Variavel> parametrosAtuais;
+    private Global global = Global.getInstance();
     
     private boolean proximoToken() {
         if (posicao + 1 < tokens.size()) {
@@ -108,7 +110,6 @@ public class ASemanticoParser1 {
             tratamentoConstante();
             if (aceitarToken(";")) {
                 addVariavel();
-                variavelAtual = null;
                 variavelConstanteObjeto();
             }
             variavelConstanteObjeto();
@@ -125,7 +126,6 @@ public class ASemanticoParser1 {
             variavelConstanteObjeto();
         } else if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
             variavelAtual.setTipo(tokenAnterior.getNome());
-            tipoVazio();
             tratamentoVariavel();
         } else {
         }
@@ -141,12 +141,11 @@ public class ASemanticoParser1 {
                 classeAtual = new Classe(tokenAnterior.getNome());
                 herancaNao();
                 if (aceitarToken("{")) {
-                    Global.addClasse(classeAtual);
+                    global.addClasse(classeAtual);
                     variavelConstanteObjeto();
                     metodo();
                     if (aceitarToken("}")) {
-                        Global.addClasse(classeAtual);
-                        classeAtual = null;
+                        global.addClasse(classeAtual);
                         classe();
                     }
                 } 
@@ -161,10 +160,7 @@ public class ASemanticoParser1 {
         }
         return false;
     }
-
-    private void tipoVazio() {
-    }
-
+    
     private void tratamentoConstante() {
         if (aceitarToken("Identificador")) {
             variavelAtual.setNome(tokenAnterior.getNome());
@@ -180,14 +176,13 @@ public class ASemanticoParser1 {
         variaveis();
         if (aceitarToken(";")) {
             addVariavel();
-            variavelAtual = null;
             variavelConstanteObjeto();
         }
     }
 
     private void geradorConstante() {
         if (aceitarToken(",")) {
-            if(!Global.addVariavel(variavelAtual)){
+            if(!global.addVariavel(variavelAtual)){
                 //constante já existente exception
             }
             tratamentoConstante();
@@ -199,13 +194,7 @@ public class ASemanticoParser1 {
             if (aceitarToken("-")) {
                 if (aceitarToken(">")) {
                     if (aceitarToken("Identificador")) {
-                        String nome = classeAtual.getNome();
-                        Classe mae = Global.getClasse(tokenAnterior.getNome());
-                        if(mae==null){
-                            //classe mãe inexistente exception
-                        }else{
-                            classeAtual = new ClasseFilha(nome, mae);
-                        }
+                        classeAtual = new ClasseFilha(classeAtual.getNome(), tokenAnterior.getNome());
                     } 
                 } 
             }
@@ -263,7 +252,7 @@ public class ASemanticoParser1 {
                 returnConsumido();
             }
         } else if (tipo()) {
-            variavelAtual = new Variavel(tokenAnterior.getNome(), null, false);
+            variavelAtual.setNome(tokenAnterior.getNome());
             criarVariavel();
         } else if (aceitarToken("-")) {
             classificarVariavel();
@@ -305,10 +294,12 @@ public class ASemanticoParser1 {
         operation();
     }
 
-    private void metodo() {
-        metodoAtual = new Metodo();
+    private void metodo() { 
         if (aceitarToken(":")) {
             if (aceitarToken(":")) {
+                metodoAtual = new Metodo();
+                parametrosAtuais = new ArrayList();
+                parametroAtual = new Variavel();
                 comSemRetorno();
             }
         }
@@ -318,16 +309,13 @@ public class ASemanticoParser1 {
         if (aceitarToken("Identificador")) {
             metodoAtual.setNome(tokenAnterior.getNome());
             if (aceitarToken("(")) {
-                parametrosAtuais = new ArrayList();
                 parametros();
                 if (aceitarToken(")")) {
                     metodoAtual.setParametros(parametrosAtuais);
-                    parametrosAtuais = null;
                     if (aceitarToken("{")) {
                         program();
                         if (aceitarToken("}")) {
                             addMetodo();
-                            metodoAtual = null;
                             variavelConstanteObjeto();
                             metodo();
                         }
@@ -343,7 +331,6 @@ public class ASemanticoParser1 {
             } else if (aceitarToken("Identificador")) {
                 metodoAtual.setNome(tokenAnterior.getNome());
                 if (aceitarToken("(")) {
-                    parametrosAtuais = new ArrayList();
                     parametros();
                     if (aceitarToken(")")) {
                         metodoAtual.setParametros(parametrosAtuais);
@@ -352,7 +339,6 @@ public class ASemanticoParser1 {
                             program();
                             if (aceitarToken("}")) {
                                 addMetodo();
-                                metodoAtual = null;
                                 metodo();
                             }
                         }
@@ -364,16 +350,13 @@ public class ASemanticoParser1 {
             if (aceitarToken("Identificador")) {
                 metodoAtual.setNome(tokenAnterior.getNome());
                 if (aceitarToken("(")) {
-                    parametrosAtuais = new ArrayList();
                     parametros();
                     if (aceitarToken(")")) {
                         metodoAtual.setParametros(parametrosAtuais);
-                        parametrosAtuais = null;
                         if (aceitarToken("{")) {
                             program();
                             if (aceitarToken("}")) {
                                 addMetodo();
-                                metodoAtual = null;
                                 metodo();
                             }
                         } 
@@ -398,11 +381,9 @@ public class ASemanticoParser1 {
 
     private void parametros() {
         if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool") || aceitarToken("Identificador")) {
-            variavelAtual = new Variavel();
-            variavelAtual.setTipo(tokenAnterior.getNome());
-            tipoVazio();
+            parametroAtual.setTipo(tokenAnterior.getNome());
             if (aceitarToken("Identificador")) {
-                variavelAtual.setNome(tokenAnterior.getNome());
+                parametroAtual.setNome(tokenAnterior.getNome());
                 acrescentarParametros();
             } 
         }
@@ -633,7 +614,6 @@ public class ASemanticoParser1 {
         variaveis();
         if (aceitarToken(";")) {
             addVariavel();
-            variavelAtual = null;
             program();
         } 
     }
@@ -670,7 +650,6 @@ public class ASemanticoParser1 {
             }
         } else if (aceitarToken(";")) {
             addVariavel();
-            variavelAtual = null;
         }
     }
 
@@ -715,7 +694,7 @@ public class ASemanticoParser1 {
     
     private void addVariavel(){
         if(classeAtual==null){
-            if(!Global.addVariavel(variavelAtual)){
+            if(!global.addVariavel(variavelAtual)){
                 //erro ao add variavel
             }
         }else{
@@ -732,8 +711,8 @@ public class ASemanticoParser1 {
     }
 
     private void addParametro() {
-        if(!parametrosAtuais.contains(variavelAtual)){
-            parametrosAtuais.add(variavelAtual);
+        if(!parametrosAtuais.contains(parametroAtual)){
+            parametrosAtuais.add(parametroAtual);
         }else{
             //erro parametro já existe com esse nome
         }

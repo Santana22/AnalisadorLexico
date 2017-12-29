@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 import semantico.Classe;
 import semantico.Global;
+import semantico.Variavel;
 
 /**
  *
@@ -25,9 +26,14 @@ public class ControllerSemantico {
     
     public void iniciar(ArrayList <Token> tokens, File file){
         this.analisadorSemanticop1.iniciar(tokens, file);
-        Classe c = Global.getClasse("a");
+        Global g = Global.getInstance();
         
-        System.out.println(c.getNome());
+        //Variavel v = g.getClasse("a").getMetodo("metodo").getVariavel("moto");
+        
+        Variavel v = g.getClasse("a").getMetodo("metodo").getVariaveis().get(0);
+        
+        System.out.println("name: "+v.getNome());
+        //System.out.println("nome: "+v.getNome()+" tipo: "+v.getTipo());
     }
     
 }

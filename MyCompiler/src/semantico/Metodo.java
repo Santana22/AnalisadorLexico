@@ -20,36 +20,29 @@ public class Metodo {
     private List <Variavel> parametros;
     
     public Metodo(){
-        
+        this.variaveis = new ArrayList<>();
     }
     
     /**
-     * Construtor para o caso do metodo ser void
-     * @param tipo
-     * @param nome 
-     */
-    public Metodo(String tipo, String nome) {
-        this.tipo = tipo;
-        this.nome = nome;
-        this.variaveis = new ArrayList<>();
-        this.parametros = new ArrayList<>();
-    }
-
-    /**
      * Construtor para caso o metodo possua parametros
      * @param tipo
-     * @param nome
-     * @param parametros 
      */
-    public Metodo(String tipo, String nome, List<Variavel> parametros) {
+    public Metodo(String tipo) {
         this.tipo = tipo;
-        this.nome = nome;
         this.variaveis = new ArrayList<>();
-        this.parametros = parametros;
     }
 
     public String getNome() {
         return nome;
+    }
+    
+    public Variavel getVariavel(String identificador){
+        for(Variavel v:variaveis){
+            if(v.getNome().equals(identificador)){
+                return v;
+            }
+        }
+        return null;
     }
 
     public void setNome(String nome) {

@@ -12,16 +12,32 @@ import java.util.List;
  *
  * @author Emerson
  */
-public abstract class Global {
-    private static List <Variavel> variaveis = new ArrayList<>();
-    private static List <Classe> classes = new ArrayList<>();
+public class Global {
+    private List <Variavel> variaveis;
+    private List <Classe> classes;
+    private static Global instance;
+    
+    /**
+     * Construtor da classe
+     */
+    private Global(){
+        variaveis = new ArrayList<>();
+        classes = new ArrayList<>();
+    }
+    
+    public static Global getInstance(){
+        if(instance==null){
+            instance = new Global();
+        }
+        return instance;
+    }
     
     /**
      * Adiciona uma variavel caso não exista
      * @param v
      * @return 
      */
-    public static boolean addVariavel(Variavel v){
+    public boolean addVariavel(Variavel v){
         if(!variaveis.contains(v)){
             variaveis.add(v);
             return true;
@@ -34,7 +50,7 @@ public abstract class Global {
      * @param c
      * @return 
      */
-    public static boolean addClasse(Classe c){
+    public boolean addClasse(Classe c){
         if(!classes.contains(c)){
             classes.add(c);
             return true;
@@ -47,7 +63,7 @@ public abstract class Global {
      * @param identificador
      * @return 
      */
-    public static  Classe getClasse(String identificador){
+    public Classe getClasse(String identificador){
         for(Classe c:classes){
             if(c.getNome().equals(identificador)){
                 return c;
@@ -61,7 +77,7 @@ public abstract class Global {
      * @param identificador
      * @return 
      */
-    public static Variavel getVariavel(String identificador){
+    public Variavel getVariavel(String identificador){
         for(Variavel v:variaveis){
             if(v.getNome().equals(identificador)){
                 return v;
