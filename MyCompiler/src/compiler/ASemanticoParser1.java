@@ -5,9 +5,14 @@
  */
 package compiler;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import semantico.Classe;
 import semantico.ClasseFilha;
 import semantico.Global;
@@ -24,6 +29,8 @@ public class ASemanticoParser1 {
     private ArrayList<Token> tokens;
     private boolean umaClasse = false;
     private int umaMain = 0;
+    private BufferedWriter saidaSematico;
+    private int errosSemanticos = 0;
     private int posicao = -1;
     private Classe classeAtual = null;
     private Metodo metodoAtual = null;
@@ -52,7 +59,38 @@ public class ASemanticoParser1 {
     }
 
     public void iniciar(ArrayList <Token> tokens, File file){
-        this.tokens=tokens;
+        
+        FileWriter output;
+        try {
+            output = new FileWriter(new File(file.getParent(), "output_sen_" + file.getName()));
+            saidaSematico = new BufferedWriter(output);
+            saidaSematico.write("Análise Semântica iniciada para o arquivo " + file.getName());
+            saidaSematico.newLine();
+            System.out.println("Análise Semântica iniciada para o arquivo " + file.getName());
+            this.tokens = tokens;
+            inicio();
+            if (errosSemanticos == 0 && umaClasse && umaMain == 1) {
+                System.out.println("Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
+                saidaSematico.write("Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
+            } else{
+                if (!umaClasse) {
+                    saidaSematico.write("Erro Grave: Deve existir, pelo menos, uma classe.");
+                    saidaSematico.newLine();
+                }
+                if(umaMain != 1){
+                    saidaSematico.write("Erro Grave: Deve existir somente um método main no arquivo.");
+                    saidaSematico.newLine();
+                }
+                System.out.println("Análise Semântica finalizada com erro para o arquivo " + file.getName());
+                saidaSematico.write("Análise Semântica finalizada com erro para o arquivo " + file.getName());
+            }
+            saidaSematico.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.tokens = tokens;
         inicio();
     }
     
@@ -97,7 +135,7 @@ public class ASemanticoParser1 {
     private void classe() {
         if (aceitarToken("class")) {
             if(!umaClasse){
-                umaClasse =  true;
+                umaClasse = true;
             }
             if (aceitarToken("Identificador")) {
                 classeAtual = new Classe(tokenAnterior.getNome());
