@@ -739,7 +739,11 @@ public class ASemanticoParser1 {
             if(c instanceof ClasseFilha){
                 Classe mae = global.getClasse(((ClasseFilha) c).getNomeMae());
                 if(mae!=null){
-                    ((ClasseFilha) c).setMae(mae);
+                    if(mae instanceof ClasseFilha){
+                        System.out.println("erro não permitida herança em cadeia");
+                    }else{
+                        ((ClasseFilha) c).setMae(mae);
+                    }  
                 }else{
                     System.out.println("mae não encontrada");
                 }
