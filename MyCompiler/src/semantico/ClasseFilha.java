@@ -29,7 +29,11 @@ public class ClasseFilha extends Classe{
         if(m!=null){
             return m;
         }
-        return mae.getMetodo(identificador);
+        if(mae!=null){
+            return mae.getMetodo(identificador);
+        }else{
+            return null;
+        }
     }
 
     public Classe getMae() {
@@ -59,7 +63,11 @@ public class ClasseFilha extends Classe{
         if(v!=null){
             return v;
         }
-        return mae.getVariavel(identificador);
+        if(mae!=null){
+            return mae.getVariavel(identificador);
+        }else{
+            return null;
+        }
     }
     
     /**
