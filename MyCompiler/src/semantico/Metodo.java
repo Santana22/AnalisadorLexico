@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Emerson
  */
-public class Metodo implements Cloneable{
+public class Metodo {
     private String tipo;
     private String nome;
     private List <Variavel> variaveis;
@@ -108,9 +108,9 @@ public class Metodo implements Cloneable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.tipo);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + Objects.hashCode(this.parametros);
+        hash = 71 * hash + Objects.hashCode(this.nome);
         return hash;
-    }  
+    }
+
+  
 }

@@ -27,7 +27,8 @@ public class Exec {
             if (!file.isDirectory() && !file.getName().contains("output_")) {
                 tokens = facade.analisadorLexico(file);
                 if(ALexico.continuar)
-                    facade.analisadorSintatico(tokens, file);    
+                    facade.analisadorSintatico(tokens, file);
+                facade.analisadorSematico(tokens, file);
             }
         }
     }

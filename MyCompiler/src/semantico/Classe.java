@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Emerson
  */
-public class Classe implements Cloneable{
+public class Classe{
     private String nome;
     private List <Variavel> variaveis;
     private List <Metodo> metodos;

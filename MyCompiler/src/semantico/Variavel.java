@@ -11,10 +11,10 @@ import java.util.Objects;
  *
  * @author Emerson
  */
-public class Variavel implements Cloneable{
+public class Variavel{
     private String tipo;
     private String nome;
-    private boolean constante;
+    private boolean constante = false;
 
     public Variavel() {
     }
@@ -67,10 +67,11 @@ public class Variavel implements Cloneable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.tipo);
-        hash = 67 * hash + Objects.hashCode(this.nome);
+        int hash = 3;
+        hash = 13 * hash + Objects.hashCode(this.nome);
         return hash;
     }
+
+
     
 }

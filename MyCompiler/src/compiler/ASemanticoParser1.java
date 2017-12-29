@@ -5,6 +5,7 @@
  */
 package compiler;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import semantico.Classe;
@@ -17,7 +18,7 @@ import semantico.Variavel;
  *
  * @author Emerson
  */
-public class ASemantico {
+public class ASemanticoParser1 {
     
     private Token tokenAtual, tokenAnterior;
     private ArrayList<Token> tokens;
@@ -50,6 +51,11 @@ public class ASemantico {
         return false;
     }
 
+    public void iniciar(ArrayList <Token> tokens, File file){
+        this.tokens=tokens;
+        inicio();
+    }
+    
     private void inicio() {
         proximoToken();
         variavelConstanteObjeto();
@@ -85,7 +91,7 @@ public class ASemantico {
             tratamentoVariavel();
         } else {
         }
-        variavelAtual = null;
+        variavelAtual = new Variavel();
     }
 
     private void classe() {
