@@ -781,6 +781,5 @@ public class ASemanticoParser1 {
         } catch (IOException ex) {
             Logger.getLogger(ASemanticoParser1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     } 
 }

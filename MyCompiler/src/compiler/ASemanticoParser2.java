@@ -668,7 +668,7 @@ public class ASemanticoParser2 {
                         proximoToken();
                     }
                     //erro não permitida chamada de metodo na passagem de parametros
-                    salvarMensagemArquivo("Não permitida chamada de método na passagem de parâmetros " + tokenAnterior.getLinha());
+                    salvarMensagemArquivo("Não permitida chamada de método na passagem de parâmetros. Linha: " + tokenAnterior.getLinha());
                 }
             } else if (tokenAtual.getNome().equals("[")) {
                 tipo = getTipoTokenAtual();
