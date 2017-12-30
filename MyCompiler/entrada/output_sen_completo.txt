@@ -28,3 +28,30 @@ Variável já existente com esse nome. Linha: 41
 Variável já existente com esse nome. Linha: 42
 1ª Análise Semântica finalizada com erro para o arquivo completo.txt
 2ª Análise Semântica iniciada para o arquivo completo.txt
+Tipo incompatível atribuido a constante. Linha: 3
+Tipo de retorno incompatível. Linha: 21
+Variável nao declarada nesse escopo. Linha: 24
+Variável nao declarada nesse escopo. Linha: 25
+Variável nao declarada nesse escopo. Linha: 26
+Método não declarado no escopo. Linha: 26
+Variável nao declarada nesse escopo. Linha: 27
+Objeto não encontrado. Linha: 27
+Variável nao declarada nesse escopo. Linha: 28
+Objeto não encontrado. Linha: 28
+Objeto não encontrado. Linha: 29
+Tipos desconhecido. Linha: 29
+Tipo de atribuição incorreto. Linha: 29
+Método não declarado no escopo. Linha: 30
+Tipos desconhecido. Linha: 30
+Tipo de atribuição incorreto. Linha: 30
+Objeto não encontrado. Linha: 31
+Tipos desconhecido. Linha: 31
+Tipo de atribuição incorreto. Linha: 31
+Objeto não encontrado. Linha: 32
+Tipos desconhecido. Linha: 32
+Tipos desconhecido. Linha: 32
+Tipo de atribuição incorreto. Linha: 32
+Tipos desconhecido. Linha: 34
+Tipos desconhecido. Linha: 35
+Tipos desconhecido. Linha: 35
+2ª Análise Semântica finalizada com erro para o arquivo completo.txt

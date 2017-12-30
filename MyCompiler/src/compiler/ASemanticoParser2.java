@@ -82,7 +82,7 @@ public class ASemanticoParser2 {
             System.out.println("2ª Análise Semântica iniciada para o arquivo " + file.getName());
             saidaSematico.write("2ª Análise Semântica iniciada para o arquivo " + file.getName());
             saidaSematico.newLine();
-            saidaSematico.close(); //Comente essa linha quando parar de dar erro!
+            //saidaSematico.close(); //Comente essa linha quando parar de dar erro!
             this.tokens = tokens;
             inicio();
             if (errosSemanticos == 0 && umaClasse && umaMain == 1) {
@@ -288,6 +288,8 @@ public class ASemanticoParser2 {
                     }
                 }
             } else if (aceitarToken("Identificador")) {
+                if (variavelAtual == null)
+                    variavelAtual = new Variavel();
                 variavelAtual.setNome(tokenAnterior.getNome());
                 criarObjetos();
             } else if (tokenAtual.getNome().equals("[")) {
@@ -936,7 +938,7 @@ public class ASemanticoParser2 {
     private void verificarTipoOperacao(String tipo){
         if(tipo==null){
             //erro tipo desconhecido
-            salvarMensagemArquivo("Tipos desconhecido. Linha: " + tokenAnterior.getLinha());
+            salvarMensagemArquivo("Tipos desconhecidos. Linha: " + tokenAnterior.getLinha());
             return;
         }
         if(tipoOperacao==null){
