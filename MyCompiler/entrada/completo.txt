@@ -1,6 +1,6 @@
 int a;
 int a,b,c;
-final int a = 4;
+final int a = 4.0;
 final bool a = 3,b = 5.5,x =7;
 int a[9];
 int a[-21], b[3];

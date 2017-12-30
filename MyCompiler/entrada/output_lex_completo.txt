@@ -13,7 +13,7 @@ Iniciando Análise Léxica...< int >, < Palavra Reservada >, Linha: 1
 < int >, < Palavra Reservada >, Linha: 3
 < a >, < Identificador >, Linha: 3
 < = >, < Operador Relacional >, Linha: 3
-< 4 >, < Número >, Linha: 3
+< 4.0 >, < Número >, Linha: 3
 < ; >, < Delimitador >, Linha: 3
 < final >, < Palavra Reservada >, Linha: 4
 < bool >, < Palavra Reservada >, Linha: 4

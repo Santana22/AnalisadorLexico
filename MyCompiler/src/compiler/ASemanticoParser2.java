@@ -35,9 +35,12 @@ public class ASemanticoParser2 {
     private Classe classeAtual = null;
     private Metodo metodoAtual = null;
     private Variavel variavelAtual = null;
-    private Variavel parametroAtual = null;
-    private List <Variavel> parametrosAtuais;
     private Global global = Global.getInstance();
+    private int escopoVariavel = 0; //-1 atual, 0 - global, 1 - classe 
+    private int nivel = 0; //variavel que indica em qual nivel a analise está: nivel 0 - corpo principal, nivel 1 - classe, nivel 2 - metodo
+    private String nomeVariavelAtribuicao;
+    private String objetoChamadaMetodo;
+    private Metodo metodoChamado;
     
     private boolean proximoToken() {
         if (posicao + 1 < tokens.size()) {
@@ -137,12 +140,14 @@ public class ASemanticoParser2 {
                 umaClasse = true;
             }
             if (aceitarToken("Identificador")) {
-                classeAtual = new Classe(tokenAnterior.getNome());
+                classeAtual = global.getClasse(tokenAnterior.getNome());
                 herancaNao();
                 if (aceitarToken("{")) {
+                    nivel = 1;
                     variavelConstanteObjeto();
                     metodo();
                     if (aceitarToken("}")) {
+                        nivel = 0;
                         classe();
                     }
                 } 
@@ -163,6 +168,7 @@ public class ASemanticoParser2 {
             variavelAtual.setNome(tokenAnterior.getNome());
             if (aceitarToken("=")) {
                 if (aceitarToken("Número")) {
+                    verificarTipoConstante();
                     geradorConstante();
                 } 
             } 
@@ -190,7 +196,6 @@ public class ASemanticoParser2 {
             if (aceitarToken("-")) {
                 if (aceitarToken(">")) {
                     if (aceitarToken("Identificador")) {
-                        classeAtual = new ClasseFilha(classeAtual.getNome(), tokenAnterior.getNome());
                     } 
                 } 
             }
@@ -253,9 +258,10 @@ public class ASemanticoParser2 {
         } else if (aceitarToken("-")) {
             classificarVariavel();
         } else if (aceitarToken("Identificador")) {
-            variavelAtual = new Variavel();
-            variavelAtual.setTipo(tokenAnterior.getNome());
+            nomeVariavelAtribuicao = tokenAnterior.getNome();
+            verificarDeclaracaoVariavel();
             if (aceitarToken("=")) {
+                escopoVariavel = -1;
                 if (tokenAtual.getNome().equals(">")) {
                     instancia();
                 } else {
@@ -296,9 +302,6 @@ public class ASemanticoParser2 {
     private void metodo() { 
         if (aceitarToken(":")) {
             if (aceitarToken(":")) {
-                metodoAtual = new Metodo();
-                parametrosAtuais = new ArrayList();
-                parametroAtual = new Variavel();
                 comSemRetorno();
             }
         }
@@ -306,14 +309,19 @@ public class ASemanticoParser2 {
 
     private void comSemRetorno() {
         if (aceitarToken("Identificador")) {
-            metodoAtual.setNome(tokenAnterior.getNome());
+            if(classeAtual!=null){
+                metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
+            }else{
+                //metodo fora de classe
+            }
             if (aceitarToken("(")) {
                 parametros();
                 if (aceitarToken(")")) {
-                    metodoAtual.setParametros(parametrosAtuais);
                     if (aceitarToken("{")) {
+                        nivel = 2;
                         program();
                         if (aceitarToken("}")) {
+                            nivel = 1;
                             variavelConstanteObjeto();
                             metodo();
                         }
@@ -321,18 +329,23 @@ public class ASemanticoParser2 {
                 }
             } 
         } else if (aceitarToken("bool")) {
-            metodoAtual.setTipo(tokenAnterior.getNome());
             if (aceitarToken("main")) {
-                metodoAtual.setNome(tokenAnterior.getNome());
+                if(classeAtual!=null){
+                    metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
+                }else{
+                    //metodo fora de classe
+                }
                 umaMain++;
                 main();
             } else if (aceitarToken("Identificador")) {
-                metodoAtual.setNome(tokenAnterior.getNome());
+                if(classeAtual!=null){
+                    metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
+                }else{
+                    //metodo fora de classe
+                }
                 if (aceitarToken("(")) {
                     parametros();
                     if (aceitarToken(")")) {
-                        metodoAtual.setParametros(parametrosAtuais);
-                        parametrosAtuais = null;
                         if (aceitarToken("{")) {
                             program();
                             if (aceitarToken("}")) {
@@ -343,13 +356,15 @@ public class ASemanticoParser2 {
                 }
             } 
         } else if (tipo()) {
-            metodoAtual.setTipo(tokenAnterior.getNome());
             if (aceitarToken("Identificador")) {
-                metodoAtual.setNome(tokenAnterior.getNome());
+                if(classeAtual!=null){
+                    metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
+                }else{
+                    //metodo fora de classe
+                }
                 if (aceitarToken("(")) {
                     parametros();
                     if (aceitarToken(")")) {
-                        metodoAtual.setParametros(parametrosAtuais);
                         if (aceitarToken("{")) {
                             program();
                             if (aceitarToken("}")) {
@@ -377,9 +392,7 @@ public class ASemanticoParser2 {
 
     private void parametros() {
         if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool") || aceitarToken("Identificador")) {
-            parametroAtual.setTipo(tokenAnterior.getNome());
             if (aceitarToken("Identificador")) {
-                parametroAtual.setNome(tokenAnterior.getNome());
                 acrescentarParametros();
             } 
         }
@@ -484,15 +497,19 @@ public class ASemanticoParser2 {
     private void classificarVariavel() {
         if (aceitarToken("-")) {
             if (aceitarToken(">")) {
+                escopoVariavel = 0;
                 operationLine();
             }
         } else if (aceitarToken(">")) {
+            escopoVariavel = 1;
             operationLine();
         }
     }
 
     private void operationFor() {
         if (aceitarToken("Identificador")) {
+            nomeVariavelAtribuicao = tokenAnterior.getNome();
+            verificarDeclaracaoVariavel();
             if (aceitarToken("=")) {
                 operation();
             } 
@@ -574,8 +591,11 @@ public class ASemanticoParser2 {
 
     private void acessoVetorMatriz() {
         if (aceitarToken("Identificador")) {
+            nomeVariavelAtribuicao = tokenAnterior.getNome();
+            verificarDeclaracaoVariavel();
             if (aceitarToken("[")) {
                 if (aceitarToken("Número")) {
+                    verificarAcessoVetor();
                     if (aceitarToken("]")) {
                         fatoracaoAcessoVetorMatriz();
                     }
@@ -646,6 +666,7 @@ public class ASemanticoParser2 {
     }
 
     private void chamadaMetodo() {
+        objetoChamadaMetodo = tokenAnterior.getNome();
         if (aceitarToken("Identificador")) {
             if (aceitarToken(":")) {
                 if (aceitarToken(":")) {
@@ -660,6 +681,31 @@ public class ASemanticoParser2 {
         } else if (aceitarToken(":")) {
             if (aceitarToken(":")) {
                 if (aceitarToken("Identificador")) {
+                    Variavel objetoAtual = metodoAtual.getVariavel(objetoChamadaMetodo);
+                    if(objetoAtual == null){
+                        classeAtual.getVariavel(objetoChamadaMetodo);
+                    }
+                    if(objetoAtual == null){
+                        global.getVariavel(objetoChamadaMetodo);
+                    }
+                    if(objetoAtual == null){
+                        //erro objeto não encontrado
+                    }else{
+                        String tipo = objetoAtual.getTipo();
+                        if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
+                            //erro tipo do objeto incompativel
+                        }else{
+                            Classe c = global.getClasse(tipo);
+                            if(c==null){
+                                //tipo do objeto não existe
+                            }else{
+                                metodoChamado = c.getMetodo(tokenAnterior.getNome());
+                                if(metodoChamado==null){
+                                    //metodo não declarado nesse escopo
+                                }   
+                            }
+                        }
+                    }
                     if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
                     } else if (aceitarToken(";")) {
@@ -667,6 +713,14 @@ public class ASemanticoParser2 {
                 }
             }
         } else if (aceitarToken("(")) {
+            if(classeAtual!=null){
+                metodoChamado = classeAtual.getMetodo(objetoChamadaMetodo);
+                if(metodoChamado==null){
+                    //metodo não declarado nesse escopo
+                }
+            }else{
+                //chamada de metodo fora de classe
+            }
             fatoracaoChamadaMetodo();
         }
     }
@@ -682,5 +736,53 @@ public class ASemanticoParser2 {
                 }
             }
         }
-    }   
+    }
+    
+    private boolean isFloat(){
+        return tokenAnterior.getNome().contains(".");
+    }
+    
+    private void verificarTipoConstante(){
+        if(variavelAtual.getTipo().equals("int")&&isFloat()){
+            System.out.println("erro tipo incompativel atribuido a constante");
+        }else if(variavelAtual.getTipo().equals("float")&&!isFloat()){
+            System.out.println("erro tipo incompativel atribuido a constante");
+        }
+    }
+
+    private void verificarAcessoVetor() {
+        if(isFloat()||Integer.parseInt(tokenAtual.getNome())<0){
+            System.out.println("erro indice invalido");
+        }
+    }
+
+    private void verificarDeclaracaoVariavel() {
+        if(escopoVariavel==0){ //global
+            variavelAtual = global.getVariavel(nomeVariavelAtribuicao);
+            if(variavelAtual==null){
+                System.out.println("variavel não declada nesse escopo");
+            }
+        }else if(escopoVariavel==1){ //classe
+            if(classeAtual==null){
+                System.out.println("variavel não declada nesse escopo");
+            }else{
+                variavelAtual = classeAtual.getVariavel(nomeVariavelAtribuicao);
+                if(variavelAtual==null){
+                    System.out.println("variavel não declada nesse escopo");
+                }
+            }
+        }else if(escopoVariavel==-1){
+            if(nivel==0){
+                variavelAtual = global.getVariavel(nomeVariavelAtribuicao);
+            }else if(nivel == 1){
+                variavelAtual = classeAtual.getVariavel(nomeVariavelAtribuicao);
+            }else if (nivel == 2){
+                variavelAtual = metodoAtual.getVariavel(nomeVariavelAtribuicao);
+            }
+        }
+    }
+    
+    private void verificarTipoChamadaMetodo(){
+        
+    }
 }
