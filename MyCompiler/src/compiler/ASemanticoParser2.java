@@ -668,6 +668,7 @@ public class ASemanticoParser2 {
                         proximoToken();
                     }
                     //erro não permitida chamada de metodo na passagem de parametros
+                    salvarMensagemArquivo("Não permitida chamada de método na passagem de parâmetros " + tokenAnterior.getLinha());
                 }
             } else if (tokenAtual.getNome().equals("[")) {
                 tipo = getTipoTokenAtual();
@@ -1005,10 +1006,11 @@ public class ASemanticoParser2 {
             metodoChamado = c.getMetodo(tokenAnterior.getNome());
             if (metodoChamado == null) {
                 //erro construtor invalido
+                salvarMensagemArquivo("Construtor inválido. Linha: " + tokenAnterior.getLinha());
             }
         } else {
             //construtor não encontrado
+            salvarMensagemArquivo("Construtor não declarado. Linha: " + tokenAnterior.getLinha());
         }
     }
-
 }

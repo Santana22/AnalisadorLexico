@@ -1,31 +1,31 @@
 1ª Análise Semântica iniciada para o arquivo completo.txt
 Variável já existente com esse nome. Linha: 2
+Variável já existente com esse nome. Linha: 2
 Variável já existente com esse nome. Linha: 3
-Variável já existente com esse nome. Linha: 4
 Constante já existente com esse nome. Linha: 4
+Variável já existente com esse nome. Linha: 4
 Variável já existente com esse nome. Linha: 5
-Variável já existente com esse nome. Linha: 6
 Erro! Tamanho do vetor menor 1. Linha: 6
 Variável já existente com esse nome. Linha: 6
-Variável já existente com esse nome. Linha: 8
+Variável já existente com esse nome. Linha: 7
 Variável já existente com esse nome. Linha: 9
-Variável já existente com esse nome. Linha: 10
+Variável já existente com esse nome. Linha: 9
+Variável já existente com esse nome. Linha: 12
 Variável já existente com esse nome. Linha: 12
 Variável já existente com esse nome. Linha: 13
-Variável já existente com esse nome. Linha: 14
 Constante já existente com esse nome. Linha: 14
 Constante já existente com esse nome. Linha: 14
 Variável já existente com esse nome. Linha: 15
+Variável já existente com esse nome. Linha: 16
 Variável já existente com esse nome. Linha: 17
 Variável já existente com esse nome. Linha: 17
-Variável já existente com esse nome. Linha: 18
 Variável já existente com esse nome. Linha: 19
-Variável já existente com esse nome. Linha: 20
+Variável já existente com esse nome. Linha: 19
 Variável já existente com esse nome. Linha: 25
-Variável já existente com esse nome. Linha: 26
+Variável já existente com esse nome. Linha: 25
 Variável já existente com esse nome. Linha: 40
 Variável já existente com esse nome. Linha: 41
-Variável já existente com esse nome. Linha: 42
+Variável já existente com esse nome. Linha: 41
 1ª Análise Semântica finalizada com erro para o arquivo completo.txt
 2ª Análise Semântica iniciada para o arquivo completo.txt
 Tipo incompatível atribuido a constante. Linha: 3
@@ -52,8 +52,11 @@ Objeto não encontrado. Linha: 32
 Tipos desconhecidos. Linha: 32
 Tipos desconhecidos. Linha: 32
 Tipo de atribuição incorreto. Linha: 32
+Construtor não declarado. Linha: 34
 Tipos desconhecidos. Linha: 34
+Construtor não declarado. Linha: 35
 Tipos desconhecidos. Linha: 35
+Não permitida chamada de método na passagem de parâmetros 35
 Tipos desconhecidos. Linha: 35
 Tipos desconhecidos. Linha: 36
 Tipo de atribuição incorreto. Linha: 36

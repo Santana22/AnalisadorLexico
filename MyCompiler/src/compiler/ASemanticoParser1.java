@@ -21,7 +21,7 @@ import semantico.Variavel;
  */
 public class ASemanticoParser1 {
     
-    private Token tokenAtual, tokenAnterior;
+    private Token tokenAtual, tokenAnterior, tokenAnteriorAnterior;
     private ArrayList<Token> tokens;
     private boolean umaClasse = false;
     private int umaMain = 0;
@@ -38,6 +38,7 @@ public class ASemanticoParser1 {
     private boolean proximoToken() {
         if (posicao + 1 < tokens.size()) {
             posicao++;
+            tokenAnteriorAnterior = tokenAnterior;
             tokenAnterior = tokenAtual;
             tokenAtual = tokens.get(posicao);
             aceitarToken("Comentário de Linha"); // Pulando comentarios
@@ -703,18 +704,18 @@ public class ASemanticoParser1 {
         if(classeAtual==null){
             if(!global.addVariavel(variavelAtual)){
                 //erro ao add variavel
-                salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + + tokenAtual.getLinha());
+                salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + tokenAnteriorAnterior.getLinha());
             }
         }else{
             if(metodoAtual==null){
                 if(!classeAtual.addVariavel(variavelAtual)){
                     //erro ao add variavel
-                     salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + + tokenAtual.getLinha());
+                     salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + tokenAnteriorAnterior.getLinha());
                 }
             }else{
                 if(!metodoAtual.addVariavel(variavelAtual)){
                     //erro ao add variavel
-                     salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + + tokenAtual.getLinha());
+                     salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + tokenAnteriorAnterior.getLinha());
                 }
             }
         }
