@@ -668,9 +668,18 @@ public class ASemanticoParser2 {
     private void chamadaMetodo() {
         objetoChamadaMetodo = tokenAnterior.getNome();
         if (aceitarToken("Identificador")) {
+            Variavel obj = buscarObjeto();
+            objetoChamadaMetodo = tokenAnterior.getNome();
             if (aceitarToken(":")) {
                 if (aceitarToken(":")) {
                     if (aceitarToken("Identificador")) {
+                        if(obj!=null){
+                            Variavel obj2 = buscarObjeto(obj);
+                            if(obj2!=null&&tokenAtual.getNome().equals("(")){
+                                objetoChamadaMetodo = tokenAnterior.getNome();
+                                buscarChamadaMetodo(obj2);
+                            }
+                        }
                         if (aceitarToken("(")) {
                             fatoracaoChamadaMetodo();
                         } else if (aceitarToken(";")) {
@@ -681,30 +690,10 @@ public class ASemanticoParser2 {
         } else if (aceitarToken(":")) {
             if (aceitarToken(":")) {
                 if (aceitarToken("Identificador")) {
-                    Variavel objetoAtual = metodoAtual.getVariavel(objetoChamadaMetodo);
-                    if(objetoAtual == null){
-                        objetoAtual = classeAtual.getVariavel(objetoChamadaMetodo);
-                    }
-                    if(objetoAtual == null){
-                        objetoAtual = global.getVariavel(objetoChamadaMetodo);
-                    }
-                    if(objetoAtual == null){
-                        //erro objeto não encontrado
-                    }else{
-                        String tipo = objetoAtual.getTipo();
-                        if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
-                            //erro tipo do objeto incompativel
-                        }else{
-                            Classe c = global.getClasse(tipo);
-                            if(c==null){
-                                //tipo do objeto não existe
-                            }else{
-                                metodoChamado = c.getMetodo(tokenAnterior.getNome());
-                                if(metodoChamado==null){
-                                    //metodo não declarado nesse escopo
-                                }   
-                            }
-                        }
+                    Variavel obj = buscarObjeto();
+                    objetoChamadaMetodo = tokenAnterior.getNome();
+                    if(obj!=null){
+                        buscarChamadaMetodo(obj);
                     }
                     if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
@@ -782,7 +771,55 @@ public class ASemanticoParser2 {
         }
     }
     
+    private Variavel buscarObjeto(){
+        Variavel objetoAtual = metodoAtual.getVariavel(objetoChamadaMetodo);
+        if(objetoAtual == null){
+            objetoAtual = classeAtual.getVariavel(objetoChamadaMetodo);
+        }
+        if(objetoAtual == null){
+            objetoAtual = global.getVariavel(objetoChamadaMetodo);
+        }
+        if(objetoAtual == null){
+            //erro objeto não encontrado
+        }
+        return objetoAtual;
+    }
+    
+    private void buscarChamadaMetodo(Variavel objetoAtual){
+        String tipo = objetoAtual.getTipo();
+        if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
+            //erro tipo do objeto incompativel
+        }else{
+            Classe c = global.getClasse(tipo);
+            if(c==null){
+                //tipo do objeto não existe
+            }else{
+                metodoChamado = c.getMetodo(tokenAnterior.getNome());
+                if(metodoChamado==null){
+                    //metodo não declarado nesse escopo
+                }   
+            }
+        }
+    }
+    
+    private Variavel buscarObjeto(Variavel obj) {
+        String tipo = obj.getTipo();
+        if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
+            //erro tipo do objeto incompativel
+        }else{
+            Classe c = global.getClasse(tipo);
+            if(c==null){
+                //tipo do objeto não existe
+            }else{
+                return c.getVariavel(objetoChamadaMetodo);
+            }
+        }
+        return null;
+    }
+    
     private void verificarTipoChamadaMetodo(){
         
     }
+
+    
 }
