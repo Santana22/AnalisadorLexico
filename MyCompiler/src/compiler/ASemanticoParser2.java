@@ -42,6 +42,8 @@ public class ASemanticoParser2 {
     private String nomeVariavelAtribuicao;
     private String objetoChamadaMetodo;
     private Metodo metodoChamado;
+    private String tipoOperacao;
+    private boolean passagemParametro;
     
     private boolean proximoToken() {
         if (posicao + 1 < tokens.size()) {
@@ -272,6 +274,13 @@ public class ASemanticoParser2 {
                     instancia();
                 } else {
                     operation();
+                    if(variavelAtual!=null){
+                        if(variavelAtual.isConstante()){
+                            //erro não é permitido alterar valor de constante
+                        }else if(!variavelAtual.getTipo().equals(tipoOperacao)){
+                            //erro no tipo da atribuição
+                        }
+                    }
                     if (aceitarToken(";")) {
 
                     }
@@ -283,6 +292,13 @@ public class ASemanticoParser2 {
                 fatoracaoAcessoVetorMatriz();
                 if (aceitarToken("=")) {
                     operation();
+                    if(variavelAtual!=null){
+                        if(variavelAtual.isConstante()){
+                            //erro não é permitido alterar valor de constante
+                        }else if(!variavelAtual.getTipo().equals(tipoOperacao)){
+                            //erro no tipo da atribuição
+                        }
+                    }
                     if (aceitarToken(";")) {
 
                     }
@@ -297,6 +313,19 @@ public class ASemanticoParser2 {
     private void returnConsumido() {
         tiposReturn();
         if (aceitarToken(";")) {
+            if(metodoAtual!=null){
+                if(metodoAtual.getTipo()!=null){
+                    if(!metodoAtual.getTipo().equals(tipoOperacao)){
+                        //erro tipo de return incompativel
+                    }
+                }
+            }else if(!(metodoAtual==null&&tipoOperacao==null)){
+                //erro tipo de return incompativel
+            }
+            
+            if(!tokenAtual.getNome().equals("}")){
+                //codigo abaixo do return não sera executado
+            }
             program();
         } 
     }
@@ -528,6 +557,7 @@ public class ASemanticoParser2 {
     }
 
     private void operation() {
+        tipoOperacao = null;
         selectOperation(0);
     }
 
@@ -573,7 +603,7 @@ public class ASemanticoParser2 {
         if (aceitarToken("(")) {
             exLogicRelational(++parenteses);
         } else {
-            parenteses = exAritmeticas(parenteses);
+            value();
             if ((aceitarToken("=") && aceitarToken("=")) || aceitarToken("Operador Relacional") || aceitarToken("Operador Lógico")) {
                 exLogicRelational(parenteses);
             } else if (parenteses > 0 && aceitarToken(")")) {
@@ -611,14 +641,29 @@ public class ASemanticoParser2 {
     }
 
     private void value() {
+        String tipo = null;
         if (aceitarToken("Identificador")) {
             if (tokenAtual.getNome().equals("(") || tokenAtual.getNome().equals(":")) {
-                chamadaMetodo();
+                if(!passagemParametro){
+                    chamadaMetodo();
+                    if(metodoChamado!=null){
+                        if(metodoChamado.getTipo()!=null){
+                           tipo = metodoChamado.getTipo();
+                        }else{
+                            //tipo incompativel na chamada de metodo
+                        }
+                }
+                }else{
+                    //erro não permitida chamada de metodo na passagem de parametros
+                }
             } else if (tokenAtual.getNome().equals("[")) {
+                tipo = getTipoTokenAtual();
                 fatoracaoAcessoVetorMatriz();
             }
         } else if (aceitarToken("Número") || aceitarToken("Cadeia de Caracteres") || aceitarToken("true") || aceitarToken("false")) {
+            tipo = getTipoTokenAtual();
         }
+        verificarTipoOperacao(tipo);
     }
 
     private void fatoracaoAcessoVetorMatriz() {
@@ -648,6 +693,7 @@ public class ASemanticoParser2 {
                     } else {
                         passagemParametros();
                         if (aceitarToken(")") && aceitarToken(";")) {
+                            passagemParametro = false;
                         } 
                     }
                 }
@@ -656,6 +702,7 @@ public class ASemanticoParser2 {
     }
 
     private void passagemParametros() {
+        passagemParametro = true;
         operation();
         if (aceitarToken(",")) {
             passagemParametros();
@@ -726,11 +773,13 @@ public class ASemanticoParser2 {
 
     private void fatoracaoChamadaMetodo() {
         if (aceitarToken(")")) {
+            passagemParametro = false;
             if (aceitarToken(";")) {
             }
         } else {
             passagemParametros();
             if (aceitarToken(")")) {
+                passagemParametro = false;
                 if (aceitarToken(";")) {
                 }
             }
@@ -826,11 +875,39 @@ public class ASemanticoParser2 {
         }
         return null;
     }
-    
-    private void verificarTipoChamadaMetodo(){
-        
+
+    private Variavel buscarVariavel() {
+        Variavel v;
+        if(metodoAtual!=null){
+            v = metodoAtual.getVariavel(tokenAnterior.getNome());
+        }else if(classeAtual!=null){
+            v = classeAtual.getVariavel(tokenAnterior.getNome());
+        }else{
+            v = global.getVariavel(tokenAnterior.getNome());
+        }
+        return v;
     }
 
+    private String getTipoTokenAtual(){
+        String tipo = tokenAnterior.getTipo();
+        if(tipo.equals("identificador")){
+            Variavel v = buscarVariavel();
+            if(v!=null){
+                return v.getTipo();
+            }else{
+                //erro variavel não declarada
+            }
+        }else if(tipo.equals("true")||tipo.equals("false")){
+            return "bool";
+        }else if(tipo.equals("Cadeia de Caracteres")){
+            return "string";
+        }else if(tipo.equals("Número")&&isFloat()){
+            return "float";
+        }else if(tipo.equals("Número")&&!isFloat()){
+            return "int";
+        }
+        return "";
+    }
      private void salvarMensagemArquivo(String mensagem){
         try {
             saidaSematico.write(mensagem);
@@ -841,4 +918,16 @@ public class ASemanticoParser2 {
         }  
     } 
     
+    private void verificarTipoOperacao(String tipo){
+        if(tipo==null){
+            //erro tipo desconhecido
+            return;
+        }
+        if(tipoOperacao==null){
+            tipoOperacao = tipo;
+        }else if(!tipoOperacao.equals(tipo)){
+            //erro tipo incompativel
+        }
+        
+    }
 }
