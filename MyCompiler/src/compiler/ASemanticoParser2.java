@@ -683,10 +683,10 @@ public class ASemanticoParser2 {
                 if (aceitarToken("Identificador")) {
                     Variavel objetoAtual = metodoAtual.getVariavel(objetoChamadaMetodo);
                     if(objetoAtual == null){
-                        classeAtual.getVariavel(objetoChamadaMetodo);
+                        objetoAtual = classeAtual.getVariavel(objetoChamadaMetodo);
                     }
                     if(objetoAtual == null){
-                        global.getVariavel(objetoChamadaMetodo);
+                        objetoAtual = global.getVariavel(objetoChamadaMetodo);
                     }
                     if(objetoAtual == null){
                         //erro objeto não encontrado
