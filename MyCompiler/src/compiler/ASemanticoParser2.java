@@ -908,15 +908,6 @@ public class ASemanticoParser2 {
         }
         return "";
     }
-     private void salvarMensagemArquivo(String mensagem){
-        try {
-            saidaSematico.write(mensagem);
-            saidaSematico.newLine();
-            errosSemanticos++;
-        } catch (IOException ex) {
-            Logger.getLogger(ASemanticoParser1.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-    } 
     
     private void verificarTipoOperacao(String tipo){
         if(tipo==null){
