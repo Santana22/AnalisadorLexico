@@ -692,7 +692,7 @@ public class ASemanticoParser2 {
                 if (aceitarToken("Identificador")) {
                     Variavel obj = buscarObjeto();
                     objetoChamadaMetodo = tokenAnterior.getNome();
-                    if(obj!=null){
+                    if(obj!=null&&tokenAtual.getNome().equals("(")){
                         buscarChamadaMetodo(obj);
                     }
                     if (aceitarToken("(")) {
