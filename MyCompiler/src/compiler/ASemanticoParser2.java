@@ -277,8 +277,10 @@ public class ASemanticoParser2 {
                     if(variavelAtual!=null){
                         if(variavelAtual.isConstante()){
                             //erro não é permitido alterar valor de constante
+                            salvarMensagemArquivo("Constante não pode ser alterada. Linha: " + tokenAnterior.getLinha());
                         }else if(!variavelAtual.getTipo().equals(tipoOperacao)){
                             //erro no tipo da atribuição
+                            salvarMensagemArquivo("Tipo de atribuição incorreto. Linha: " + tokenAnterior.getLinha());
                         }
                     }
                     if (aceitarToken(";")) {
@@ -295,8 +297,10 @@ public class ASemanticoParser2 {
                     if(variavelAtual!=null){
                         if(variavelAtual.isConstante()){
                             //erro não é permitido alterar valor de constante
+                            salvarMensagemArquivo("Constante não pode ser alterada. Linha: " + tokenAnterior.getLinha());
                         }else if(!variavelAtual.getTipo().equals(tipoOperacao)){
                             //erro no tipo da atribuição
+                            salvarMensagemArquivo("Tipo de atribuição incorreto. Linha: " + tokenAnterior.getLinha());
                         }
                     }
                     if (aceitarToken(";")) {
@@ -317,14 +321,17 @@ public class ASemanticoParser2 {
                 if(metodoAtual.getTipo()!=null){
                     if(!metodoAtual.getTipo().equals(tipoOperacao)){
                         //erro tipo de return incompativel
+                        salvarMensagemArquivo("Tipo de retorno incompatível. Linha: " + tokenAnterior.getLinha());
                     }
                 }
             }else if(!(metodoAtual==null&&tipoOperacao==null)){
                 //erro tipo de return incompativel
+                salvarMensagemArquivo("Tipo de retorno incompatível. Linha: " + tokenAnterior.getLinha());
             }
             
             if(!tokenAtual.getNome().equals("}")){
                 //codigo abaixo do return não sera executado
+                salvarMensagemArquivo("Erro! Código abaixo do return não será executado. Linha: " + tokenAnterior.getLinha());
             }
             program();
         } 
@@ -347,7 +354,7 @@ public class ASemanticoParser2 {
             if(classeAtual!=null){
                 metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
             }else{
-                //metodo fora de classe
+                salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
             }
             if (aceitarToken("(")) {
                 parametros();
@@ -368,7 +375,7 @@ public class ASemanticoParser2 {
                 if(classeAtual!=null){
                     metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
                 }else{
-                    //metodo fora de classe
+                    salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
                 }
                 umaMain++;
                 main();
@@ -376,7 +383,7 @@ public class ASemanticoParser2 {
                 if(classeAtual!=null){
                     metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
                 }else{
-                    //metodo fora de classe
+                    salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
                 }
                 if (aceitarToken("(")) {
                     parametros();
@@ -395,7 +402,7 @@ public class ASemanticoParser2 {
                 if(classeAtual!=null){
                     metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
                 }else{
-                    //metodo fora de classe
+                    salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
                 }
                 if (aceitarToken("(")) {
                     parametros();
@@ -651,10 +658,12 @@ public class ASemanticoParser2 {
                            tipo = metodoChamado.getTipo();
                         }else{
                             //tipo incompativel na chamada de metodo
+                            salvarMensagemArquivo("Tipo incompatível na chamado de método. Linha: " + tokenAnterior.getLinha());
                         }
                 }
                 }else{
                     //erro não permitida chamada de metodo na passagem de parametros
+                    
                 }
             } else if (tokenAtual.getNome().equals("[")) {
                 tipo = getTipoTokenAtual();
@@ -763,9 +772,11 @@ public class ASemanticoParser2 {
                 metodoChamado = classeAtual.getMetodo(objetoChamadaMetodo);
                 if(metodoChamado==null){
                     //metodo não declarado nesse escopo
+                    salvarMensagemArquivo("Método não declarado no escopo. Linha: " + tokenAnterior.getLinha());
                 }
             }else{
                 //chamada de metodo fora de classe
+                salvarMensagemArquivo("Chamada de método fora de classe. Linha: " + tokenAnterior.getLinha());
             }
             fatoracaoChamadaMetodo();
         }
@@ -793,14 +804,17 @@ public class ASemanticoParser2 {
     private void verificarTipoConstante(){
         if(variavelAtual.getTipo().equals("int")&&isFloat()){
             System.out.println("erro tipo incompativel atribuido a constante");
+            salvarMensagemArquivo("Tipo incompatível atribuido a constante. Linha: " + tokenAnterior.getLinha());
         }else if(variavelAtual.getTipo().equals("float")&&!isFloat()){
             System.out.println("erro tipo incompativel atribuido a constante");
+            salvarMensagemArquivo("Tipo incompatível atribuido a constante. Linha: " + tokenAnterior.getLinha());
         }
     }
 
     private void verificarAcessoVetor() {
         if(isFloat()||Integer.parseInt(tokenAtual.getNome())<0){
             System.out.println("erro indice invalido");
+            salvarMensagemArquivo("Índice inválido. Linha: " + tokenAnterior.getLinha());
         }
     }
 
@@ -809,14 +823,18 @@ public class ASemanticoParser2 {
             variavelAtual = global.getVariavel(nomeVariavelAtribuicao);
             if(variavelAtual==null){
                 System.out.println("variavel não declada nesse escopo");
+                salvarMensagemArquivo("Variável nao declarada nesse escopo. Linha: " + tokenAnterior.getLinha());
             }
         }else if(escopoVariavel==1){ //classe
             if(classeAtual==null){
                 System.out.println("variavel não declada nesse escopo");
+                salvarMensagemArquivo("Variável nao declarada nesse escopo. Linha: " + tokenAnterior.getLinha());
             }else{
                 variavelAtual = classeAtual.getVariavel(nomeVariavelAtribuicao);
                 if(variavelAtual==null){
                     System.out.println("variavel não declada nesse escopo");
+                    salvarMensagemArquivo("Variável nao declarada nesse escopo. Linha: " + tokenAnterior.getLinha());
+                    
                 }
             }
         }else if(escopoVariavel==-1){
@@ -840,6 +858,7 @@ public class ASemanticoParser2 {
         }
         if(objetoAtual == null){
             //erro objeto não encontrado
+            salvarMensagemArquivo("Objeto não encontrado. Linha: " + tokenAnterior.getLinha());
         }
         return objetoAtual;
     }
@@ -848,6 +867,7 @@ public class ASemanticoParser2 {
         String tipo = objetoAtual.getTipo();
         if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
             //erro tipo do objeto incompativel
+            salvarMensagemArquivo("Tipo do Objeto incompatível. Linha: " + tokenAnterior.getLinha());
         }else{
             Classe c = global.getClasse(tipo);
             if(c==null){
@@ -856,6 +876,7 @@ public class ASemanticoParser2 {
                 metodoChamado = c.getMetodo(tokenAnterior.getNome());
                 if(metodoChamado==null){
                     //metodo não declarado nesse escopo
+                    salvarMensagemArquivo("Método não declarado no escopo. Linha: " + tokenAnterior.getLinha());
                 }   
             }
         }
@@ -865,10 +886,12 @@ public class ASemanticoParser2 {
         String tipo = obj.getTipo();
         if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
             //erro tipo do objeto incompativel
+            salvarMensagemArquivo("Tipos incompativeis dos Objetos. Linha: " + tokenAnterior.getLinha());
         }else{
             Classe c = global.getClasse(tipo);
             if(c==null){
                 //tipo do objeto não existe
+                salvarMensagemArquivo("Tipo do Objeto desconhecido. Linha: " + tokenAnterior.getLinha());
             }else{
                 return c.getVariavel(objetoChamadaMetodo);
             }
@@ -896,6 +919,7 @@ public class ASemanticoParser2 {
                 return v.getTipo();
             }else{
                 //erro variavel não declarada
+                salvarMensagemArquivo("Variável não declarada. Linha: " + tokenAnterior.getLinha());
             }
         }else if(tipo.equals("true")||tipo.equals("false")){
             return "bool";
@@ -912,12 +936,14 @@ public class ASemanticoParser2 {
     private void verificarTipoOperacao(String tipo){
         if(tipo==null){
             //erro tipo desconhecido
+            salvarMensagemArquivo("Tipos desconhecido. Linha: " + tokenAnterior.getLinha());
             return;
         }
         if(tipoOperacao==null){
             tipoOperacao = tipo;
         }else if(!tipoOperacao.equals(tipo)){
             //erro tipo incompativel
+            salvarMensagemArquivo("Tipos incompatíveis na operação. Linha: " + tokenAnterior.getLinha());
         }
         
     }
