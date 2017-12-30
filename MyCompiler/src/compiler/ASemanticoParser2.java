@@ -983,6 +983,8 @@ public class ASemanticoParser2 {
             } else {
                 //quantidade de parametros invalida
             }
+        }else{
+            //metodo não encontrado
         }
     }
 
