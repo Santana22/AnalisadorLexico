@@ -678,6 +678,8 @@ public class ASemanticoParser2 {
                             if(obj2!=null&&tokenAtual.getNome().equals("(")){
                                 objetoChamadaMetodo = tokenAnterior.getNome();
                                 buscarChamadaMetodo(obj2);
+                            }else if(obj2!=null&&tokenAtual.getNome().equals(";")){
+                                buscarObjeto(obj2);
                             }
                         }
                         if (aceitarToken("(")) {
@@ -694,6 +696,8 @@ public class ASemanticoParser2 {
                     objetoChamadaMetodo = tokenAnterior.getNome();
                     if(obj!=null&&tokenAtual.getNome().equals("(")){
                         buscarChamadaMetodo(obj);
+                    }else if(obj!=null&&tokenAtual.getNome().equals(";")){
+                        buscarObjeto(obj);
                     }
                     if (aceitarToken("(")) {
                         fatoracaoChamadaMetodo();
