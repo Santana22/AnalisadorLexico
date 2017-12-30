@@ -6,6 +6,7 @@
 package controller;
 
 import compiler.ASemanticoParser1;
+import compiler.ASemanticoParser2;
 import compiler.Token;
 import java.io.File;
 import java.util.ArrayList;
@@ -19,21 +20,15 @@ import semantico.Variavel;
  */
 public class ControllerSemantico {
     private ASemanticoParser1 analisadorSemanticop1;
+    private ASemanticoParser2 analisadorSemanticop2;
     
     public ControllerSemantico(){
         analisadorSemanticop1=new ASemanticoParser1();
+        analisadorSemanticop2=new ASemanticoParser2();
     }
     
     public void iniciar(ArrayList <Token> tokens, File file){
         this.analisadorSemanticop1.iniciar(tokens, file);
-        Global g = Global.getInstance();
-        
-        //Variavel v = g.getClasse("a").getMetodo("metodo").getVariavel("moto");
-        
-        Variavel v = g.getClasse("a").getVariavel("carro");
-        
-        System.out.println("name: "+v.getNome());
-        System.out.println("nome: "+v.getNome()+" tipo: "+v.getTipo());
+        this.analisadorSemanticop2.iniciar(tokens, file);
     }
-    
 }

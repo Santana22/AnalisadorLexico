@@ -1,2 +1,30 @@
-Análise Semântica iniciada para o arquivo completo.txt
-Análise Semântica finalizada com sucesso para o arquivo completo.txt
+1ª Análise Semântica iniciada para o arquivo completo.txt
+Variável já existente com esse nome. Linha: 2
+Variável já existente com esse nome. Linha: 3
+Variável já existente com esse nome. Linha: 4
+Constante já existente com esse nome. Linha: 4
+Variável já existente com esse nome. Linha: 5
+Variável já existente com esse nome. Linha: 6
+Erro! Tamanho do vetor menor 1. Linha: 6
+Variável já existente com esse nome. Linha: 6
+Variável já existente com esse nome. Linha: 8
+Variável já existente com esse nome. Linha: 9
+Variável já existente com esse nome. Linha: 10
+Variável já existente com esse nome. Linha: 12
+Variável já existente com esse nome. Linha: 13
+Variável já existente com esse nome. Linha: 14
+Constante já existente com esse nome. Linha: 14
+Constante já existente com esse nome. Linha: 14
+Variável já existente com esse nome. Linha: 15
+Variável já existente com esse nome. Linha: 17
+Variável já existente com esse nome. Linha: 17
+Variável já existente com esse nome. Linha: 18
+Variável já existente com esse nome. Linha: 19
+Variável já existente com esse nome. Linha: 20
+Variável já existente com esse nome. Linha: 25
+Variável já existente com esse nome. Linha: 26
+Variável já existente com esse nome. Linha: 40
+Variável já existente com esse nome. Linha: 41
+Variável já existente com esse nome. Linha: 42
+1ª Análise Semântica finalizada com erro para o arquivo completo.txt
+2ª Análise Semântica iniciada para o arquivo completo.txt

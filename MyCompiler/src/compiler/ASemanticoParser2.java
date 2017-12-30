@@ -20,8 +20,9 @@ import semantico.Metodo;
 import semantico.Variavel;
 
 /**
+ * Esta classe modela a 2ª análise semântica para a Linguagem Jussara.
  *
- * @author Emerson
+ * @author Emerson e Vinicius
  */
 public class ASemanticoParser2 {
     
@@ -63,20 +64,28 @@ public class ASemanticoParser2 {
         return false;
     }
 
+    /**
+     * Método que inicia a 2ª análise semântica.
+     *
+     * @param tokens lista de tokens extraídos da análise léxica
+     * @param file diretório para armazenar os resultados
+     */
+    
     public void iniciar(ArrayList <Token> tokens, File file){
-        
         FileWriter output;
         try {
-            output = new FileWriter(new File(file.getParent(), "output_sen_" + file.getName()));
+            output = new FileWriter(new File(file.getParent(), "output_sen_" + file.getName()), true);
             saidaSematico = new BufferedWriter(output);
-            saidaSematico.write("Análise Semântica iniciada para o arquivo " + file.getName());
             saidaSematico.newLine();
-            System.out.println("Análise Semântica iniciada para o arquivo " + file.getName());
+            System.out.println("2ª Análise Semântica iniciada para o arquivo " + file.getName());
+            saidaSematico.write("2ª Análise Semântica iniciada para o arquivo " + file.getName());
+            saidaSematico.newLine();
+            saidaSematico.close(); //Comente essa linha quando parar de dar erro!
             this.tokens = tokens;
             inicio();
             if (errosSemanticos == 0 && umaClasse && umaMain == 1) {
-                System.out.println("Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
-                saidaSematico.write("Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
+                System.out.println("2ª Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
+                saidaSematico.write("2ª Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
             } else{
                 if (!umaClasse) {
                     saidaSematico.write("Erro Grave: Deve existir, pelo menos, uma classe.");
@@ -86,17 +95,14 @@ public class ASemanticoParser2 {
                     saidaSematico.write("Erro Grave: Deve existir somente um método main no arquivo.");
                     saidaSematico.newLine();
                 }
-                System.out.println("Análise Semântica finalizada com erro para o arquivo " + file.getName());
-                saidaSematico.write("Análise Semântica finalizada com erro para o arquivo " + file.getName());
+                System.out.println("2ª Análise Semântica finalizada com erro para o arquivo " + file.getName());
+                saidaSematico.write("2ª Análise Semântica finalizada com erro para o arquivo " + file.getName());
             }
             saidaSematico.close();
 
         } catch (IOException ex) {
             Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.tokens = tokens;
-        inicio();
     }
     
     private void inicio() {
@@ -825,5 +831,14 @@ public class ASemanticoParser2 {
         
     }
 
+     private void salvarMensagemArquivo(String mensagem){
+        try {
+            saidaSematico.write(mensagem);
+            saidaSematico.newLine();
+            errosSemanticos++;
+        } catch (IOException ex) {
+            Logger.getLogger(ASemanticoParser1.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    } 
     
 }

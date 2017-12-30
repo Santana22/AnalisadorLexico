@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package compiler;
 
 import java.io.BufferedWriter;
@@ -20,8 +15,9 @@ import semantico.Metodo;
 import semantico.Variavel;
 
 /**
+ * Esta classe modela a 1ª análise semântica para a Linguagem Jussara.
  *
- * @author Emerson
+ * @author Emerson e Vinicius
  */
 public class ASemanticoParser1 {
     
@@ -59,6 +55,13 @@ public class ASemanticoParser1 {
         }
         return false;
     }
+    
+    /**
+     * Método que inicia a 1ª análise semântica.
+     *
+     * @param tokens lista de tokens extraídos da análise léxica
+     * @param file diretório para armazenar os resultados
+     */
 
     public void iniciar(ArrayList <Token> tokens, File file){
         
@@ -66,14 +69,15 @@ public class ASemanticoParser1 {
         try {
             output = new FileWriter(new File(file.getParent(), "output_sen_" + file.getName()));
             saidaSematico = new BufferedWriter(output);
-            saidaSematico.write("Análise Semântica iniciada para o arquivo " + file.getName());
+            saidaSematico.write("1ª Análise Semântica iniciada para o arquivo " + file.getName());
             saidaSematico.newLine();
-            System.out.println("Análise Semântica iniciada para o arquivo " + file.getName());
+            System.out.println("1ª Análise Semântica iniciada para o arquivo " + file.getName());
             this.tokens = tokens;
             inicio();
+            verificarHeranca();
             if (errosSemanticos == 0 && umaClasse && umaMain == 1) {
-                System.out.println("Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
-                saidaSematico.write("Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
+                System.out.println("1ª Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
+                saidaSematico.write("1ª Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
             } else{
                 if (!umaClasse) {
                     saidaSematico.write("Erro Grave: Deve existir, pelo menos, uma classe.");
@@ -83,18 +87,14 @@ public class ASemanticoParser1 {
                     saidaSematico.write("Erro Grave: Deve existir somente um método main no arquivo.");
                     saidaSematico.newLine();
                 }
-                System.out.println("Análise Semântica finalizada com erro para o arquivo " + file.getName());
-                saidaSematico.write("Análise Semântica finalizada com erro para o arquivo " + file.getName());
+                System.out.println("1ª Análise Semântica finalizada com erro para o arquivo " + file.getName());
+                saidaSematico.write("1ª Análise Semântica finalizada com erro para o arquivo " + file.getName());
             }
             saidaSematico.close();
 
         } catch (IOException ex) {
             Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.tokens = tokens;
-        inicio();
-        verificarHenranca();
     }
     
     private void inicio() {
@@ -184,6 +184,7 @@ public class ASemanticoParser1 {
         if (aceitarToken(",")) {
             if(!global.addVariavel(variavelAtual)){
                 //constante já existente exception
+                 salvarMensagemArquivo("Constante já existente com esse nome. Linha: " + + tokenAtual.getLinha());
             }
             tratamentoConstante();
         }
@@ -702,15 +703,18 @@ public class ASemanticoParser1 {
         if(classeAtual==null){
             if(!global.addVariavel(variavelAtual)){
                 //erro ao add variavel
+                salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + + tokenAtual.getLinha());
             }
         }else{
             if(metodoAtual==null){
                 if(!classeAtual.addVariavel(variavelAtual)){
                     //erro ao add variavel
+                     salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + + tokenAtual.getLinha());
                 }
             }else{
                 if(!metodoAtual.addVariavel(variavelAtual)){
                     //erro ao add variavel
+                     salvarMensagemArquivo("Variável já existente com esse nome. Linha: " + + tokenAtual.getLinha());
                 }
             }
         }
@@ -721,18 +725,20 @@ public class ASemanticoParser1 {
             parametrosAtuais.add(parametroAtual);
         }else{
             //erro parametro já existe com esse nome
+            salvarMensagemArquivo("Parâmetro já existente com esse nome. Linha: " + + tokenAtual.getLinha());
         }
     }
 
     private void addMetodo() {
         if(classeAtual==null){
             //tentando declarar metodo fora da classe erro
+            salvarMensagemArquivo("Método declarado fora de uma classe. Linha: " + tokenAtual.getLinha());
         }else{
             classeAtual.addMetodo(metodoAtual);
         }
     }
     
-    private void verificarHenranca(){
+    private void verificarHeranca(){
         List <Classe> classes = global.getClasses();
         for(Classe c: classes){
             if(c instanceof ClasseFilha){
@@ -740,11 +746,13 @@ public class ASemanticoParser1 {
                 if(mae!=null){
                     if(mae instanceof ClasseFilha){
                         System.out.println("erro não permitida herança em cadeia");
+                        salvarMensagemArquivo("Erro! Herança em cadeia não permitida. Linha: " + + tokenAtual.getLinha());
                     }else{
                         ((ClasseFilha) c).setMae(mae);
                     }  
                 }else{
                     System.out.println("mae não encontrada");
+                    salvarMensagemArquivo("Erro! Classe Mãe não encontrada. Linha " + tokenAtual.getLinha());
                 }
             }
         }
@@ -753,12 +761,25 @@ public class ASemanticoParser1 {
     private void verificarTamanhoVetor() {
         String numero = tokenAnterior.getNome();
         if(numero.contains(".")){
-            System.out.println("Erro, somente permitidos numero inteiros para tamanho de vetor");
+            System.out.println("Erro! Somente permitidos numero inteiros para tamanho de vetor");
+            salvarMensagemArquivo("Erro! Somente são permitidos números inteiros para tamanho de vetor. Linha: " + tokenAnterior.getLinha());
         }else {
             int num = Integer.parseInt(numero);
             if(num<1){
-                System.out.println("Erro, tamanho do vetor menor 1");
+                System.out.println("Erro! Tamanho do vetor menor 1");
+                salvarMensagemArquivo("Erro! Tamanho do vetor menor 1. Linha: " + tokenAnterior.getLinha());
             }
         }
     }
+    
+    private void salvarMensagemArquivo(String mensagem){
+        try {
+            saidaSematico.write(mensagem);
+            saidaSematico.newLine();
+            errosSemanticos++;
+        } catch (IOException ex) {
+            Logger.getLogger(ASemanticoParser1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    } 
 }
