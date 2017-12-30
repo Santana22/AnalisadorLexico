@@ -29,6 +29,7 @@ Variável já existente com esse nome. Linha: 42
 1ª Análise Semântica finalizada com erro para o arquivo completo.txt
 2ª Análise Semântica iniciada para o arquivo completo.txt
 Tipo incompatível atribuido a constante. Linha: 3
+Tipo incompatível atribuido a constante. Linha: 4
 Tipo de retorno incompatível. Linha: 21
 Variável nao declarada nesse escopo. Linha: 24
 Variável nao declarada nesse escopo. Linha: 25

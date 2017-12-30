@@ -114,9 +114,7 @@ public class ASemanticoParser2 {
     }
 
     private void variavelConstanteObjeto() {
-        variavelAtual = new Variavel();
         if (aceitarToken("final")) {
-            variavelAtual.setConstante(true);
             tipo();
             tratamentoConstante();
             if (aceitarToken(";")) {
@@ -124,22 +122,22 @@ public class ASemanticoParser2 {
             }
             variavelConstanteObjeto();
         } else if (aceitarToken("Identificador")) {
-            variavelAtual.setTipo(tokenAnterior.getNome());
+            nomeVariavelAtribuicao = tokenAnterior.getNome();
             if (aceitarToken("Identificador")) {
-                variavelAtual.setNome(tokenAnterior.getNome());
+                nomeVariavelAtribuicao = tokenAnterior.getNome();
+                verificarDeclaracaoVariavel();
                 criarObjetos();
             } else if (aceitarToken("=")) {
+                verificarDeclaracaoVariavel();
                 instancia();
             } else {
                 chamadaMetodo();
             }
             variavelConstanteObjeto();
         } else if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
-            variavelAtual.setTipo(tokenAnterior.getNome());
             tratamentoVariavel();
         } else {
         }
-        variavelAtual = new Variavel();
     }
 
     private void classe() {
@@ -165,7 +163,6 @@ public class ASemanticoParser2 {
 
     private boolean tipo() {
         if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool")) {
-            variavelAtual.setTipo(tokenAnterior.getNome());
             return true;
         }
         return false;
@@ -173,7 +170,8 @@ public class ASemanticoParser2 {
 
     private void tratamentoConstante() {
         if (aceitarToken("Identificador")) {
-            variavelAtual.setNome(tokenAnterior.getNome());
+            nomeVariavelAtribuicao = tokenAnterior.getNome();
+            verificarDeclaracaoVariavel();
             if (aceitarToken("=")) {
                 if (aceitarToken("Número")) {
                     verificarTipoConstante();
@@ -212,7 +210,8 @@ public class ASemanticoParser2 {
 
     private void variaveis() {
         if (aceitarToken("Identificador")) {
-            variavelAtual.setNome(tokenAnterior.getNome());
+            nomeVariavelAtribuicao = tokenAnterior.getNome();
+            verificarDeclaracaoVariavel();
             fatoracaoVariaveis();
         }
     }
