@@ -39,19 +39,46 @@ Objeto não encontrado. Linha: 27
 Variável nao declarada nesse escopo. Linha: 28
 Objeto não encontrado. Linha: 28
 Objeto não encontrado. Linha: 29
-Tipos desconhecido. Linha: 29
+Tipos desconhecidos. Linha: 29
 Tipo de atribuição incorreto. Linha: 29
 Método não declarado no escopo. Linha: 30
-Tipos desconhecido. Linha: 30
+Tipos desconhecidos. Linha: 30
 Tipo de atribuição incorreto. Linha: 30
 Objeto não encontrado. Linha: 31
-Tipos desconhecido. Linha: 31
+Tipos desconhecidos. Linha: 31
 Tipo de atribuição incorreto. Linha: 31
 Objeto não encontrado. Linha: 32
-Tipos desconhecido. Linha: 32
-Tipos desconhecido. Linha: 32
+Tipos desconhecidos. Linha: 32
+Tipos desconhecidos. Linha: 32
 Tipo de atribuição incorreto. Linha: 32
-Tipos desconhecido. Linha: 34
-Tipos desconhecido. Linha: 35
-Tipos desconhecido. Linha: 35
+Tipos desconhecidos. Linha: 34
+Tipos desconhecidos. Linha: 35
+Tipos desconhecidos. Linha: 35
+Tipos desconhecidos. Linha: 36
+Tipo de atribuição incorreto. Linha: 36
+Tipos desconhecidos. Linha: 38
+Tipos desconhecidos. Linha: 42
+Tipos desconhecidos. Linha: 42
+Tipos desconhecidos. Linha: 43
+Tipos desconhecidos. Linha: 43
+Tipos desconhecidos. Linha: 43
+Tipos desconhecidos. Linha: 45
+Tipos desconhecidos. Linha: 47
+Tipo de atribuição incorreto. Linha: 48
+Objeto não encontrado. Linha: 49
+Tipos desconhecidos. Linha: 49
+Tipo de atribuição incorreto. Linha: 49
+Tipos desconhecidos. Linha: 52
+Tipos desconhecidos. Linha: 56
+Tipos desconhecidos. Linha: 58
+Tipos desconhecidos. Linha: 58
+Tipo de retorno incompatível. Linha: 59
+Erro! Código abaixo do return não será executado. Linha: 59
+Tipos desconhecidos. Linha: 60
+Tipos incompatíveis na operação. Linha: 60
+Tipos desconhecidos. Linha: 63
+Tipos desconhecidos. Linha: 63
+Tipos desconhecidos. Linha: 63
+Tipos desconhecidos. Linha: 64
+Tipo de retorno incompatível. Linha: 65
 2ª Análise Semântica finalizada com erro para o arquivo completo.txt

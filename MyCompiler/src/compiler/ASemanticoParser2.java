@@ -25,7 +25,7 @@ import semantico.Variavel;
  * @author Emerson e Vinicius
  */
 public class ASemanticoParser2 {
-    
+
     private Token tokenAtual, tokenAnterior;
     private ArrayList<Token> tokens;
     private boolean umaClasse = false;
@@ -44,7 +44,8 @@ public class ASemanticoParser2 {
     private Metodo metodoChamado;
     private String tipoOperacao;
     private boolean passagemParametro;
-    
+    private int parametroAtual = 0;
+
     private boolean proximoToken() {
         if (posicao + 1 < tokens.size()) {
             posicao++;
@@ -72,8 +73,7 @@ public class ASemanticoParser2 {
      * @param tokens lista de tokens extraídos da análise léxica
      * @param file diretório para armazenar os resultados
      */
-    
-    public void iniciar(ArrayList <Token> tokens, File file){
+    public void iniciar(ArrayList<Token> tokens, File file) {
         FileWriter output;
         try {
             output = new FileWriter(new File(file.getParent(), "output_sen_" + file.getName()), true);
@@ -88,12 +88,12 @@ public class ASemanticoParser2 {
             if (errosSemanticos == 0 && umaClasse && umaMain == 1) {
                 System.out.println("2ª Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
                 saidaSematico.write("2ª Análise Semântica finalizada com sucesso para o arquivo " + file.getName());
-            } else{
+            } else {
                 if (!umaClasse) {
                     saidaSematico.write("Erro Grave: Deve existir, pelo menos, uma classe.");
                     saidaSematico.newLine();
                 }
-                if(umaMain != 1){
+                if (umaMain != 1) {
                     saidaSematico.write("Erro Grave: Deve existir somente um método main no arquivo.");
                     saidaSematico.newLine();
                 }
@@ -106,7 +106,7 @@ public class ASemanticoParser2 {
             Logger.getLogger(ASintatico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void inicio() {
         proximoToken();
         variavelConstanteObjeto();
@@ -144,7 +144,7 @@ public class ASemanticoParser2 {
 
     private void classe() {
         if (aceitarToken("class")) {
-            if(!umaClasse){
+            if (!umaClasse) {
                 umaClasse = true;
             }
             if (aceitarToken("Identificador")) {
@@ -158,7 +158,7 @@ public class ASemanticoParser2 {
                         nivel = 0;
                         classe();
                     }
-                } 
+                }
             }
         }
     }
@@ -170,7 +170,7 @@ public class ASemanticoParser2 {
         }
         return false;
     }
-    
+
     private void tratamentoConstante() {
         if (aceitarToken("Identificador")) {
             variavelAtual.setNome(tokenAnterior.getNome());
@@ -178,9 +178,9 @@ public class ASemanticoParser2 {
                 if (aceitarToken("Número")) {
                     verificarTipoConstante();
                     geradorConstante();
-                } 
-            } 
-        } 
+                }
+            }
+        }
     }
 
     private void tratamentoVariavel() {
@@ -192,7 +192,7 @@ public class ASemanticoParser2 {
 
     private void geradorConstante() {
         if (aceitarToken(",")) {
-            if(!global.addVariavel(variavelAtual)){
+            if (!global.addVariavel(variavelAtual)) {
                 //constante já existente exception
             }
             tratamentoConstante();
@@ -204,8 +204,8 @@ public class ASemanticoParser2 {
             if (aceitarToken("-")) {
                 if (aceitarToken(">")) {
                     if (aceitarToken("Identificador")) {
-                    } 
-                } 
+                    }
+                }
             }
         }
     }
@@ -223,7 +223,7 @@ public class ASemanticoParser2 {
                 if (aceitarToken("]")) {
                     fatoracaoFatoracaoVariaveis();
                 }
-            } 
+            }
         }
         acrescentar();
     }
@@ -260,7 +260,7 @@ public class ASemanticoParser2 {
                 returnConsumido();
             }
         } else if (tipo()) {
-            variavelAtual=new Variavel();
+            variavelAtual = new Variavel();
             variavelAtual.setNome(tokenAnterior.getNome());
             criarVariavel();
         } else if (aceitarToken("-")) {
@@ -274,11 +274,11 @@ public class ASemanticoParser2 {
                     instancia();
                 } else {
                     operation();
-                    if(variavelAtual!=null){
-                        if(variavelAtual.isConstante()){
+                    if (variavelAtual != null) {
+                        if (variavelAtual.isConstante()) {
                             //erro não é permitido alterar valor de constante
                             salvarMensagemArquivo("Constante não pode ser alterada. Linha: " + tokenAnterior.getLinha());
-                        }else if(!variavelAtual.getTipo().equals(tipoOperacao)){
+                        } else if (!variavelAtual.getTipo().equals(tipoOperacao)) {
                             //erro no tipo da atribuição
                             salvarMensagemArquivo("Tipo de atribuição incorreto. Linha: " + tokenAnterior.getLinha());
                         }
@@ -288,19 +288,20 @@ public class ASemanticoParser2 {
                     }
                 }
             } else if (aceitarToken("Identificador")) {
-                if (variavelAtual == null)
+                if (variavelAtual == null) {
                     variavelAtual = new Variavel();
+                }
                 variavelAtual.setNome(tokenAnterior.getNome());
                 criarObjetos();
             } else if (tokenAtual.getNome().equals("[")) {
                 fatoracaoAcessoVetorMatriz();
                 if (aceitarToken("=")) {
                     operation();
-                    if(variavelAtual!=null){
-                        if(variavelAtual.isConstante()){
+                    if (variavelAtual != null) {
+                        if (variavelAtual.isConstante()) {
                             //erro não é permitido alterar valor de constante
                             salvarMensagemArquivo("Constante não pode ser alterada. Linha: " + tokenAnterior.getLinha());
-                        }else if(!variavelAtual.getTipo().equals(tipoOperacao)){
+                        } else if (!variavelAtual.getTipo().equals(tipoOperacao)) {
                             //erro no tipo da atribuição
                             salvarMensagemArquivo("Tipo de atribuição incorreto. Linha: " + tokenAnterior.getLinha());
                         }
@@ -319,31 +320,31 @@ public class ASemanticoParser2 {
     private void returnConsumido() {
         tiposReturn();
         if (aceitarToken(";")) {
-            if(metodoAtual!=null){
-                if(metodoAtual.getTipo()!=null){
-                    if(!metodoAtual.getTipo().equals(tipoOperacao)){
+            if (metodoAtual != null) {
+                if (metodoAtual.getTipo() != null) {
+                    if (!metodoAtual.getTipo().equals(tipoOperacao)) {
                         //erro tipo de return incompativel
                         salvarMensagemArquivo("Tipo de retorno incompatível. Linha: " + tokenAnterior.getLinha());
                     }
                 }
-            }else if(!(metodoAtual==null&&tipoOperacao==null)){
+            } else if (!(metodoAtual == null && tipoOperacao == null)) {
                 //erro tipo de return incompativel
                 salvarMensagemArquivo("Tipo de retorno incompatível. Linha: " + tokenAnterior.getLinha());
             }
-            
-            if(!tokenAtual.getNome().equals("}")){
+
+            if (!tokenAtual.getNome().equals("}")) {
                 //codigo abaixo do return não sera executado
                 salvarMensagemArquivo("Erro! Código abaixo do return não será executado. Linha: " + tokenAnterior.getLinha());
             }
             program();
-        } 
+        }
     }
 
     private void tiposReturn() {
         operation();
     }
 
-    private void metodo() { 
+    private void metodo() {
         if (aceitarToken(":")) {
             if (aceitarToken(":")) {
                 comSemRetorno();
@@ -353,9 +354,9 @@ public class ASemanticoParser2 {
 
     private void comSemRetorno() {
         if (aceitarToken("Identificador")) {
-            if(classeAtual!=null){
+            if (classeAtual != null) {
                 metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
-            }else{
+            } else {
                 salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
             }
             if (aceitarToken("(")) {
@@ -371,20 +372,20 @@ public class ASemanticoParser2 {
                         }
                     }
                 }
-            } 
+            }
         } else if (aceitarToken("bool")) {
             if (aceitarToken("main")) {
-                if(classeAtual!=null){
+                if (classeAtual != null) {
                     metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
-                }else{
+                } else {
                     salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
                 }
                 umaMain++;
                 main();
             } else if (aceitarToken("Identificador")) {
-                if(classeAtual!=null){
+                if (classeAtual != null) {
                     metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
-                }else{
+                } else {
                     salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
                 }
                 if (aceitarToken("(")) {
@@ -398,12 +399,12 @@ public class ASemanticoParser2 {
                         }
                     }
                 }
-            } 
+            }
         } else if (tipo()) {
             if (aceitarToken("Identificador")) {
-                if(classeAtual!=null){
+                if (classeAtual != null) {
                     metodoAtual = classeAtual.getMetodo(tokenAnterior.getNome());
-                }else{
+                } else {
                     salvarMensagemArquivo("Método fora de classe. Linha: " + tokenAnterior.getLinha());
                 }
                 if (aceitarToken("(")) {
@@ -414,10 +415,10 @@ public class ASemanticoParser2 {
                             if (aceitarToken("}")) {
                                 metodo();
                             }
-                        } 
-                    } 
-                } 
-            } 
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -428,17 +429,17 @@ public class ASemanticoParser2 {
                     program();
                     if (aceitarToken("}")) {
                         metodo();
-                    } 
-                } 
-            } 
-        } 
+                    }
+                }
+            }
+        }
     }
 
     private void parametros() {
         if (aceitarToken("float") || aceitarToken("int") || aceitarToken("string") || aceitarToken("bool") || aceitarToken("Identificador")) {
             if (aceitarToken("Identificador")) {
                 acrescentarParametros();
-            } 
+            }
         }
     }
 
@@ -449,7 +450,7 @@ public class ASemanticoParser2 {
     }
 
     private void forConsumido() {
-          if (aceitarToken("(")) {
+        if (aceitarToken("(")) {
             operationFor();
             if (aceitarToken(";")) {
                 exLogicRelational(0);
@@ -464,7 +465,7 @@ public class ASemanticoParser2 {
                         }
                     }
                 }
-            } 
+            }
         }
     }
 
@@ -481,7 +482,7 @@ public class ASemanticoParser2 {
                         program();
                     }
                 }
-            } 
+            }
         }
 
     }
@@ -502,16 +503,16 @@ public class ASemanticoParser2 {
                     if (aceitarToken(";")) {
                         program();
                     }
-                } 
+                }
             }
-        } 
+        }
     }
 
     private void multiplasLeituras() {
         if (aceitarToken(",")) {
             if (aceitarToken("Identificador")) {
                 multiplasLeituras();
-            } 
+            }
         }
     }
 
@@ -522,9 +523,9 @@ public class ASemanticoParser2 {
             if (aceitarToken(")")) {
                 if (aceitarToken(";")) {
                     program();
-                } 
-            } 
-        } 
+                }
+            }
+        }
     }
 
     private void impressao() {
@@ -556,7 +557,7 @@ public class ASemanticoParser2 {
             verificarDeclaracaoVariavel();
             if (aceitarToken("=")) {
                 operation();
-            } 
+            }
         } else {
             acessoVetorMatriz();
             if (aceitarToken("=")) {
@@ -579,6 +580,7 @@ public class ASemanticoParser2 {
                 exAritmeticas(parenteses);
             } else if ((aceitarToken("=") && aceitarToken("=")) || aceitarToken("Operador Relacional") || aceitarToken("Operador Lógico")) {
                 exLogicRelational(parenteses);
+                tipoOperacao = "bool";
             } else if (parenteses > 0 && aceitarToken(")")) {
 
             }
@@ -626,12 +628,11 @@ public class ASemanticoParser2 {
         }
     }
 
-    
     private void operationLine() {
         operationFor();
         if (aceitarToken(";")) {
             program();
-        } 
+        }
     }
 
     private void acessoVetorMatriz() {
@@ -644,7 +645,7 @@ public class ASemanticoParser2 {
                     if (aceitarToken("]")) {
                         fatoracaoAcessoVetorMatriz();
                     }
-                } 
+                }
             }
         }
     }
@@ -653,19 +654,21 @@ public class ASemanticoParser2 {
         String tipo = null;
         if (aceitarToken("Identificador")) {
             if (tokenAtual.getNome().equals("(") || tokenAtual.getNome().equals(":")) {
-                if(!passagemParametro){
+                if (!passagemParametro) {
                     chamadaMetodo();
-                    if(metodoChamado!=null){
-                        if(metodoChamado.getTipo()!=null){
-                           tipo = metodoChamado.getTipo();
-                        }else{
+                    if (metodoChamado != null) {
+                        if (metodoChamado.getTipo() != null) {
+                            tipo = metodoChamado.getTipo();
+                        } else {
                             //tipo incompativel na chamada de metodo
                             salvarMensagemArquivo("Tipo incompatível na chamado de método. Linha: " + tokenAnterior.getLinha());
                         }
-                }
-                }else{
+                    }
+                } else {
+                    while (!tokenAnterior.getNome().equals(")")) {
+                        proximoToken();
+                    }
                     //erro não permitida chamada de metodo na passagem de parametros
-                    
                 }
             } else if (tokenAtual.getNome().equals("[")) {
                 tipo = getTipoTokenAtual();
@@ -682,7 +685,7 @@ public class ASemanticoParser2 {
             if (aceitarToken("Número")) {
                 if (aceitarToken("]")) {
                     fatoracaoAcessoVetorMatriz();
-                } 
+                }
             }
         }
     }
@@ -691,21 +694,24 @@ public class ASemanticoParser2 {
         variaveis();
         if (aceitarToken(";")) {
             program();
-        } 
+        }
     }
 
     private void instancia() {
         if (aceitarToken(">")) {
             if (aceitarToken("Identificador")) {
+                verificarInstancia();
                 if (aceitarToken("(")) {
                     if (aceitarToken(")")) {
                         if (aceitarToken(";")) {
                         }
                     } else {
+                        verificarInstanciaConstruct();
+                        parametroAtual = 0;
                         passagemParametros();
                         if (aceitarToken(")") && aceitarToken(";")) {
                             passagemParametro = false;
-                        } 
+                        }
                     }
                 }
             }
@@ -715,7 +721,9 @@ public class ASemanticoParser2 {
     private void passagemParametros() {
         passagemParametro = true;
         operation();
+        verificarParametroAtual();
         if (aceitarToken(",")) {
+            parametroAtual++;
             passagemParametros();
         }
     }
@@ -737,19 +745,20 @@ public class ASemanticoParser2 {
             if (aceitarToken(":")) {
                 if (aceitarToken(":")) {
                     if (aceitarToken("Identificador")) {
-                        if(obj!=null){
+                        if (obj != null) {
                             Variavel obj2 = buscarObjeto(obj);
-                            if(obj2!=null&&tokenAtual.getNome().equals("(")){
+                            if (obj2 != null && tokenAtual.getNome().equals("(")) {
                                 objetoChamadaMetodo = tokenAnterior.getNome();
                                 buscarChamadaMetodo(obj2);
-                            }else if(obj2!=null&&tokenAtual.getNome().equals(";")){
+                            } else if (obj2 != null && tokenAtual.getNome().equals(";")) {
                                 buscarObjeto(obj2);
                             }
                         }
                         if (aceitarToken("(")) {
+                            passagemParametro = true;
                             fatoracaoChamadaMetodo();
                         } else if (aceitarToken(";")) {
-                        } 
+                        }
                     }
                 }
             }
@@ -758,25 +767,27 @@ public class ASemanticoParser2 {
                 if (aceitarToken("Identificador")) {
                     Variavel obj = buscarObjeto();
                     objetoChamadaMetodo = tokenAnterior.getNome();
-                    if(obj!=null&&tokenAtual.getNome().equals("(")){
+                    if (obj != null && tokenAtual.getNome().equals("(")) {
                         buscarChamadaMetodo(obj);
-                    }else if(obj!=null&&tokenAtual.getNome().equals(";")){
+                    } else if (obj != null && tokenAtual.getNome().equals(";")) {
                         buscarObjeto(obj);
                     }
                     if (aceitarToken("(")) {
+                        passagemParametro = true;
                         fatoracaoChamadaMetodo();
                     } else if (aceitarToken(";")) {
                     }
                 }
             }
         } else if (aceitarToken("(")) {
-            if(classeAtual!=null){
+            passagemParametro = true;
+            if (classeAtual != null) {
                 metodoChamado = classeAtual.getMetodo(objetoChamadaMetodo);
-                if(metodoChamado==null){
+                if (metodoChamado == null) {
                     //metodo não declarado nesse escopo
                     salvarMensagemArquivo("Método não declarado no escopo. Linha: " + tokenAnterior.getLinha());
                 }
-            }else{
+            } else {
                 //chamada de metodo fora de classe
                 salvarMensagemArquivo("Chamada de método fora de classe. Linha: " + tokenAnterior.getLinha());
             }
@@ -790,6 +801,7 @@ public class ASemanticoParser2 {
             if (aceitarToken(";")) {
             }
         } else {
+            parametroAtual = 0;
             passagemParametros();
             if (aceitarToken(")")) {
                 passagemParametro = false;
@@ -798,103 +810,103 @@ public class ASemanticoParser2 {
             }
         }
     }
-    
-    private boolean isFloat(){
+
+    private boolean isFloat() {
         return tokenAnterior.getNome().contains(".");
     }
-    
-    private void verificarTipoConstante(){
-        if(variavelAtual.getTipo().equals("int")&&isFloat()){
+
+    private void verificarTipoConstante() {
+        if (variavelAtual.getTipo().equals("int") && isFloat()) {
             System.out.println("erro tipo incompativel atribuido a constante");
             salvarMensagemArquivo("Tipo incompatível atribuido a constante. Linha: " + tokenAnterior.getLinha());
-        }else if(variavelAtual.getTipo().equals("float")&&!isFloat()){
+        } else if (variavelAtual.getTipo().equals("float") && !isFloat()) {
             System.out.println("erro tipo incompativel atribuido a constante");
             salvarMensagemArquivo("Tipo incompatível atribuido a constante. Linha: " + tokenAnterior.getLinha());
         }
     }
 
     private void verificarAcessoVetor() {
-        if(isFloat()||Integer.parseInt(tokenAtual.getNome())<0){
+        if (isFloat() || Integer.parseInt(tokenAtual.getNome()) < 0) {
             System.out.println("erro indice invalido");
             salvarMensagemArquivo("Índice inválido. Linha: " + tokenAnterior.getLinha());
         }
     }
 
     private void verificarDeclaracaoVariavel() {
-        if(escopoVariavel==0){ //global
+        if (escopoVariavel == 0) { //global
             variavelAtual = global.getVariavel(nomeVariavelAtribuicao);
-            if(variavelAtual==null){
+            if (variavelAtual == null) {
                 System.out.println("variavel não declada nesse escopo");
                 salvarMensagemArquivo("Variável nao declarada nesse escopo. Linha: " + tokenAnterior.getLinha());
             }
-        }else if(escopoVariavel==1){ //classe
-            if(classeAtual==null){
+        } else if (escopoVariavel == 1) { //classe
+            if (classeAtual == null) {
                 System.out.println("variavel não declada nesse escopo");
                 salvarMensagemArquivo("Variável nao declarada nesse escopo. Linha: " + tokenAnterior.getLinha());
-            }else{
+            } else {
                 variavelAtual = classeAtual.getVariavel(nomeVariavelAtribuicao);
-                if(variavelAtual==null){
+                if (variavelAtual == null) {
                     System.out.println("variavel não declada nesse escopo");
                     salvarMensagemArquivo("Variável nao declarada nesse escopo. Linha: " + tokenAnterior.getLinha());
-                    
+
                 }
             }
-        }else if(escopoVariavel==-1){
-            if(nivel==0){
+        } else if (escopoVariavel == -1) {
+            if (nivel == 0) {
                 variavelAtual = global.getVariavel(nomeVariavelAtribuicao);
-            }else if(nivel == 1){
+            } else if (nivel == 1) {
                 variavelAtual = classeAtual.getVariavel(nomeVariavelAtribuicao);
-            }else if (nivel == 2){
+            } else if (nivel == 2) {
                 variavelAtual = metodoAtual.getVariavel(nomeVariavelAtribuicao);
             }
         }
     }
-    
-    private Variavel buscarObjeto(){
+
+    private Variavel buscarObjeto() {
         Variavel objetoAtual = metodoAtual.getVariavel(objetoChamadaMetodo);
-        if(objetoAtual == null){
+        if (objetoAtual == null) {
             objetoAtual = classeAtual.getVariavel(objetoChamadaMetodo);
         }
-        if(objetoAtual == null){
+        if (objetoAtual == null) {
             objetoAtual = global.getVariavel(objetoChamadaMetodo);
         }
-        if(objetoAtual == null){
+        if (objetoAtual == null) {
             //erro objeto não encontrado
             salvarMensagemArquivo("Objeto não encontrado. Linha: " + tokenAnterior.getLinha());
         }
         return objetoAtual;
     }
-    
-    private void buscarChamadaMetodo(Variavel objetoAtual){
+
+    private void buscarChamadaMetodo(Variavel objetoAtual) {
         String tipo = objetoAtual.getTipo();
-        if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
+        if (tipo == null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")) {
             //erro tipo do objeto incompativel
             salvarMensagemArquivo("Tipo do Objeto incompatível. Linha: " + tokenAnterior.getLinha());
-        }else{
+        } else {
             Classe c = global.getClasse(tipo);
-            if(c==null){
+            if (c == null) {
                 //tipo do objeto não existe
-            }else{
+            } else {
                 metodoChamado = c.getMetodo(tokenAnterior.getNome());
-                if(metodoChamado==null){
+                if (metodoChamado == null) {
                     //metodo não declarado nesse escopo
                     salvarMensagemArquivo("Método não declarado no escopo. Linha: " + tokenAnterior.getLinha());
-                }   
+                }
             }
         }
     }
-    
+
     private Variavel buscarObjeto(Variavel obj) {
         String tipo = obj.getTipo();
-        if(tipo ==null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")){
+        if (tipo == null || tipo.equals("float") || tipo.equals("int") || tipo.equals("string") || tipo.equals("bool")) {
             //erro tipo do objeto incompativel
             salvarMensagemArquivo("Tipos incompativeis dos Objetos. Linha: " + tokenAnterior.getLinha());
-        }else{
+        } else {
             Classe c = global.getClasse(tipo);
-            if(c==null){
+            if (c == null) {
                 //tipo do objeto não existe
                 salvarMensagemArquivo("Tipo do Objeto desconhecido. Linha: " + tokenAnterior.getLinha());
-            }else{
+            } else {
                 return c.getVariavel(objetoChamadaMetodo);
             }
         }
@@ -903,54 +915,54 @@ public class ASemanticoParser2 {
 
     private Variavel buscarVariavel() {
         Variavel v;
-        if(metodoAtual!=null){
+        if (metodoAtual != null) {
             v = metodoAtual.getVariavel(tokenAnterior.getNome());
-        }else if(classeAtual!=null){
+        } else if (classeAtual != null) {
             v = classeAtual.getVariavel(tokenAnterior.getNome());
-        }else{
+        } else {
             v = global.getVariavel(tokenAnterior.getNome());
         }
         return v;
     }
 
-    private String getTipoTokenAtual(){
+    private String getTipoTokenAtual() {
         String tipo = tokenAnterior.getTipo();
-        if(tipo.equals("identificador")){
+        if (tipo.equals("identificador")) {
             Variavel v = buscarVariavel();
-            if(v!=null){
+            if (v != null) {
                 return v.getTipo();
-            }else{
+            } else {
                 //erro variavel não declarada
                 salvarMensagemArquivo("Variável não declarada. Linha: " + tokenAnterior.getLinha());
             }
-        }else if(tipo.equals("true")||tipo.equals("false")){
+        } else if (tipo.equals("true") || tipo.equals("false")) {
             return "bool";
-        }else if(tipo.equals("Cadeia de Caracteres")){
+        } else if (tipo.equals("Cadeia de Caracteres")) {
             return "string";
-        }else if(tipo.equals("Número")&&isFloat()){
+        } else if (tipo.equals("Número") && isFloat()) {
             return "float";
-        }else if(tipo.equals("Número")&&!isFloat()){
+        } else if (tipo.equals("Número") && !isFloat()) {
             return "int";
         }
         return "";
     }
-    
-    private void verificarTipoOperacao(String tipo){
-        if(tipo==null){
+
+    private void verificarTipoOperacao(String tipo) {
+        if (tipo == null) {
             //erro tipo desconhecido
             salvarMensagemArquivo("Tipos desconhecidos. Linha: " + tokenAnterior.getLinha());
             return;
         }
-        if(tipoOperacao==null){
+        if (tipoOperacao == null) {
             tipoOperacao = tipo;
-        }else if(!tipoOperacao.equals(tipo)){
+        } else if (!tipoOperacao.equals(tipo)) {
             //erro tipo incompativel
             salvarMensagemArquivo("Tipos incompatíveis na operação. Linha: " + tokenAnterior.getLinha());
         }
-        
+
     }
-    
-    private void salvarMensagemArquivo(String mensagem){
+
+    private void salvarMensagemArquivo(String mensagem) {
         try {
             saidaSematico.write(mensagem);
             saidaSematico.newLine();
@@ -958,7 +970,44 @@ public class ASemanticoParser2 {
         } catch (IOException ex) {
             Logger.getLogger(ASemanticoParser1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    } 
-    
+
+    }
+
+    private void verificarParametroAtual() {
+        if (metodoChamado != null) {
+            List<Variavel> parametros = metodoChamado.getParametros();
+            if (parametroAtual < parametros.size()) {
+                if (!parametros.get(parametroAtual).getTipo().equals(tipoOperacao)) {
+                    //parametro com tipo incompativel
+                }
+            } else {
+                //quantidade de parametros invalida
+            }
+        }
+    }
+
+    private void verificarInstancia() {
+        if (variavelAtual != null && tokenAnterior.getNome().equals(variavelAtual.getTipo())) {
+            Classe c = global.getClasse(tokenAnterior.getNome());
+            if (c != null && c instanceof ClasseFilha) {
+                Classe mae = ((ClasseFilha) c).getMae();
+                if (mae != null && !mae.getNome().equals(tokenAnterior.getNome())) {
+                    //instancia de tipos incompativeis
+                }
+            }
+        }
+    }
+
+    private void verificarInstanciaConstruct() {
+        Classe c = global.getClasse(tokenAnterior.getNome());
+        if (c != null) {
+            metodoChamado = c.getMetodo(tokenAnterior.getNome());
+            if (metodoChamado == null) {
+                //erro construtor invalido
+            }
+        } else {
+            //construtor não encontrado
+        }
+    }
+
 }
